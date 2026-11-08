@@ -10,7 +10,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%232F6FDB'/%3E%3Cpath d='M9 16.5l4.5 4.5L23 11.5' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Sarabun:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700&family=Noto+Color+Emoji&family=Sarabun:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F6F7F9; --surface:#FFFFFF; --border:#E4E7EB; --border2:#EEF0F3;
@@ -109,6 +109,99 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .trow{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:10px}
 @media (max-width:860px){.trow{grid-template-columns:1fr 1fr}.trow .field:first-child{grid-column:1/-1}}
 
+/* daily review */
+.emo{font-family:'Noto Color Emoji','Apple Color Emoji','Segoe UI Emoji',sans-serif;line-height:1}
+.drwrap{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px;padding-bottom:12px}
+.drhead{align-items:center}
+.drhead h1{font-size:22px}
+.nb{border:1px solid var(--border);background:#fff}
+.navrow input[type=date]{width:auto}
+.drmood{text-align:center}
+.drmood h2{margin-bottom:14px;font-weight:500}
+.faces{display:flex;justify-content:space-around;gap:6px;flex-wrap:wrap}
+.fbtn{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:12.5px;color:var(--muted)}
+.fbtn:hover .face{transform:scale(1.06)}
+.fbtn.on{color:var(--ink)}
+.face{display:block;transition:transform .12s}
+.drb{padding:14px 16px}
+.drh{display:flex;align-items:center;gap:8px;width:100%;border:0;background:none;padding:2px 0;text-align:left;color:inherit}
+.drh h2{font-size:17px}
+.drh .chev{margin-left:auto;color:var(--faint)}
+.drh.static .spacer{flex:1}
+.drcnt{font-family:'Kanit',sans-serif;font-size:12px;font-weight:600;background:var(--ok-soft);color:var(--ok);border-radius:999px;padding:0 8px;line-height:20px}
+.drbody{margin-top:12px}
+.chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:12px 6px}
+.chip{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:5px;padding:2px;border-radius:12px;min-width:0}
+.chip .ico{width:58px;height:58px;border-radius:50%;background:#F1F2F4;display:grid;place-items:center;transition:background .12s,transform .12s}
+.chip .ico .emo{font-size:28px;filter:grayscale(1);opacity:.45;transition:filter .12s,opacity .12s}
+.chip .ico .ico-img{width:40px;height:40px;border-radius:50%;object-fit:cover;filter:grayscale(1);opacity:.5}
+.chip .lab{font-size:12.5px;color:var(--faint);text-align:center;line-height:1.3;word-break:break-word}
+.chip:hover .ico{transform:scale(1.05)}
+.chip.on .ico{background:#EAF5E4;box-shadow:inset 0 0 0 2px #CFE8C2}
+.chip.on .ico .emo,.chip.on .ico .ico-img{filter:none;opacity:1}
+.chip.on .lab{color:var(--ink)}
+.chip.hid{opacity:.45}
+.addchip .ico{background:#F3F8EF;color:var(--ok);box-shadow:inset 0 0 0 1.5px #D8EBCD}
+.addchip .lab{color:var(--ok)}
+.sleeprow{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end}
+.sleeprow label{display:flex;flex-direction:column;gap:4px;font-family:'Kanit',sans-serif;font-size:13px;color:var(--muted)}
+.sleeprow input{width:140px}
+.sleepdur{margin-left:auto;font-size:13px;color:var(--muted);text-align:right}
+.sleepdur b{display:block;font-family:'Kanit',sans-serif;font-size:20px;color:var(--ink)}
+.wxrow{display:flex;align-items:center;gap:12px}
+.wxi{font-size:38px}
+.photos{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:10px}
+.ph-th,.ph-add{aspect-ratio:1;border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#F6F7F9;padding:0;display:grid;place-items:center;cursor:pointer;color:var(--ok)}
+.ph-th img{width:100%;height:100%;object-fit:cover;display:block}
+.ph-add{border-style:dashed;background:#F3F8EF}
+.exlist{display:flex;flex-direction:column;gap:2px;margin-bottom:10px}
+.exrow{display:flex;align-items:center;gap:10px;padding:4px 0;border-bottom:1px solid var(--border2)}
+.exrow span:first-child{flex:1}
+.exform{display:flex;gap:8px}
+.exform input[name=t]{flex:1;min-width:0}
+.exform input[name=m]{width:84px}
+input[type=number]{border:1px solid var(--border);border-radius:10px;background:#fff;padding:9px 12px;font-size:15px;outline:none;font-family:'Sarabun',sans-serif}
+.drbar{position:sticky;bottom:12px;display:flex;align-items:center;gap:10px;background:rgba(246,247,249,.92);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:8px;border-radius:16px;z-index:5}
+.drstar{width:52px;height:48px;border-radius:14px;border:1px solid var(--border);background:#fff;display:grid;place-items:center;color:var(--faint);flex:none}
+.drstar.on{color:#D99A00}.drstar.on svg{fill:#F7C531;stroke:#E2A912}
+.btn.primary.drdone{flex:1;height:48px;font-size:17px;border-radius:14px;background:#4CAF6A;border-color:#4CAF6A}
+.btn.primary.drdone:hover{background:#3F9A5B;border-color:#3F9A5B}
+#dr-status{position:absolute;right:16px;top:-16px;font-size:12px;color:var(--faint)}
+.newblock{border:0;background:#E7F4E0;color:#3F8A55;font-family:'Kanit',sans-serif;font-size:16px;font-weight:500;border-radius:14px;padding:14px;display:flex;align-items:center;justify-content:center;gap:8px}
+.newblock:hover{background:#DDEFD4}
+.tpls{display:flex;flex-direction:column;gap:8px}
+.tpl{display:flex;align-items:center;gap:10px;justify-content:space-between;border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+.tpl .fine{font-family:'Noto Color Emoji','Apple Color Emoji',sans-serif}
+.itprev{display:flex;justify-content:center;margin-bottom:12px}
+.ico.big{width:76px;height:76px;border-radius:50%;background:#EAF5E4;display:grid;place-items:center}
+.ico.big .emo{font-size:38px}
+.ico.big .ico-img{width:56px;height:56px;border-radius:50%;object-fit:cover}
+.palette{display:flex;flex-wrap:wrap;gap:4px;margin-top:8px}
+.palette button{border:0;background:#F3F4F6;border-radius:8px;width:36px;height:36px;font-size:20px;padding:0}
+.palette button:hover{background:#E7E9EC}
+.moodbtn{border:0;background:none;padding:0;display:inline-grid;place-items:center;flex:none;border-radius:50%;cursor:pointer;opacity:.55}
+.moodbtn.has{opacity:1}
+.moodbtn:hover{opacity:1;transform:scale(1.08)}
+.dstar{position:relative;display:inline-grid;place-items:center;vertical-align:middle;flex:none}
+.dstar svg{position:absolute;inset:0}
+.dstar b{position:relative;font-family:'Kanit',sans-serif;font-size:10.5px;font-weight:700;color:#5A4100;margin-top:2px}
+.dh .moodbtn{margin-right:2px}
+.dh .dn,.dh .dd{white-space:nowrap}
+.dh .dd{display:inline-flex;align-items:center;gap:3px}
+.dh{gap:5px}
+.dsub{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.wl{display:flex;align-items:center;gap:6px}
+.wkmoods{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-bottom:14px;text-align:center}
+.wkmoods div{display:flex;flex-direction:column;align-items:center;gap:2px}
+@media (max-width:860px){
+  .chips{grid-template-columns:repeat(4,minmax(0,1fr));gap:10px 4px}
+  .chip .ico{width:54px;height:54px}
+  .drbar{bottom:calc(68px + env(safe-area-inset-bottom))}
+  .drhead .navrow{width:100%}
+  .drhead h1{font-size:19px}
+  .faces .face{width:48px;height:48px}
+}
+
 /* quadrants */
 :root{--q-iu:#E0584F;--q-iu-soft:#FDEEEC;--q-i:#3F7AE0;--q-i-soft:#EAF1FD;--q-u:#C99A06;--q-u-soft:#FDF5DC;--q-s:#7C8794;--q-s-soft:#F0F2F5}
 .quad{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
@@ -194,7 +287,7 @@ button.stat{text-align:left;width:100%;font:inherit}
 button.stat:hover{border-color:#CBD2DB}
 
 /* week rows */
-.wrow{display:grid;grid-template-columns:84px 1fr 40px;align-items:center;gap:10px;font-size:14px;padding:4px 0}
+.wrow{display:grid;grid-template-columns:118px 1fr 40px;align-items:center;gap:10px;font-size:14px;padding:4px 0}
 .wrow .wl{color:var(--muted)}
 .wrow.today .wl{color:var(--accent);font-weight:700}
 .wrow .wc{text-align:right;font-family:'Kanit',sans-serif;font-size:13px;color:var(--muted)}
@@ -427,6 +520,9 @@ const IC={
  redo:'<path d="M20 12a8 8 0 1 1-2.3-5.7"/><path d="M20 4v5h-5"/>',
  flame:'<path d="M12 3c.8 3.4 5 5.6 5 10.3A5 5 0 0 1 7 13.3c0-2.6 1.6-4 2.6-5.2.3 1.6 1 2.5 2 2.9C11.1 8.7 11 5.6 12 3z"/>',
  bolt:'<path d="M13 2.5 5 13.5h6l-1 8 8-11h-6z"/>',
+ up:'<path d="m6 15 6-6 6 6"/>',
+ down:'<path d="m6 9 6 6 6-6"/>',
+ smile:'<circle cx="12" cy="12" r="9"/><path d="M8.5 14.2c.9 1.3 2.1 2 3.5 2s2.6-.7 3.5-2"/><path d="M9 9.8h.01M15 9.8h.01" stroke-width="2.6"/>',
  list:'<path d="M5 7h14M5 12h14M5 17h14"/>'
 };
 const ic=(n,s)=>{s=s||18;return '<svg class="ic" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>'};
@@ -437,13 +533,13 @@ const QORDER=['iu','i','u','s'];
 const qOf=t=>QUADS[t.q]?t.q:({high:'iu',medium:'i',low:'s'}[t.priority]||'i');
 const pr=t=>QUADS[qOf(t)];
 const MOODS=[[1,'😣','Awful'],[2,'🙁','Not great'],[3,'😐','Okay'],[4,'🙂','Good'],[5,'😄','Great']];
-const ROUTES=['dashboard','daily','weekly','goals','review','account'];
-const NAV=[['dashboard','Dashboard','Home','home'],['daily','Daily Planner','Daily','sun'],['weekly','Weekly Planner','Weekly','cal'],['goals','Goals','Goals','target'],['review','Weekly Review','Review','book'],['account','Settings','Settings','gear']];
+const ROUTES=['dashboard','daily','weekly','goals','dreview','dsetup','review','account'];
+const NAV=[['dashboard','Dashboard','Home','home'],['daily','Daily Planner','Daily','sun'],['weekly','Weekly Planner','Weekly','cal'],['goals','Goals','Goals','target'],['dreview','Daily Review','Review','smile'],['review','Weekly Review','Weekly R.','book'],['account','Settings','Settings','gear']];
 
 /* ---------- state ---------- */
 const T0=todayIso();
 const S={mode:'loading',col:null,uid:null,profile:null,
-  tasks:new Map(),goals:new Map(),focus:new Map(),reviews:new Map(),
+  tasks:new Map(),goals:new Map(),focus:new Map(),reviews:new Map(),days:new Map(),photos:new Map(),drcfg:null,wx:{},reviewDay:T0,
   route:'dashboard',dailyDate:T0,weekStart:mondayOf(T0),weekSel:T0,calMonth:monthStart(T0),reviewWeek:mondayOf(T0),
   goalFilter:'active',drafts:{},deleting:false,loadTimer:null,rvTimer:null,user:null,unsub:null,authError:'',authView:'signin',pendingName:''};
 /* Firebase project pv-planner; planner data lives at users/{uid}/planner/{doc} */
@@ -518,12 +614,12 @@ function focusItems(mon){const f=S.focus.get('f_'+mon);return f&&f.items?clone(f
 function saveFocus(mon,items){const id='f_'+mon;const d={week:mon,items,updatedAt:Date.now()};S.focus.set(id,Object.assign({},d,{id}));render();return save(id,d)}
 
 /* ---------- snapshot ---------- */
-function sig(){const f=m=>[...m.values()].sort((a,b)=>a.id<b.id?-1:1);return stable([S.profile,f(S.tasks),f(S.goals),f(S.focus),f(S.reviews)])}
+function sig(){const f=m=>[...m.values()].sort((a,b)=>a.id<b.id?-1:1);return stable([S.profile,f(S.tasks),f(S.goals),f(S.focus),f(S.reviews),f(S.days),[...S.photos.keys()].sort(),S.drcfg])}
 function onSnap(snap){
   clearTimeout(S.loadTimer);
   if(S.deleting)return;
   const before=S.mode==='app'?sig():'';
-  const n={tasks:new Map(),goals:new Map(),focus:new Map(),reviews:new Map(),profile:null};
+  const n={tasks:new Map(),goals:new Map(),focus:new Map(),reviews:new Map(),days:new Map(),photos:new Map(),drcfg:null,profile:null};
   snap.docs.forEach(d=>{
     const v=d.data();if(!v)return;const id=d.id;
     if(id==='profile')n.profile=v;
@@ -531,8 +627,11 @@ function onSnap(snap){
     else if(id.startsWith('g_'))n.goals.set(id,Object.assign({},v,{id}));
     else if(id.startsWith('f_'))n.focus.set(id,Object.assign({},v,{id}));
     else if(id.startsWith('r_'))n.reviews.set(id,Object.assign({},v,{id}));
+    else if(id.startsWith('d_'))n.days.set(id,Object.assign({},v,{id}));
+    else if(id.startsWith('p_'))n.photos.set(id,Object.assign({},v,{id}));
+    else if(id==='drcfg')n.drcfg=Object.assign({},v,{id});
   });
-  S.tasks=n.tasks;S.goals=n.goals;S.focus=n.focus;S.reviews=n.reviews;
+  S.tasks=n.tasks;S.goals=n.goals;S.focus=n.focus;S.reviews=n.reviews;S.days=n.days;S.photos=n.photos;S.drcfg=n.drcfg;
   const definitive=!snap.metadata.fromCache;
   if(n.profile)S.profile=n.profile;
   else if(definitive||S.mode==='app'){if(!S.profile||S.profile.uid!==S.user.uid)createProfile()}
@@ -964,8 +1063,8 @@ VIEWS.dashboard=function(){
   const todo=todays.filter(t=>!t.done),fin=todays.filter(t=>t.done);
   let wrows='';
   for(let i=0;i<7;i++){const d=addDays(mon,i),ts=tasksOn(d),dn=ts.filter(t=>t.done).length;
-    wrows+='<div class="wrow'+(d===td?' today':'')+'"><span class="wl">'+DAYS_S[parse(d).getDay()]+' '+fmtShort(d)+'</span>'+progBar(ts.length?dn/ts.length:0,ts.length&&dn===ts.length)+'<span class="wc">'+dn+'/'+ts.length+'</span></div>'}
-  return '<header class="ph"><div><h1>'+greeting()+', '+esc(name)+'</h1><p class="sub">'+fmtLong(td)+'</p></div></header>'
+    wrows+='<div class="wrow'+(d===td?' today':'')+'"><span class="wl">'+moodBtn(d,20)+'<span>'+DAYS_S[parse(d).getDay()]+' '+(dayEntry(d).star?MON_S[parse(d).getMonth()]+' '+starNum(parse(d).getDate(),24):fmtShort(d))+'</span></span>'+progBar(ts.length?dn/ts.length:0,ts.length&&dn===ts.length)+'<span class="wc">'+dn+'/'+ts.length+'</span></div>'}
+  return '<header class="ph"><div><h1>'+greeting()+', '+esc(name)+'</h1><p class="sub dsub">'+moodBtn(td,22)+(dayEntry(td).star?starNum(parse(td).getDate(),24):'')+fmtLong(td)+'</p></div></header>'
    +'<div class="stats">'
    +'<button class="card stat" data-act="nav" data-route="daily"><div class="lbl2">Today</div><div class="val">'+done+'/'+todays.length+'</div><div class="hint">tasks done</div></button>'
    +'<button class="card stat'+(overdue.length?' warn':'')+'" data-act="nav" data-route="daily"><div class="lbl2">Overdue</div><div class="val">'+overdue.length+'</div><div class="hint">tasks pending</div></button>'
@@ -1030,7 +1129,7 @@ VIEWS.weekly=function(){
   let days='';
   for(let i=0;i<7;i++){const d=addDays(mon,i),ts=tasksOn(d).sort((a,b)=>(a.done-b.done)||sortTasks(a,b)),dn=ts.filter(t=>t.done).length;
     days+='<section class="card day'+(d===td?' is-today':'')+(d===S.weekSel?' is-sel':'')+'" id="day-'+d+'">'
-     +'<div class="dh"><span class="dn">'+dayName(d)+'</span><span class="dd">'+fmtShort(d)+'</span><span class="dc">'+dn+'/'+ts.length+'</span>'
+     +'<div class="dh">'+moodBtn(d,22)+'<span class="dn">'+dayName(d)+'</span><span class="dd">'+(dayEntry(d).star?MON_S[parse(d).getMonth()]+' '+starNum(parse(d).getDate(),26):fmtShort(d))+'</span><span class="dc">'+dn+'/'+ts.length+'</span>'
      +'<button class="ibtn" data-act="open-day" data-date="'+d+'" title="Open in daily planner" aria-label="Open in daily planner">'+ic('arrow',16)+'</button></div>'
      +gScheduleHTML(d,true)
      +(ts.length?'<div class="tlist">'+ts.map(t=>taskRow(t,{compact:true})).join('')+'</div>':'<p class="empty" style="padding:4px 2px">Nothing planned</p>')
@@ -1084,22 +1183,23 @@ VIEWS.review=function(){
   const w=S.reviewWeek,r=S.reviews.get('r_'+w)||{},wk=tasksInWeek(w),dn=wk.filter(t=>t.done),fi=focusItems(w);
   const hist=[...S.reviews.values()].sort((a,b)=>a.week<b.week?1:-1);
   const fields=RV_FIELDS.map(f=>'<div class="field"><label class="lbl" for="rv-'+f[0]+'">'+f[1]+'</label><textarea id="rv-'+f[0]+'" data-k="rv-'+w+'-'+f[0]+'" data-rv="'+f[0]+'" data-w="'+w+'" placeholder="'+esc(f[2])+'" rows="3">'+esc(r[f[0]]||'')+'</textarea></div>').join('');
-  return '<header class="ph"><div><h1>Weekly Review</h1><p class="sub">Reviewing '+weekLabel(w)+'</p></div>'+weekNav('rv',w)+'</header>'
+  return '<div class="tabs"><button data-act="nav" data-route="dreview">Daily review</button><button data-act="nav" data-route="review">Weekly review</button></div><header class="ph"><div><h1>Weekly Review</h1><p class="sub">Reviewing '+weekLabel(w)+'</p></div>'+weekNav('rv',w)+'</header>'
    +'<div class="grid2"><div class="col">'
-   +'<section class="card"><div class="ch"><h2>Week at a glance</h2></div><div class="kv">'
+   +'<section class="card"><div class="ch"><h2>Week at a glance</h2></div>'
+   +'<div class="wkmoods">'+[0,1,2,3,4,5,6].map(i=>{const dd=addDays(w,i);return '<div><span class="fine">'+DAYS_S[parse(dd).getDay()]+'</span>'+moodBtn(dd,26)+'</div>'}).join('')+'</div><div class="kv">'
    +'<div><b>'+dn.length+'/'+wk.length+'</b>tasks done</div><div><b>'+(wk.length?Math.round(dn.length/wk.length*100):0)+'%</b>progress</div>'
    +'<div><b>'+fi.filter(i=>i.done).length+'/'+fi.length+'</b>focus items done</div></div>'
    +(dn.length?'<ul class="donelist">'+dn.slice(0,8).map(t=>'<li>'+ic('check',15)+'<span>'+esc(t.title)+'</span></li>').join('')+(dn.length>8?'<li class="fine" style="padding-left:23px">and '+(dn.length-8)+' more</li>':'')+'</ul>':'')
    +'</section>'
    +'<section class="card"><div class="ch"><h2>Reflection</h2><span class="save-state" id="rv-status">'+(r.updatedAt?'Saved':'')+'</span></div>'
    +fields
-   +'<div class="field"><span class="lbl">Overall mood this week</span><div class="mood">'+MOODS.map(m=>'<button class="'+(r.mood===m[0]?'on':'')+'" data-act="mood" data-v="'+m[0]+'" data-w="'+w+'"><span class="e">'+m[1]+'</span>'+m[2]+'</button>').join('')+'</div></div>'
+   +'<div class="field"><span class="lbl">Overall mood this week</span><div class="mood">'+MOODS.map(m=>'<button class="'+(r.mood===m[0]?'on':'')+'" data-act="mood" data-v="'+m[0]+'" data-w="'+w+'"><span class="e">'+face(m[0],30,r.mood===m[0])+'</span>'+m[2]+'</button>').join('')+'</div></div>'
    +'<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><span class="fine">Saves automatically as you type</span>'
    +'<button class="btn" data-act="rv-push" data-w="'+w+'">'+ic('arrow',16)+'Add to next week’s focus</button></div>'
    +'</section></div>'
    +'<div class="col"><section class="card"><div class="ch"><h2>Past reviews</h2><span class="fine">'+hist.length+(hist.length===1?' week':' weeks')+'</span></div>'
    +(hist.length?'<div class="rv-hist">'+hist.map(h=>{const md=MOODS.find(m=>m[0]===h.mood);
-      return '<button class="rv-item'+(h.week===w?' on':'')+'" data-act="rv-open" data-w="'+h.week+'"><div class="t"><span>'+weekLabel(h.week)+'</span><span>'+(md?md[1]:'')+'</span></div><div class="s">'+esc((h.wins||h.feelings||h.obstacles||'—').split('\n')[0])+'</div></button>'}).join('')+'</div>'
+      return '<button class="rv-item'+(h.week===w?' on':'')+'" data-act="rv-open" data-w="'+h.week+'"><div class="t"><span>'+weekLabel(h.week)+'</span><span>'+(md?face(md[0],20,true):'')+'</span></div><div class="s">'+esc((h.wins||h.feelings||h.obstacles||'—').split('\n')[0])+'</div></button>'}).join('')+'</div>'
      :'<p class="empty">No reviews yet — start with this week’s</p>')
    +'</section></div></div>';
 };
@@ -1121,7 +1221,7 @@ VIEWS.account=function(){
    +(prov.includes('password')?'<button class="btn" data-act="pw-reset-email">Send password reset email</button>':'')
    +'<button class="btn" data-act="logout">'+ic('logout',16)+'Sign out</button></div></section></div>'
    +'<div class="col">'+gcalSettingsHTML()+'<section class="card"><div class="ch"><h2>Your data</h2></div>'
-   +'<div class="kv" style="margin-bottom:14px"><div><b>'+S.tasks.size+'</b>tasks</div><div><b>'+S.goals.size+'</b>goals</div><div><b>'+S.reviews.size+'</b>weekly reviews</div></div>'
+   +'<div class="kv" style="margin-bottom:14px"><div><b>'+S.tasks.size+'</b>tasks</div><div><b>'+S.goals.size+'</b>goals</div><div><b>'+S.days.size+'</b>daily reviews</div><div><b>'+S.reviews.size+'</b>weekly reviews</div></div>'
    +'<button class="btn" data-act="copy-json">'+ic('copy',16)+'Copy all data (JSON)</button></section>'
    +'<section class="card"><div class="ch"><h2 style="color:var(--hi)">Delete all data</h2></div><p class="sub" style="margin-bottom:12px">Permanently delete every task, goal, weekly focus, and weekly review. This can’t be undone. Your sign-in account itself is kept.</p>'
    +'<button class="btn danger" data-act="delete-all">'+ic('trash',16)+'Delete all data</button></section></div></div>';
@@ -1204,6 +1304,207 @@ function saveReview(w,extra){
   save(id,doc).then(ok=>{const s=$('#rv-status');if(s)s.textContent=ok?'Saved':'Couldn’t save'});
 }
 
+/* ---------- Daily Review ---------- */
+const DR_DEFAULT=[
+ ['emotions','Emotions','choice',0,'excited~🎉|relaxed~🛋️|proud~🏆|hopeful~🎈|happy~🌷|enthusiastic~🚀|pit-a-pat~💓|refreshed~🍃|calm~🌊|grateful~🕯️|depressed~☁️|lonely~🍂|anxious~😰|sad~💧|angry~🌋|pressured~⏳|annoyed~💢|tired~💤|stressed~⚡|bored~💬|music~🎧'],
+ ['weather','Weather','choice',0,'sunny~☀️|cloudy~⛅|rainy~☔|snowy~🌨️|windy~🌬️|stormy~🌪️|hot~🔥|cold~❄️'],
+ ['habits','Daily Habits','choice',0,'daily piano~🎹|daily tarot~🔮|daily rubiks~🧩|daily chess~♟️|weekly money~🐷|wash hair~🧴|medicines 4x~💊|paid e-learn~💵|attend live~🧑‍🏫|Ward~🐛|❌ night snack~❌|brush 2x~🪥|retainer~🦷|shower 2x~🛁|bf midnight~🛌|ex. & weight~🤸|Very watery~🚰'],
+ ['hobbies','Hobbies','choice',0,'piano~🎹|chess~♟️|guitar~🎸|tarot~🃏|YouTube~▶️|netflix~🎬|gaming~🎮|news~📰|Geogussr~🗺️|daydream~💭|Gold trading~🪙|trading~📈|exercise~🏋️|nature~🌳|sightseeing~⛰️|birdwatch~🐦|online shop~📦|reading~📖|walk~👟|XXX~🔞|artistic~🎨'],
+ ['outdoor','Outdoor Act.','choice',0,'bowling~🎳|pool~🎱|karaoke~🎤|ice skate~⛸️|cinema~🍿'],
+ ['lovely','Lovely Interactions','choice',0,'family~🏡|partner~💗|friends~🧑‍🤝‍🧑|discord~🖥️|none~✖️'],
+ ['family','Family','choice',0,'stay home~🏠|outside act.~🚶|eat outside~🍴|go to mall~🛍️|birthday~🎂|movie night~📽️|Hua Hin~🏖️|travel~✈️|see doctor~💉|home dinner~🍲|Visited Dorm~🏢'],
+ ['relationship','Relationship','choice',0,'date~📍|anniversary~📅|gift~🎁|conflict~💔|night call~📞|eating~🍝|driving~🚗|shopping~🛒|study~📝|home~🛏️|cooking~🍳|consulting~🗨️'],
+ ['selfcare','Self-Care','choice',0,'shower~🚿|brush teeth~🪥|wash face~🧼|drink water~🥛|haircut~✂️|sunscreen~🌞|shave~🪒'],
+ ['cream','Cream','choice',0,'หลอด ๆ (เช้า)~🧴|กระปุก (เช้า)~🫙|ครีมกันแดด (เช้า)~☀️|แป้ง (เช้า)~👻|ทารักแร้ (เช้า)~🌈|หลอด ๆ (กลางคืน)~🧴|กระปุก (กลางคืน)~🫙|Lip 😴 mask (กลางคืน)~💋'],
+ ['health','Health','choice',0,'stomach ache~😖|poop~💩|diarrhea~🧻|🤢~🤮|sick~🤒|medicine~💊|checkup~🩺|hospital~🏥|fever~🌡️'],
+ ['meals','Meals','choice',0,'breakfast~🍳|brunch~🍔|lunch~🍕|dinner~🥩|night meal~🍜|random snack~🍫|night snack~🍗'],
+ ['food','Food','choice',0,'shabu~🍲|bbq~🥓|food court~🍚|restaurant~🍽️|bakery~🥐|eat at home~🥘|snack~🍪|Noodles~🍜|Breath=🤮~😮‍💨|Milk~🍼|coffee~☕|tea~🍵|Coca/Pepsi~🥤|lemon tea~🍋|Boba~🧋|Healthy Drink~🧃|Sweet Drink~🍸|Beer~🍺|Liquor~🥃|Wine~🍷'],
+ ['exercise','Exercise (1)','choice',0,'Walking~🚶|Running~🏃|Planking~🧘|Twister~🌀|Treadmill~🏃‍♀️|Dumbbell~🏋️|Tabletennis~🏓|Badminton~🏸|Tennis~🎾|Swimming~🏊'],
+ ['uni','Uni','choice',0,'live lecture~🧑‍🏫|e-learn~💻|self review~🔎|rw w/friends~👥|lab~🧪|exam day~📝|Eat w/ Friend~🍱|Round Ward~🥼|History Taking~💬|Physical Exam~🩺|Medical Record~📋|Fell Asleep~😪|GOT COMPLIMENT~🥰|Sleep @ Dorm~🏢'],
+ ['workint','Work Interactions','choice',0,'Self~🙂|Friends~🤓|Extern~🧑‍⚕️|Resident~👩‍⚕️|Chief~👑|Staff~👨‍🏫|Patients~🛏️|Advisor~🦉|Morning Round T.~📖'],
+ ['extreme','Extreme Sports','choice',0,'Case Presentation~🌟|overnight~🌚|fighting~🥊|1n miracle~✍️'],
+ ['rehab','Rehab Center','choice',0,'FURIOUS~😡|UNLUCKY~🙃|CLRRC~😞|FLRRC~😵‍💫|alone~🫥|want to die~👻|want e1 die~🔥|stupid~🥴|got cooked~🌋|dk the fuck im doing~😶'],
+ ['special','Special Days','choice',0,'April Fools\'~🤪|Songkran~💦'],
+ ['sleep','Sleep','sleep',0,''],
+ ['weather_auto','Weather','weather',0,''],
+ ['note','Today\'s note','note',0,''],
+ ['photo','Today\'s photo','photo',0,''],
+ ['exercise_log','Exercise','exercise',0,''],
+ ['tutoring','Tutoring','choice',0,'N\'Nara~2️⃣|N\'Korbuae~3️⃣|N\'Nw&friend~4️⃣|Maths~⭐|Chem~⭐'],
+ ['chores','Chores','choice',1,'cleaning~🧹|cook~🍲|laundry~🧺|dishes~🍽️'],
+ ['work','Work','choice',1,'work~💼|end on time~🏃|overtime~🌙|vacation~🏝️']
+];
+const BLOCK_TYPES={choice:'Choices',sleep:'Sleep',weather:'Weather (automatic)',note:'Note',photo:'Photos',exercise:'Exercise log'};
+let _drDef=null;
+function drDefaults(){
+  if(_drDef)return clone(_drDef);
+  _drDef=DR_DEFAULT.map(([id,name,type,hidden,items])=>({id,name,type,hidden:!!hidden,
+    items:items?items.split('|').map((x,i)=>{const k=x.lastIndexOf('~');const label=x.slice(0,k),icon=x.slice(k+1);return {id:id+'_'+i,label,icon,img:'',hidden:false}}):[]}));
+  return clone(_drDef);
+}
+const drCfg=()=>S.drcfg||{};
+const drBlocks=()=>(drCfg().blocks&&drCfg().blocks.length)?drCfg().blocks:(drDefaults(),_drDef);
+function saveDrCfg(patch){const d=Object.assign({},drCfg(),{blocks:clone(drBlocks())},patch,{updatedAt:Date.now()});delete d.id;S.drcfg=Object.assign({},d,{id:'drcfg'});render();return save('drcfg',d)}
+const dayEntry=d=>S.days.get('d_'+d)||{};
+const MOOD_C={5:'#F4D35E',4:'#A7D98B',3:'#C9D0D9',2:'#93B8EE',1:'#B9A0EA'};
+const MOOD_L={5:'Great',4:'Good',3:'Okay',2:'Bad',1:'Awful'};
+function face(v,size,active){
+  const bg=active?MOOD_C[v]:'#E9EBEE',fg=active?'#3B3024':'#A3A9B2';
+  const eyes='<circle cx="11.5" cy="13.5" r="1.7" fill="'+fg+'"/><circle cx="20.5" cy="13.5" r="1.7" fill="'+fg+'"/>';
+  const m={5:'<path d="M9.5 18.5h13c0 3.6-2.9 6.4-6.5 6.4s-6.5-2.8-6.5-6.4z" fill="'+fg+'"/>',
+    4:'<path d="M11 19.5q5 4.2 10 0" stroke="'+fg+'" stroke-width="2" fill="none" stroke-linecap="round"/>',
+    3:'<path d="M12 20.5h8" stroke="'+fg+'" stroke-width="2" stroke-linecap="round"/>',
+    2:'<path d="M11.5 22q4.5-3.6 9 0" stroke="'+fg+'" stroke-width="2" fill="none" stroke-linecap="round"/>',
+    1:'<path d="M10.5 22.5q5.5-4.2 11 0" stroke="'+fg+'" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M9.6 16.5c0 1.2-.7 2.1-1.5 2.1s-1.5-.9-1.5-2.1.75-2.2 1.5-3.2c.75 1 1.5 2 1.5 3.2z" fill="'+(active?'#6FA8F0':'#C3C8CF')+'"/>'}[v];
+  return '<svg class="face" width="'+size+'" height="'+size+'" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15.5" fill="'+bg+'"/>'+eyes+m+'</svg>';
+}
+function starNum(n,size){
+  size=size||26;
+  return '<span class="dstar" style="width:'+size+'px;height:'+size+'px"><svg viewBox="0 0 24 24" width="'+size+'" height="'+size+'" aria-hidden="true"><path d="M12 1.6l3.1 6.5 7.1.9-5.2 4.9 1.3 7-6.3-3.4-6.3 3.4 1.3-7-5.2-4.9 7.1-.9z" fill="#F7C531" stroke="#E2A912" stroke-width="1" stroke-linejoin="round"/></svg><b>'+n+'</b></span>';
+}
+/* mood face (or a faint empty one) that opens the day's review */
+function moodBtn(d,size){
+  const e=dayEntry(d);size=size||22;
+  return '<button class="moodbtn'+(e.mood?' has':'')+'" data-act="open-dr" data-date="'+d+'" title="'+(e.mood?MOOD_L[e.mood]+' — open daily review':'Add daily review')+'" aria-label="Daily review">'+(e.mood?face(e.mood,size,true):face(3,size,false))+'</button>';
+}
+const dayNumHTML=(d,size)=>dayEntry(d).star?starNum(parse(d).getDate(),size):'';
+function iconHTML(it,cls){return it&&it.img?'<img class="'+(cls||'ico-img')+'" src="'+esc(it.img)+'" alt="">':'<span class="emo">'+esc((it&&it.icon)||'⭐')+'</span>'}
+const DR_PROMPTS=['What made today meaningful?','What are you grateful for today?','What did you learn today?','What drained your energy, and what gave you energy?','What would you do differently if you could redo today?','Who made your day better, and how?','What is one small win from today?','What is on your mind right now?','What do you want to remember about today?','What is one thing you want to do better tomorrow?','When did you feel most like yourself today?','What challenged you today, and how did you handle it?','What made you smile today?','What are you looking forward to tomorrow?'];
+function drPrompt(d){const n=parse(d).getTime()/864e5|0;return DR_PROMPTS[((n%DR_PROMPTS.length)+DR_PROMPTS.length)%DR_PROMPTS.length]}
+let drCollapsed=new Set();try{drCollapsed=new Set(JSON.parse(localStorage.getItem('pv_drc')||'[]'))}catch(e){}
+function saveDay(d,patch,silent){
+  const id='d_'+d,base=Object.assign({},S.days.get(id)||{});delete base.id;
+  const doc=Object.assign({date:d},base);
+  [['note','dn-'],['refl','dq-']].forEach(([f,p])=>{const k=p+d;if(Object.prototype.hasOwnProperty.call(S.drafts,k)){doc[f]=S.drafts[k];delete S.drafts[k]}});
+  Object.assign(doc,patch||{});
+  const wx=S.wx[d];if(wx&&wx.data&&!doc.weather)doc.weather=wx.data;
+  doc.updatedAt=Date.now();doc.createdAt=base.createdAt||doc.updatedAt;
+  S.days.set(id,Object.assign({},doc,{id}));
+  const st=$('#dr-status');if(st)st.textContent='Saving…';
+  if(!silent)render();
+  return save(id,doc).then(ok=>{const s=$('#dr-status');if(s)s.textContent=ok?'Saved':'Couldn’t save';return ok});
+}
+/* weather from Open-Meteo (free, no key) */
+const WX={0:['☀️','Clear'],1:['🌤️','Mostly clear'],2:['⛅','Partly cloudy'],3:['☁️','Cloudy'],45:['🌫️','Fog'],48:['🌫️','Fog'],51:['🌦️','Drizzle'],53:['🌦️','Drizzle'],55:['🌦️','Drizzle'],56:['🌧️','Freezing drizzle'],57:['🌧️','Freezing drizzle'],61:['🌧️','Rain'],63:['🌧️','Rain'],65:['🌧️','Heavy rain'],66:['🌧️','Freezing rain'],67:['🌧️','Freezing rain'],71:['🌨️','Snow'],73:['🌨️','Snow'],75:['🌨️','Heavy snow'],77:['🌨️','Snow'],80:['🌦️','Showers'],81:['🌧️','Showers'],82:['⛈️','Heavy showers'],85:['🌨️','Snow showers'],86:['🌨️','Snow showers'],95:['⛈️','Thunderstorm'],96:['⛈️','Thunderstorm'],99:['⛈️','Thunderstorm']};
+const drLoc=()=>drCfg().loc||{lat:13.7563,lon:100.5018,name:'Bangkok'};
+function drFetchWx(d){
+  if(S.wx[d])return;
+  const diff=(parse(d)-parse(todayIso()))/864e5;
+  if(diff<-90||diff>14){S.wx[d]={err:'Weather is only available for the last 90 days and next 14 days'};return}
+  S.wx[d]={loading:true};const L=drLoc();
+  fetch('https://api.open-meteo.com/v1/forecast?latitude='+L.lat+'&longitude='+L.lon+'&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&start_date='+d+'&end_date='+d)
+    .then(r=>r.json()).then(j=>{const dd=j.daily||{};if(!dd.time||!dd.time.length)throw 0;S.wx[d]={data:{code:dd.weather_code[0],max:Math.round(dd.temperature_2m_max[0]),min:Math.round(dd.temperature_2m_min[0]),place:L.name}};if(S.route==='dreview')render()})
+    .catch(()=>{S.wx[d]={err:'Couldn’t load the weather'};if(S.route==='dreview')render()});
+}
+function drUseLocation(){
+  if(!navigator.geolocation){toast('Location isn’t available in this browser');return}
+  navigator.geolocation.getCurrentPosition(p=>{saveDrCfg({loc:{lat:+p.coords.latitude.toFixed(3),lon:+p.coords.longitude.toFixed(3),name:'My location'}});S.wx={};render()},()=>toast('Location permission was denied'));
+}
+function loadImg(file){return new Promise((res,rej)=>{const url=URL.createObjectURL(file),img=new Image();img.onload=()=>{res(img);setTimeout(()=>URL.revokeObjectURL(url),1000)};img.onerror=()=>{URL.revokeObjectURL(url);rej(new Error('img'))};img.src=url})}
+async function fileToIcon(file){
+  const img=await loadImg(file),s=Math.min(img.width,img.height),c=document.createElement('canvas');c.width=c.height=96;
+  c.getContext('2d').drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,96,96);
+  let u=c.toDataURL('image/webp',0.85);if(!u.startsWith('data:image/webp'))u=c.toDataURL('image/png');return u;
+}
+async function fileToPhoto(file){
+  const img=await loadImg(file),k=Math.min(1,1280/Math.max(img.width,img.height)),c=document.createElement('canvas');
+  c.width=Math.round(img.width*k);c.height=Math.round(img.height*k);c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+  let q=0.75,u=c.toDataURL('image/jpeg',q);while(u.length>850000&&q>0.3){q-=0.1;u=c.toDataURL('image/jpeg',q)}return u;
+}
+const photosOn=d=>[...S.photos.values()].filter(p=>p.date===d).sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
+function sleepDur(s){if(!s||!s.bed||!s.wake)return '';const [a,b]=s.bed.split(':').map(Number),[c,e]=s.wake.split(':').map(Number);let m=(c*60+e)-(a*60+b);if(m<=0)m+=1440;return Math.floor(m/60)+'h '+(m%60?pad(m%60)+'m':'')}
+function drBlockHTML(b,d,e){
+  const open=!drCollapsed.has(b.id);
+  const sel=(e.sel&&e.sel[b.id])||[];
+  let body='';
+  if(b.type==='choice'){
+    const its=b.items.filter(i=>!i.hidden);
+    body=its.length?'<div class="chips">'+its.map(it=>'<button class="chip'+(sel.includes(it.id)?' on':'')+'" data-act="dr-pick" data-b="'+b.id+'" data-i="'+it.id+'" aria-pressed="'+sel.includes(it.id)+'"><span class="ico">'+iconHTML(it)+'</span><span class="lab">'+esc(it.label)+'</span></button>').join('')+'</div>'
+      :'<p class="empty">No choices yet — add some in Customize</p>';
+  }else if(b.type==='sleep'){
+    const s=e.sleep||{};
+    body='<div class="sleeprow"><label>Went to bed<input type="time" data-sleep="bed" data-d="'+d+'" value="'+esc(s.bed||'')+'"></label><label>Woke up<input type="time" data-sleep="wake" data-d="'+d+'" value="'+esc(s.wake||'')+'"></label><div class="sleepdur">'+(sleepDur(s)?'<b>'+sleepDur(s)+'</b>of sleep':'<span class="fine">Add both times</span>')+'</div></div>';
+  }else if(b.type==='weather'){
+    let w=e.weather;if(!w){drFetchWx(d);const x=S.wx[d];w=x&&x.data}
+    const x=S.wx[d]||{};
+    body=w?'<div class="wxrow"><span class="emo wxi">'+(WX[w.code]||['🌡️'])[0]+'</span><div><b>'+(WX[w.code]||['','—'])[1]+'</b><div class="fine">▼ '+w.min+'°  ▲ '+w.max+'°C</div></div><span class="spacer"></span><span class="fine">📍 '+esc(w.place||drLoc().name)+'</span></div>'
+      :'<p class="fine">'+(x.loading?'Loading weather…':esc(x.err||''))+'</p>';
+    body+='<button class="link" data-act="dr-loc" style="margin-top:8px">Use my current location</button>';
+  }else if(b.type==='note'){
+    body='<textarea rows="3" data-k="dn-'+d+'" data-dr="note" data-d="'+d+'" placeholder="Write here…">'+esc(e.note||'')+'</textarea>';
+  }else if(b.type==='photo'){
+    const ps=photosOn(d);
+    body='<div class="photos">'+ps.map(p=>'<button class="ph-th" data-act="ph-open" data-id="'+p.id+'"><img src="'+esc(p.data)+'" alt=""></button>').join('')
+      +(ps.length<3?'<label class="ph-add" title="Add photo">'+ic('plus',22)+'<input type="file" accept="image/*" data-photo="'+d+'" hidden></label>':'')+'</div><p class="fine" style="margin-top:6px">Up to 3 photos a day</p>';
+  }else if(b.type==='exercise'){
+    const xs=e.exlog||[],ex=drBlocks().find(x=>x.id==='exercise');
+    const opts=ex?ex.items.filter(i=>!i.hidden).map(i=>'<option value="'+esc(i.label)+'">').join(''):'';
+    const tot=xs.reduce((s,x)=>s+(+x.min||0),0);
+    body=(xs.length?'<div class="exlist">'+xs.map(x=>'<div class="exrow"><span>'+esc(x.type)+'</span><span class="fine">'+(x.min?x.min+' min':'')+'</span><button class="ibtn" data-act="ex-del" data-d="'+d+'" data-i="'+x.id+'" aria-label="Remove">'+ic('x',15)+'</button></div>').join('')+'<div class="fine" style="text-align:right">Total '+tot+' min</div></div>':'')
+      +'<form class="exform" data-form="ex-add" data-d="'+d+'"><input type="text" name="t" list="exopts" placeholder="Activity (e.g. Running)" autocomplete="off"><input type="number" name="m" min="0" max="1440" placeholder="min" inputmode="numeric"><button class="btn sm" type="submit">'+ic('plus',15)+'Add</button><datalist id="exopts">'+opts+'</datalist></form>';
+  }
+  const cnt=b.type==='choice'&&sel.length?'<span class="drcnt">'+sel.length+'</span>':'';
+  return '<section class="card drb'+(open?'':' closed')+'"><button class="drh" data-act="dr-collapse" data-b="'+b.id+'"><h2>'+esc(b.name)+'</h2>'+cnt+'<span class="chev">'+ic(open?'up':'down',18)+'</span></button>'+(open?'<div class="drbody">'+body+'</div>':'')+'</section>';
+}
+VIEWS.dreview=function(){
+  const d=S.reviewDay,td=todayIso(),e=dayEntry(d);
+  const blocks=drBlocks().filter(b=>!b.hidden);
+  const q=e.rq||drPrompt(d);
+  return '<div class="tabs"><button data-act="nav" data-route="dreview">Daily review</button><button data-act="nav" data-route="review">Weekly review</button></div>'
+   +'<header class="ph drhead"><div class="navrow"><button class="ibtn nb" data-act="dr-prev" aria-label="Previous day">'+ic('left',18)+'</button>'
+   +'<div><h1>'+DAYS[parse(d).getDay()]+', '+MON_L[parse(d).getMonth()]+' '+parse(d).getDate()+'</h1><p class="sub">'+parse(d).getFullYear()+(d===td?' · Today':'')+'</p></div>'
+   +'<button class="ibtn nb" data-act="dr-next" aria-label="Next day">'+ic('right',18)+'</button>'
+   +'<input type="date" data-act="pick-drday" value="'+d+'" aria-label="Pick a date">'+(d!==td?'<button class="btn sm" data-act="dr-today">Today</button>':'')+'</div>'
+   +'<button class="btn" data-act="nav" data-route="dsetup">'+ic('gear',16)+'Customize</button></header>'
+   +'<div class="drwrap">'
+   +'<section class="card drmood"><h2>How was your day?</h2><div class="faces">'+[5,4,3,2,1].map(v=>'<button class="fbtn'+(e.mood===v?' on':'')+'" data-act="dr-mood" data-v="'+v+'" aria-label="'+MOOD_L[v]+'">'+face(v,54,e.mood===v)+'<span>'+MOOD_L[v]+'</span></button>').join('')+'</div></section>'
+   +blocks.map(b=>drBlockHTML(b,d,e)).join('')
+   +'<section class="card"><div class="ch"><h2>Reflection</h2><button class="link" data-act="dr-q">'+ic('redo',14)+'Another question</button></div>'
+   +'<label class="lbl" for="dr-refl" style="font-weight:500">'+esc(q)+'</label><textarea id="dr-refl" rows="4" data-k="dq-'+d+'" data-dr="refl" data-d="'+d+'" placeholder="Write your answer…">'+esc(e.refl||'')+'</textarea></section>'
+   +'<div class="drbar"><button class="drstar'+(e.star?' on':'')+'" data-act="dr-star" aria-label="'+(e.star?'Unfavorite this day':'Favorite this day')+'" title="Favorite this day">'+ic('star',24)+'</button>'
+   +'<button class="btn primary drdone" data-act="dr-done">Done</button><span class="save-state" id="dr-status">'+(e.updatedAt?'Saved':'')+'</span></div>'
+   +'</div>';
+};
+/* ---- customize ---- */
+VIEWS.dsetup=function(){
+  const tab=S.drTab||'use',bl=drBlocks().filter(b=>tab==='use'?!b.hidden:b.hidden);
+  return '<header class="ph"><div class="navrow"><button class="ibtn nb" data-act="nav" data-route="dreview" aria-label="Back">'+ic('left',18)+'</button><div><h1>Customize</h1><p class="sub">Daily review blocks and choices</p></div></div></header>'
+   +'<div class="drwrap"><div class="tabs"><button class="'+(tab==='use'?'active':'')+'" data-act="dr-tab" data-t="use">In use</button><button class="'+(tab==='hid'?'active':'')+'" data-act="dr-tab" data-t="hid">Hidden</button></div>'
+   +(tab==='use'?'<button class="newblock" data-act="blk-new">'+ic('plus',18)+'New block</button>':'')
+   +(bl.length?bl.map((b,ix)=>{
+     const items=b.type==='choice'?'<div class="chips">'+b.items.map(it=>'<button class="chip on'+(it.hidden?' hid':'')+'" data-act="itm-edit" data-b="'+b.id+'" data-i="'+it.id+'"><span class="ico">'+iconHTML(it)+'</span><span class="lab">'+esc(it.label)+(it.hidden?' · hidden':'')+'</span></button>').join('')
+       +'<button class="chip addchip" data-act="itm-new" data-b="'+b.id+'"><span class="ico">'+ic('plus',22)+'</span><span class="lab">New icon</span></button></div>':'<p class="fine">'+BLOCK_TYPES[b.type]+' block</p>';
+     return '<section class="card drb"><div class="drh static"><h2>'+esc(b.name)+'</h2><button class="ibtn" data-act="blk-edit" data-b="'+b.id+'" title="Rename" aria-label="Rename block">'+ic('edit',16)+'</button><span class="spacer"></span>'
+      +'<button class="ibtn" data-act="blk-up" data-b="'+b.id+'" title="Move up" aria-label="Move up">'+ic('up',17)+'</button><button class="ibtn" data-act="blk-down" data-b="'+b.id+'" title="Move down" aria-label="Move down">'+ic('down',17)+'</button>'
+      +'<button class="btn sm" data-act="blk-hide" data-b="'+b.id+'">'+(b.hidden?'Show':'Hide')+'</button>'
+      +(b.id.startsWith('c_')?'<button class="ibtn" data-act="blk-del" data-b="'+b.id+'" title="Delete" aria-label="Delete block">'+ic('trash',16)+'</button>':'')+'</div><div class="drbody">'+items+'</div></section>';
+   }).join(''):'<section class="card"><p class="empty">'+(tab==='use'?'No blocks in use':'No hidden blocks')+'</p></section>')
+   +'<p class="fine" style="margin:4px 2px 0">Click a choice to rename it, change its icon (emoji or your own picture) or hide it. Changes save automatically.</p></div>';
+};
+const EMO_PALETTE='😀 🥰 😎 🤩 😴 🤒 🥳 😇 🌞 🌙 ⭐ 🌈 🔥 💧 🌸 🌷 🍀 🌳 🐶 🐱 🐰 🐻 🐼 🐥 🍎 🍓 🍰 🍩 🍜 🍣 ☕ 🧋 🎵 🎮 📚 ✏️ 💻 📷 🎨 ⚽ 🏀 🏸 🚴 🧘 💪 🧠 ❤️ 💛 💚 💙 💜 🎁 🏠 🚗 ✈️ 🛒 💊 🩺 🧸'.split(' ');
+function openItemModal(bid,iid){
+  const b=drBlocks().find(x=>x.id===bid);if(!b)return;
+  const it=iid?b.items.find(x=>x.id===iid):{label:'',icon:'⭐',img:'',hidden:false};if(!it)return;
+  S.itemImg=it.img||'';
+  openModal(mHead(iid?'Edit choice':'New choice')+'<form data-form="dr-item" data-b="'+bid+'" data-i="'+(iid||'')+'" novalidate>'
+   +'<div class="itprev"><span class="ico big" id="it-prev">'+iconHTML(it)+'</span></div>'
+   +'<div class="field"><label class="lbl" for="it-lb">Name</label><input type="text" id="it-lb" name="lb" maxlength="40" value="'+esc(it.label)+'" autofocus autocomplete="off"></div>'
+   +'<div class="field"><label class="lbl" for="it-em">Emoji icon</label><input type="text" id="it-em" name="em" maxlength="16" value="'+esc(it.icon||'')+'" style="max-width:120px;font-size:20px" class="emo"><div class="palette">'+EMO_PALETTE.map(x=>'<button type="button" class="emo" data-act="pick-emo" data-e="'+x+'">'+x+'</button>').join('')+'</div></div>'
+   +'<div class="field"><span class="lbl">Or use your own picture</span><div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><label class="btn sm">'+ic('plus',15)+'Upload image<input type="file" accept="image/*" id="it-img" hidden></label><button type="button" class="btn sm" data-act="it-noimg">Use emoji instead</button></div><p class="fine" style="margin-top:4px">Cropped to a square, 96×96 px</p></div>'
+   +'<label class="check-line"><input type="checkbox" name="hd"'+(it.hidden?' checked':'')+'> Hide this choice</label>'
+   +'<div class="mf">'+(iid?'<button type="button" class="btn danger" data-act="itm-del" data-b="'+bid+'" data-i="'+iid+'">'+ic('trash',16)+'Delete</button><span class="spacer"></span>':'')
+   +'<button type="button" class="btn" data-act="close-modal">Cancel</button><button type="submit" class="btn primary">Save</button></div></form>');
+}
+function itPreview(){const p=$('#it-prev');if(!p)return;const em=($('#it-em')||{}).value||'⭐';p.innerHTML=S.itemImg?'<img class="ico-img" src="'+esc(S.itemImg)+'" alt="">':'<span class="emo">'+esc(em)+'</span>'}
+function openNewBlockModal(){
+  const hidden=drBlocks().filter(b=>b.hidden);
+  S.nbTab=S.nbTab||'tpl';
+  openModal(mHead('Create block')+'<div class="tabs" style="margin-bottom:12px"><button class="'+(S.nbTab==='tpl'?'active':'')+'" data-act="nb-tab" data-t="tpl">Templates</button><button class="'+(S.nbTab==='cus'?'active':'')+'" data-act="nb-tab" data-t="cus">Custom</button></div>'
+   +(S.nbTab==='tpl'?(hidden.length?'<div class="tpls">'+hidden.map(b=>'<div class="tpl"><div><b>'+esc(b.name)+'</b><div class="fine">'+(b.type==='choice'?b.items.slice(0,6).map(i=>i.img?'':esc(i.icon)).join(' ')+(b.items.length>6?' …':''):BLOCK_TYPES[b.type])+'</div></div><button class="btn sm primary" data-act="blk-show" data-b="'+b.id+'">Add</button></div>').join('')+'</div>':'<p class="empty">All template blocks are already in use.</p>')
+     :'<form data-form="dr-newblock" novalidate><p class="sub" style="margin-bottom:12px">Create a block from scratch, then add your own choices.</p><div class="field"><label class="lbl" for="nb-nm">Block name</label><input type="text" id="nb-nm" name="nm" maxlength="40" autofocus autocomplete="off" placeholder="e.g. Chores"></div><div class="mf"><button type="button" class="btn" data-act="close-modal">Cancel</button><button type="submit" class="btn primary">Add</button></div></form>'));
+}
+function mutBlocks(fn){const bl=clone(drBlocks());fn(bl);return saveDrCfg({blocks:bl})}
+
 /* ---------- events ---------- */
 document.addEventListener('click',e=>{
   const el=e.target.closest('[data-act]');if(!el)return;
@@ -1256,6 +1557,33 @@ document.addEventListener('click',e=>{
         allTasks().filter(t=>t.goalId===g.id&&t.msId===mid).forEach(t=>patchTask(t.id,{goalId:null,msId:null}));
         g.milestones=g.milestones.filter(x=>x.id!==mid);saveGoal(g)});return}
     case 'ms-addtask':openTaskModal(null,{date:td,goalId:el.dataset.g,msId:el.dataset.m});return;
+    case 'open-dr':S.reviewDay=el.dataset.date;go('dreview');return;
+    case 'dr-prev':S.reviewDay=addDays(S.reviewDay,-1);render();return;
+    case 'dr-next':S.reviewDay=addDays(S.reviewDay,1);render();return;
+    case 'dr-today':S.reviewDay=td;render();return;
+    case 'dr-mood':{const d=S.reviewDay,v=Number(el.dataset.v),e=dayEntry(d);saveDay(d,{mood:e.mood===v?null:v});return}
+    case 'dr-pick':{const d=S.reviewDay,e=dayEntry(d),sel=clone(e.sel||{}),b=el.dataset.b,i=el.dataset.i,arr=sel[b]||[];
+      sel[b]=arr.includes(i)?arr.filter(x=>x!==i):arr.concat(i);if(!sel[b].length)delete sel[b];saveDay(d,{sel});return}
+    case 'dr-collapse':{const b=el.dataset.b;if(drCollapsed.has(b))drCollapsed.delete(b);else drCollapsed.add(b);try{localStorage.setItem('pv_drc',JSON.stringify([...drCollapsed]))}catch(x){}render();return}
+    case 'dr-star':{const d=S.reviewDay,e=dayEntry(d);saveDay(d,{star:!e.star});return}
+    case 'dr-q':{const d=S.reviewDay,e=dayEntry(d),cur=e.rq||drPrompt(d),i=DR_PROMPTS.indexOf(cur);saveDay(d,{rq:DR_PROMPTS[(i+1)%DR_PROMPTS.length]});return}
+    case 'dr-done':{const d=S.reviewDay;clearTimeout(S.rvTimer);saveDay(d,{},true).then(ok=>{if(ok)toast('Saved '+fmtDate(d))});go('dashboard');return}
+    case 'dr-loc':drUseLocation();return;
+    case 'ex-del':{const d=el.dataset.d,e=dayEntry(d);saveDay(d,{exlog:(e.exlog||[]).filter(x=>x.id!==el.dataset.i)});return}
+    case 'ph-open':{const ph=S.photos.get(id);if(!ph)return;openModal(mHead(fmtDate(ph.date))+'<img src="'+esc(ph.data)+'" alt="" style="width:100%;border-radius:10px;display:block"><div class="mf"><button type="button" class="btn danger" data-act="ph-del" data-id="'+id+'">'+ic('trash',16)+'Delete photo</button><span class="spacer"></span><button type="button" class="btn" data-act="close-modal">Close</button></div>');return}
+    case 'ph-del':closeModal();S.photos.delete(id);render();removeDoc(id);return;
+    case 'dr-tab':S.drTab=el.dataset.t;render();return;
+    case 'blk-new':S.nbTab='tpl';openNewBlockModal();return;
+    case 'nb-tab':S.nbTab=el.dataset.t;openNewBlockModal();return;
+    case 'blk-show':case 'blk-hide':{const b=el.dataset.b;mutBlocks(bl=>{const x=bl.find(y=>y.id===b);if(x)x.hidden=a==='blk-hide'?!x.hidden:false});if(a==='blk-show'){closeModal();toast('Block added')}return}
+    case 'blk-up':case 'blk-down':{const b=el.dataset.b;mutBlocks(bl=>{const vis=bl.filter(x=>!!x.hidden===!!bl.find(y=>y.id===b).hidden),i=vis.findIndex(x=>x.id===b),j=a==='blk-up'?i-1:i+1;if(j<0||j>=vis.length)return;const A=bl.indexOf(vis[i]),B=bl.indexOf(vis[j]);[bl[A],bl[B]]=[bl[B],bl[A]]});return}
+    case 'blk-edit':{const b=drBlocks().find(x=>x.id===el.dataset.b);if(!b)return;openModal(mHead('Rename block')+'<form data-form="dr-block" data-b="'+b.id+'" novalidate><div class="field"><label class="lbl" for="bk-nm">Block name</label><input type="text" id="bk-nm" name="nm" maxlength="40" value="'+esc(b.name)+'" autofocus autocomplete="off"></div><div class="mf"><button type="button" class="btn" data-act="close-modal">Cancel</button><button type="submit" class="btn primary">Save</button></div></form>');return}
+    case 'blk-del':{const b=drBlocks().find(x=>x.id===el.dataset.b);if(!b)return;confirmModal('Delete this block?','“'+esc(b.name)+'” and its choices will be removed from Daily Review. Past days keep their saved data.','Delete block',()=>mutBlocks(bl=>{const i=bl.findIndex(x=>x.id===b.id);if(i>=0)bl.splice(i,1)}));return}
+    case 'itm-new':openItemModal(el.dataset.b,null);return;
+    case 'itm-edit':openItemModal(el.dataset.b,el.dataset.i);return;
+    case 'itm-del':{const b=el.dataset.b,i=el.dataset.i;closeModal();mutBlocks(bl=>{const x=bl.find(y=>y.id===b);if(x)x.items=x.items.filter(y=>y.id!==i)});toast('Choice deleted');return}
+    case 'pick-emo':{const f=$('#it-em');if(f){f.value=el.dataset.e;S.itemImg='';itPreview()}return}
+    case 'it-noimg':S.itemImg='';itPreview();return;
     case 'confirm-ok':{const fn=S.confirmFn;closeModal();if(fn)fn();return}
     case 'rv-prev':case 'rv-next':case 'rv-this':
       S.reviewWeek=a==='rv-this'?mondayOf(td):addDays(S.reviewWeek,a==='rv-prev'?-7:7);render();return;
@@ -1273,7 +1601,7 @@ document.addEventListener('click',e=>{
       toast(n?'Added '+n+(n===1?' item':' items')+' to the focus for '+weekLabel(nw):'Everything is already in next week’s focus');return}
     case 'copy-json':{
       const p=S.profile||{};const strip2=m=>[...m.values()];
-      const data=JSON.stringify({exportedAt:new Date().toISOString(),profile:{name:p.name,email:p.email,createdAt:p.createdAt},tasks:strip2(S.tasks),goals:strip2(S.goals),weeklyFocus:strip2(S.focus),weeklyReviews:strip2(S.reviews)},null,2);
+      const data=JSON.stringify({exportedAt:new Date().toISOString(),profile:{name:p.name,email:p.email,createdAt:p.createdAt},tasks:strip2(S.tasks),goals:strip2(S.goals),weeklyFocus:strip2(S.focus),weeklyReviews:strip2(S.reviews),dailyReviews:strip2(S.days),reviewSetup:S.drcfg,photoCount:S.photos.size},null,2);
       const fallback=()=>openModal(mHead('All data (JSON)')+'<p class="sub" style="margin-bottom:10px">Copy the text below to keep it</p><textarea readonly rows="12" style="font-family:monospace;font-size:12.5px">'+esc(data)+'</textarea><div class="mf"><button class="btn" data-act="close-modal">Close</button></div>');
       try{navigator.clipboard.writeText(data).then(()=>toast('Copied to clipboard'),fallback)}catch(err){fallback()}
       return}
@@ -1287,17 +1615,24 @@ document.addEventListener('click',e=>{
 document.addEventListener('change',e=>{
   const el=e.target;
   if(el.dataset&&el.dataset.act==='pick-day'&&el.value){S.dailyDate=el.value;render()}
+  if(el.dataset&&el.dataset.act==='pick-drday'&&el.value){S.reviewDay=el.value;render()}
+  if(el.dataset&&el.dataset.sleep){const d=el.dataset.d,e=dayEntry(d),sl=Object.assign({},e.sleep||{});sl[el.dataset.sleep]=el.value;saveDay(d,{sleep:sl})}
+  if(el.dataset&&el.dataset.photo&&el.files&&el.files[0]){const d=el.dataset.photo,f=el.files[0];
+    if(photosOn(d).length>=3){toast('Up to 3 photos a day');return}
+    toast('Adding photo…');fileToPhoto(f).then(data=>{const id='p_'+d+'_'+rid(),doc={date:d,data,createdAt:Date.now()};S.photos.set(id,Object.assign({},doc,{id}));render();return save(id,doc)}).catch(()=>toast('Couldn’t read that image'))}
+  if(el.id==='it-img'&&el.files&&el.files[0]){fileToIcon(el.files[0]).then(u=>{S.itemImg=u;itPreview()}).catch(()=>toast('Couldn’t read that image'))}
   if(el.name==='st'&&el.form&&el.form.dataset.form==='task'&&el.value&&gcalOn())el.form.elements.cal.checked=true;
   if(el.dataset&&el.dataset.act==='gcal-show'){const set=new Set(gcalCfg().show||[]);if(el.checked)set.add(el.value);else set.delete(el.value);saveGcal({show:[...set]});G.events.clear();render()}
 });
 document.addEventListener('input',e=>{
-  const el=e.target;if(!el.dataset||!el.dataset.k)return;
+  const el=e.target;if(el.id==='it-em'){S.itemImg='';itPreview()}if(!el.dataset||!el.dataset.k)return;
   S.drafts[el.dataset.k]=el.value;
+  if(el.dataset.dr){const d=el.dataset.d;const st=$('#dr-status');if(st)st.textContent='Typing…';clearTimeout(S.rvTimer);S.rvTimer=setTimeout(()=>saveDay(d,{},true),800)}
   if(el.dataset.rv){const w=el.dataset.w;const st=$('#rv-status');if(st)st.textContent='Typing…';
     clearTimeout(S.rvTimer);S.rvTimer=setTimeout(()=>saveReview(w),800)}
 });
 document.addEventListener('focusout',e=>{
-  const el=e.target;if(S.rendering||!el.isConnected)return;if(el.dataset&&el.dataset.rv&&Object.prototype.hasOwnProperty.call(S.drafts,el.dataset.k)){clearTimeout(S.rvTimer);saveReview(el.dataset.w)}
+  const el=e.target;if(S.rendering||!el.isConnected)return;if(el.dataset&&el.dataset.dr&&Object.prototype.hasOwnProperty.call(S.drafts,el.dataset.k)){clearTimeout(S.rvTimer);saveDay(el.dataset.d,{},true)}if(el.dataset&&el.dataset.rv&&Object.prototype.hasOwnProperty.call(S.drafts,el.dataset.k)){clearTimeout(S.rvTimer);saveReview(el.dataset.w)}
 });
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&$('#modal-root').innerHTML)closeModal()});
 document.addEventListener('submit',async e=>{
@@ -1307,6 +1642,14 @@ document.addEventListener('submit',async e=>{
     case 'signin':return doSignin(f);
     case 'signup':return doSignup(f);
     case 'reset':return doReset(f);
+    case 'ex-add':{const d=f.dataset.d,t=el.t.value.trim(),mn=Math.max(0,Math.min(1440,parseInt(el.m.value,10)||0));if(!t){el.t.focus();return}
+      const e=dayEntry(d);saveDay(d,{exlog:(e.exlog||[]).concat({id:rid(),type:t,min:mn})});return}
+    case 'dr-item':{const b=f.dataset.b,i=f.dataset.i,lb=el.lb.value.trim();if(!lb){el.lb.focus();return}
+      const icon=(el.em.value||'').trim()||'⭐',img=S.itemImg||'',hidden=el.hd.checked;
+      mutBlocks(bl=>{const x=bl.find(y=>y.id===b);if(!x)return;if(i){const it=x.items.find(y=>y.id===i);if(it)Object.assign(it,{label:lb,icon,img,hidden})}else x.items.push({id:'x_'+rid(),label:lb,icon,img,hidden})});
+      closeModal();return}
+    case 'dr-block':{const nm=el.nm.value.trim();if(!nm){el.nm.focus();return}mutBlocks(bl=>{const x=bl.find(y=>y.id===f.dataset.b);if(x)x.name=nm});closeModal();return}
+    case 'dr-newblock':{const nm=el.nm.value.trim();if(!nm){el.nm.focus();return}mutBlocks(bl=>{bl.push({id:'c_'+rid(),name:nm,type:'choice',hidden:false,items:[]})});closeModal();S.drTab='use';toast('Block created — add choices with “New icon”');return}
     case 'qa':{
       const key=f.dataset.key,title=el.title.value.trim();if(!title){el.title.focus();return}
       const q=f.dataset.q||'i';
@@ -1347,7 +1690,7 @@ document.addEventListener('submit',async e=>{
     case 'delete-all':{
       if(el.cf.value.trim().toUpperCase()!=='DELETE'){$('#del-err').textContent='Type DELETE to confirm';return}
       busy(f,true);S.deleting=true;
-      const ids=[...S.tasks.keys(),...S.goals.keys(),...S.focus.keys(),...S.reviews.keys()];
+      const ids=[...S.tasks.keys(),...S.goals.keys(),...S.focus.keys(),...S.reviews.keys(),...S.days.keys(),...S.photos.keys()].concat(S.drcfg?['drcfg']:[]);
       let ok=true;for(const id of ids){if(!(await removeDoc(id)))ok=false}
       if(ok)ok=await removeDoc('profile');
       S.deleting=false;closeModal();
