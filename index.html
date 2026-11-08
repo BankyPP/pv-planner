@@ -393,6 +393,7 @@ button.stat:hover{border-color:#CBD2DB}
 .dh .dc{margin-left:auto;font-family:'Kanit',sans-serif;font-size:12.5px;color:var(--muted)}
 .is-today .dn{color:var(--accent)}
 .navrow{display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.navrow .vtabs{margin:0 0 0 8px}
 .navrow .lab{font-family:'Kanit',sans-serif;font-weight:500;font-size:15px;min-width:150px;text-align:center}
 .navrow input[type=date]{width:auto;padding:6px 10px}
 
@@ -515,6 +516,8 @@ button.stat:hover{border-color:#CBD2DB}
   .modal{border-radius:16px 16px 0 0;max-width:none;max-height:92vh;overflow:auto;padding-bottom:calc(20px + env(safe-area-inset-bottom))}
   #toast{bottom:calc(140px + env(safe-area-inset-bottom))}
   .navrow .lab{min-width:0;flex:1}
+  .ph>.navrow{width:100%}
+  .ph>.navrow .vtabs{margin-left:auto}
 }
 </style>
 </head>
@@ -1262,7 +1265,7 @@ VIEWS.weekly=function(){
      +gScheduleHTML(d,true)
      +(ts.length?'<div class="tlist">'+ts.map(t=>taskRow(t,{compact:true})).join('')+'</div>':'<p class="empty" style="padding:4px 2px">Nothing planned</p>')
      +quickAdd('qa-w-'+d,d,true)+'</section>'}
-  return '<header class="ph"><div><h1>Weekly Planner</h1><p class="sub">'+wk.length+' tasks · '+wd+' done</p></div><div class="navrow">'+viewTabs('week')+weekNav('wk',mon)+'</div></header>'
+  return '<header class="ph"><div><h1>Weekly Planner</h1><p class="sub">'+wk.length+' tasks · '+wd+' done</p></div><div class="navrow">'+weekNav('wk',mon)+viewTabs('week')+'</div></header>'
    +'<div class="wk-layout"><div class="wk-cal">'+miniCal()+'</div><div class="days">'+days+'</div>'
    +'<aside class="wk-aside">'
    +'<section class="card"><div class="ch" style="margin-bottom:8px"><h2>Progress</h2><span class="fine">'+wd+'/'+wk.length+'</span></div><div class="prog">'+progBar(wk.length?wd/wk.length:0,wk.length&&wd===wk.length)+'<span class="pct">'+(wk.length?Math.round(wd/wk.length*100):0)+'%</span></div></section>'
@@ -1636,7 +1639,7 @@ function mutBlocks(fn){const bl=clone(drBlocks());fn(bl);return saveDrCfg({block
 /* ---------- Month & Year view ---------- */
 const QDOT={iu:'var(--q-iu)',i:'var(--q-i)',u:'var(--q-u)',s:'#AEB6C0'};
 function viewTabs(cur){
-  return '<div class="tabs"><button class="'+(cur==='week'?'active':'')+'" data-act="cal-mode" data-m="week">Week</button><button class="'+(cur==='month'?'active':'')+'" data-act="cal-mode" data-m="month">Month</button><button class="'+(cur==='year'?'active':'')+'" data-act="cal-mode" data-m="year">Year</button></div>';
+  return '<div class="tabs vtabs"><button class="'+(cur==='week'?'active':'')+'" data-act="cal-mode" data-m="week">Week</button><button class="'+(cur==='month'?'active':'')+'" data-act="cal-mode" data-m="month">Month</button><button class="'+(cur==='year'?'active':'')+'" data-act="cal-mode" data-m="year">Year</button></div>';
 }
 function heatColor(done,total){if(!total)return '#EEF0F3';const r=done/total;return r>=1?'#3E9B5C':r>=.67?'#7CC08E':r>=.34?'#B5DDBF':'#DDEFE1'}
 VIEWS.calendar=function(){
@@ -1666,8 +1669,8 @@ function monthView(){
   const stars=[...S.days.values()].filter(x=>x.date>=m&&x.date<=last&&x.star).length;
   const goalsDue=allGoals().filter(g=>g.targetDate&&g.targetDate>=m&&g.targetDate<=last);
   return '<header class="ph"><div><h1>'+MON_L[first.getMonth()]+' '+first.getFullYear()+'</h1><p class="sub">'+md+' of '+mts.length+' tasks done · '+stars+' favorite '+(stars===1?'day':'days')+'</p></div>'
-   +'<div class="navrow">'+viewTabs('month')+'<button class="ibtn nb" data-act="mon-prev" aria-label="Previous month">'+ic('left',18)+'</button><button class="ibtn nb" data-act="mon-next" aria-label="Next month">'+ic('right',18)+'</button>'
-   +(m!==monthStart(td)?'<button class="btn sm" data-act="mon-this">This month</button>':'')+'</div></header>'
+   +'<div class="navrow"><button class="ibtn nb" data-act="mon-prev" aria-label="Previous month">'+ic('left',18)+'</button><button class="ibtn nb" data-act="mon-next" aria-label="Next month">'+ic('right',18)+'</button>'
+   +(m!==monthStart(td)?'<button class="btn sm" data-act="mon-this">This month</button>':'')+viewTabs('month')+'</div></header>'
    +'<section class="card mgrid-card"><div class="mgrid">'+['Mon','Tue','Wed','Thu','Fri','Sat','Sun'].map(x=>'<div class="mwd">'+x+'</div>').join('')+cells+'</div></section>'
    +'<div class="msum"><section class="card"><div class="ch"><h2>Mood this month</h2></div>'+moodBars(moods)+'</section>'
    +'<section class="card"><div class="ch"><h2>Goals due this month</h2></div>'+(goalsDue.length?goalsDue.map(g=>{const v=goalProgress(g);return '<div class="goal-mini"><div class="gt"><b>'+esc(g.title)+'</b><span class="fine">'+fmtShort(g.targetDate)+' · '+Math.round(v*100)+'%</span></div>'+progBar(v,v>=1)+'</div>'}).join(''):'<p class="empty">No goal deadlines this month</p>')+'</section></div>';
@@ -1696,8 +1699,8 @@ function yearView(){
   const legend=color==='mood'?[5,4,3,2,1].map(v=>'<span><i style="background:'+MOOD_C[v]+'"></i>'+MOOD_L[v]+'</span>').join('')+'<span><i style="background:#EEF0F3"></i>No review</span>'
     :[['#EEF0F3','No tasks'],['#DDEFE1','Some done'],['#B5DDBF','⅓+'],['#7CC08E','⅔+'],['#3E9B5C','All done']].map(x=>'<span><i style="background:'+x[0]+'"></i>'+x[1]+'</span>').join('');
   return '<header class="ph"><div><h1>'+y+'</h1><p class="sub">'+ds.length+' days reviewed · '+ds.filter(x=>x.star).length+' favorite days · '+tdone+' of '+ttot+' tasks done</p></div>'
-   +'<div class="navrow">'+viewTabs('year')+'<button class="ibtn nb" data-act="yr-prev" aria-label="Previous year">'+ic('left',18)+'</button><button class="ibtn nb" data-act="yr-next" aria-label="Next year">'+ic('right',18)+'</button>'
-   +(y!==parse(td).getFullYear()?'<button class="btn sm" data-act="yr-this">This year</button>':'')+'</div></header>'
+   +'<div class="navrow"><button class="ibtn nb" data-act="yr-prev" aria-label="Previous year">'+ic('left',18)+'</button><button class="ibtn nb" data-act="yr-next" aria-label="Next year">'+ic('right',18)+'</button>'
+   +(y!==parse(td).getFullYear()?'<button class="btn sm" data-act="yr-this">This year</button>':'')+viewTabs('year')+'</div></header>'
    +'<section class="card"><div class="ch"><div class="tabs" style="margin:0"><button class="'+(color==='mood'?'active':'')+'" data-act="yr-color" data-c="mood">Color by mood</button><button class="'+(color==='tasks'?'active':'')+'" data-act="yr-color" data-c="tasks">Color by tasks done</button></div><div class="ylegend">'+legend+'</div></div>'
    +'<div class="yearg">'+months+'</div><p class="fine" style="margin-top:10px">Click a day to open its Daily Review · click a month name to open the month · ★ = favorite day</p></section>'
    +'<div class="msum"><section class="card"><div class="ch"><h2>Mood this year</h2></div>'+moodBars(moods)+'</section></div>';
