@@ -730,7 +730,7 @@ const qOf=t=>QUADS[t.q]?t.q:({high:'iu',medium:'i',low:'s'}[t.priority]||'i');
 const pr=t=>QUADS[qOf(t)];
 const MOODS=[[1,'😣','Awful'],[2,'🙁','Not great'],[3,'😐','Okay'],[4,'🙂','Good'],[5,'😄','Great']];
 const ROUTES=['dashboard','daily','weekly','calendar','goals','friends','friend','dreview','dsetup','review','account'];
-const NAV=[['dashboard','Dashboard','Home','home'],['planner','Multiview Planner','Planner','cal'],['goals','Goals','Goals','target'],['friends','Friends','Friends','users'],['dreview','Daily Review','Review','smile'],['review','Weekly Review','Weekly R.','book'],['account','Settings','Settings','gear']];
+const NAV=[['dashboard','Dashboard','Home','home'],['planner','Multiview Planner','Planner','cal'],['goals','Goals','Goals','target'],['friends','Friends','Friends','users'],['holistic','Holistic Review','Review','smile'],['account','Settings','Settings','gear']];
 
 /* ---------- state ---------- */
 const T0=todayIso();
@@ -1269,7 +1269,7 @@ function enterApp(){
   if(S.route==='friend'&&!S.friendUid)S.route='friends';
   syncPub();publishSoon(1500);
   const navItems=NAV.map(n=>'<button data-act="nav" data-route="'+n[0]+'">'+ic(n[3],19)+'<span>'+n[1]+'</span>'+(n[0]==='friends'?'<span class="frbadge" hidden></span>':'')+'</button>').join('');
-  const bItems=['dashboard','planner','goals','dreview','friends'].map(r=>NAV.find(n=>n[0]===r)).map(n=>'<button data-act="nav" data-route="'+n[0]+'">'+ic(n[3],21)+'<span>'+n[2]+'</span>'+(n[0]==='friends'?'<span class="frbadge" hidden></span>':'')+'</button>').join('');
+  const bItems=['dashboard','planner','goals','holistic','friends'].map(r=>NAV.find(n=>n[0]===r)).map(n=>'<button data-act="nav" data-route="'+n[0]+'">'+ic(n[3],21)+'<span>'+n[2]+'</span>'+(n[0]==='friends'?'<span class="frbadge" hidden></span>':'')+'</button>').join('');
   $('#root').innerHTML='<div class="app">'
    +'<aside class="side">'+brandHTML
    +'<button class="btn primary full" data-act="new-task">'+ic('plus',17)+'New task / event</button>'
@@ -1283,13 +1283,15 @@ function enterApp(){
    +'</div>';
   render();
 }
-const PLANNER_VIEWS=['daily','weekly','calendar'];
+const PLANNER_VIEWS=['daily','weekly','calendar'],REVIEW_VIEWS=['dreview','review','dsetup'];
+function lastReview(){let v='';try{v=localStorage.getItem('pv-lastreview')||''}catch(e){}return v==='review'?'review':'dreview'}
 function lastPlanner(){let v='';try{v=localStorage.getItem('pv-lastview')||''}catch(e){}if(v==='month'||v==='year'){S.calMode=v;return 'calendar'}return v==='weekly'?'weekly':'daily'}
 function rememberView(){if(!PLANNER_VIEWS.includes(S.route))return;try{localStorage.setItem('pv-lastview',S.route==='calendar'?(S.calMode||'month'):S.route)}catch(e){}}
 function go(route){
   if(route==='planner')route=lastPlanner();
+  if(route==='holistic')route=lastReview();
   if(!ROUTES.includes(route))route='dashboard';
-  S.route=route;rememberView();
+  S.route=route;rememberView();if(route==='dreview'||route==='review'){try{localStorage.setItem('pv-lastreview',route)}catch(e){}}
   try{if(location.hash!=='#'+route)location.hash=route}catch(e){}
   render();window.scrollTo(0,0);
 }
@@ -1304,7 +1306,7 @@ function render(){
   try{view.innerHTML=gBanner()+(VIEWS[S.route]||VIEWS.dashboard)()}finally{S.rendering=false}
   view.querySelectorAll('[data-k]').forEach(el=>{if(Object.prototype.hasOwnProperty.call(S.drafts,el.dataset.k))el.value=S.drafts[el.dataset.k]});
   if(fk){const el=[...view.querySelectorAll('[data-k]')].find(x=>x.dataset.k===fk);if(el){el.focus({preventScroll:true});try{if(ss!=null)el.setSelectionRange(ss,se)}catch(e){}el.scrollTop=st}}
-  document.querySelectorAll('[data-route]').forEach(b=>b.classList.toggle('active',b.dataset.route===S.route||(b.dataset.route==='planner'&&PLANNER_VIEWS.includes(S.route))));
+  document.querySelectorAll('[data-route]').forEach(b=>b.classList.toggle('active',b.dataset.route===S.route||(b.dataset.route==='planner'&&PLANNER_VIEWS.includes(S.route))||(b.dataset.route==='holistic'&&REVIEW_VIEWS.includes(S.route))));
   const nm=(S.profile&&S.profile.name)||'';
   const a=$('#me-av'),n=$('#me-name');if(n)n.textContent=nm;
   if(a){const ph=pubWant().photo,k=ph+'|'+nm;if(a.dataset.k!==k){a.dataset.k=k;a.innerHTML=ph?'<img src="'+esc(ph)+'" alt="" referrerpolicy="no-referrer">':esc((nm.trim()[0]||'?').toUpperCase())}}
@@ -1507,7 +1509,7 @@ VIEWS.review=function(){
   const w=S.reviewWeek,r=S.reviews.get('r_'+w)||{},wk=tasksInWeek(w),dn=wk.filter(t=>t.done),fi=focusItems(w);
   const hist=[...S.reviews.values()].sort((a,b)=>a.week<b.week?1:-1);
   const fields=RV_FIELDS.map(f=>'<div class="field"><label class="lbl" for="rv-'+f[0]+'">'+f[1]+'</label><textarea id="rv-'+f[0]+'" data-k="rv-'+w+'-'+f[0]+'" data-rv="'+f[0]+'" data-w="'+w+'" placeholder="'+esc(f[2])+'" rows="3">'+esc(r[f[0]]||'')+'</textarea></div>').join('');
-  return '<div class="tabs"><button data-act="nav" data-route="dreview">Daily review</button><button data-act="nav" data-route="review">Weekly review</button></div><header class="ph"><div><h1>Weekly Review</h1><p class="sub">Reviewing '+weekLabel(w)+'</p></div>'+weekNav('rv',w)+'</header>'
+  return '<header class="ph"><div><h1>Weekly Review</h1><p class="sub">Reviewing '+weekLabel(w)+'</p></div><div class="navrow">'+weekNav('rv',w)+rvTabs('week')+'</div></header>'
    +'<div class="grid2"><div class="col">'
    +'<section class="card"><div class="ch"><h2>Week at a glance</h2></div>'
    +'<div class="wkmoods">'+[0,1,2,3,4,5,6].map(i=>{const dd=addDays(w,i);return '<div><span class="fine">'+DAYS_S[parse(dd).getDay()]+'</span>'+moodBtn(dd,26)+'</div>'}).join('')+'</div><div class="kv">'
@@ -1517,7 +1519,7 @@ VIEWS.review=function(){
    +'</section>'
    +'<section class="card"><div class="ch"><h2>Reflection</h2><span class="save-state" id="rv-status">'+(r.updatedAt?'Saved':'')+'</span></div>'
    +fields
-   +'<div class="field"><span class="lbl">Overall mood this week</span><div class="mood">'+MOODS.map(m=>'<button class="'+(r.mood===m[0]?'on':'')+'" data-act="mood" data-v="'+m[0]+'" data-w="'+w+'"><span class="e">'+face(m[0],30,!r.mood||r.mood===m[0])+'</span>'+m[2]+'</button>').join('')+'</div></div>'
+   +'<div class="field"><span class="lbl">Overall mood this week</span><div class="mood">'+MOODS.slice().reverse().map(m=>'<button class="'+(r.mood===m[0]?'on':'')+'" data-act="mood" data-v="'+m[0]+'" data-w="'+w+'"><span class="e">'+face(m[0],30,!r.mood||r.mood===m[0])+'</span>'+MOOD_L[m[0]]+'</button>').join('')+'</div></div>'
    +'<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><span class="fine">Saves automatically as you type</span>'
    +'<button class="btn" data-act="rv-push" data-w="'+w+'">'+ic('arrow',16)+'Add to next week’s focus</button></div>'
    +'</section></div>'
@@ -1770,12 +1772,11 @@ VIEWS.dreview=function(){
   const d=S.reviewDay,td=todayIso(),e=dayEntry(d);
   const blocks=drBlocks().filter(b=>!b.hidden);
   const q=e.rq||drPrompt(d);
-  return '<div class="tabs"><button data-act="nav" data-route="dreview">Daily review</button><button data-act="nav" data-route="review">Weekly review</button></div>'
-   +'<header class="ph drhead"><div class="navrow"><button class="ibtn nb" data-act="dr-prev" aria-label="Previous day">'+ic('left',18)+'</button>'
+  return '<header class="ph drhead"><div class="navrow"><button class="ibtn nb" data-act="dr-prev" aria-label="Previous day">'+ic('left',18)+'</button>'
    +'<div><h1>'+DAYS[parse(d).getDay()]+', '+MON_L[parse(d).getMonth()]+' '+parse(d).getDate()+'</h1><p class="sub">'+parse(d).getFullYear()+(d===td?' · Today':'')+'</p></div>'
    +'<button class="ibtn nb" data-act="dr-next" aria-label="Next day">'+ic('right',18)+'</button>'
    +'<input type="date" data-act="pick-drday" value="'+d+'" aria-label="Pick a date">'+(d!==td?'<button class="btn sm" data-act="dr-today">Today</button>':'')+'</div>'
-   +'<button class="btn" data-act="nav" data-route="dsetup">'+ic('gear',16)+'Customize</button></header>'
+   +'<div class="navrow"><button class="btn" data-act="nav" data-route="dsetup">'+ic('gear',16)+'Customize</button>'+rvTabs('day')+'</div></header>'
    +'<div class="drwrap">'
    +'<section class="card drmood"><h2>How was your day?</h2><div class="faces">'+[5,4,3,2,1].map(v=>'<button class="fbtn'+(e.mood===v?' on':'')+'" data-act="dr-mood" data-v="'+v+'" aria-label="'+MOOD_L[v]+'">'+face(v,54,!e.mood||e.mood===v)+'<span>'+MOOD_L[v]+'</span></button>').join('')+'</div></section>'
    +blocks.map(b=>drBlockHTML(b,d,e)).join('')
@@ -1827,6 +1828,7 @@ function mutBlocks(fn){const bl=clone(drBlocks());fn(bl);return saveDrCfg({block
 
 /* ---------- Month & Year view ---------- */
 const QDOT={iu:'var(--q-iu)',i:'var(--q-i)',u:'var(--q-u)',s:'#AEB6C0'};
+function rvTabs(cur){return '<div class="tabs vtabs"><button class="'+(cur==='day'?'active':'')+'" data-act="nav" data-route="dreview">Day</button><button class="'+(cur==='week'?'active':'')+'" data-act="nav" data-route="review">Week</button></div>'}
 function viewTabs(cur){
   return '<div class="tabs vtabs"><button class="'+(cur==='day'?'active':'')+'" data-act="cal-mode" data-m="day">Day</button><button class="'+(cur==='week'?'active':'')+'" data-act="cal-mode" data-m="week">Week</button><button class="'+(cur==='month'?'active':'')+'" data-act="cal-mode" data-m="month">Month</button><button class="'+(cur==='year'?'active':'')+'" data-act="cal-mode" data-m="year">Year</button></div>';
 }
