@@ -565,11 +565,11 @@ button.stat:hover{border-color:#CBD2DB}
 .shrow span{display:flex;flex-direction:column;min-width:0;line-height:1.4}
 .shrow b{font-family:'Kanit',sans-serif;font-weight:500;color:var(--ink)}
 .shrow small{color:var(--muted);font-size:13px}
-.sw{appearance:none;-webkit-appearance:none;width:40px;height:23px;border-radius:12px;background:#D5DAE1;position:relative;flex:none;cursor:pointer;transition:background .15s;margin:0}
-.sw::after{content:'';position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s}
-.sw:checked{background:var(--accent)}
-.sw:checked::after{left:20px}
-.sw:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tgl{appearance:none;-webkit-appearance:none;width:40px;height:23px;border-radius:12px;background:#D5DAE1;position:relative;flex:none;cursor:pointer;transition:background .15s;margin:0}
+.tgl::after{content:'';position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s}
+.tgl:checked{background:var(--accent)}
+.tgl:checked::after{left:20px}
+.tgl:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
 .presets .chip{flex-direction:row;border:1px solid var(--border);padding:5px 11px;border-radius:999px;font-family:'Kanit',sans-serif;font-size:13px;color:var(--text);cursor:pointer;background:#fff}
 .presets .chip.on{background:var(--accent-soft);border-color:#B9CDF3;color:var(--accent-ink)}
@@ -777,7 +777,7 @@ const sortInQuad=(a,b)=>(a.done-b.done)||(a.date<b.date?-1:a.date>b.date?1:0)||(
 function addTask(o){
   const id='t_'+rid(),now=Date.now();
   const t={title:o.title,date:o.date||todayIso(),q:QUADS[o.q]?o.q:'i',notes:o.notes||'',star:!!o.star,
-    goalId:o.goalId||null,msId:o.msId||null,start:o.start||'',end:o.end||'',cal:!!o.cal,done:false,doneAt:null,createdAt:now,updatedAt:now};
+    goalId:o.goalId||null,msId:o.msId||null,start:o.start||'',end:o.end||'',cal:!!o.cal,gcal:o.gcal||'',done:false,doneAt:null,createdAt:now,updatedAt:now};
   S.tasks.set(id,Object.assign({},t,{id}));render();save(id,t);if(t.cal)gSchedule();return id;
 }
 function patchTask(id,patch){
@@ -979,19 +979,20 @@ function greeting(){const h=new Date().getHours();return h<12?'Good morning':h<1
 
 /* ---------- Google Calendar ---------- */
 const GCLIENT='300153420589-p4735rii5bcgnbv2g8ue1tsapa1cieag.apps.googleusercontent.com';
-const GSCOPES='https://www.googleapis.com/auth/calendar.calendarlist.readonly https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.app.created';
+const GSCOPES='https://www.googleapis.com/auth/calendar.calendarlist.readonly https://www.googleapis.com/auth/calendar.events https://www.googleapis.com/auth/calendar.app.created';
 const GAPI='https://www.googleapis.com/calendar/v3';
 const TZ=(()=>{try{return Intl.DateTimeFormat().resolvedOptions().timeZone||'Asia/Bangkok'}catch(e){return 'Asia/Bangkok'}})();
 const QCOLOR={iu:'11',i:'9',u:'5',s:'8'}; /* Google event colours: tomato, blueberry, banana, graphite */
-const G={token:null,exp:0,client:null,loading:null,list:null,events:new Map(),inflight:new Set(),syncing:false,again:false,timer:null,last:0,err:'',pvChecked:false};
+const G={token:null,exp:0,scope:'',client:null,loading:null,list:null,events:new Map(),inflight:new Set(),syncing:false,again:false,timer:null,last:0,err:'',pvChecked:false};
 const gcalCfg=()=>(S.profile&&S.profile.gcal)||{};
 const gcalOn=()=>!!gcalCfg().enabled;
 const gHasTok=()=>!!G.token&&Date.now()<G.exp-60000;
 const gReady=()=>gcalOn()&&gHasTok();
 const GKEY=()=>'pv_gtok_'+(S.user?S.user.uid:'');
-function gLoadToken(){try{const o=JSON.parse(localStorage.getItem(GKEY())||'null');if(o&&o.exp>Date.now()+60000){G.token=o.t;G.exp=o.exp}}catch(e){}}
-function gSaveToken(){try{localStorage.setItem(GKEY(),JSON.stringify({t:G.token,exp:G.exp}))}catch(e){}}
-function gClearToken(){G.token=null;G.exp=0;try{localStorage.removeItem(GKEY())}catch(e){}}
+function gLoadToken(){try{const o=JSON.parse(localStorage.getItem(GKEY())||'null');if(o&&o.exp>Date.now()+60000){G.token=o.t;G.exp=o.exp;G.scope=o.s||''}}catch(e){}}
+function gSaveToken(){try{localStorage.setItem(GKEY(),JSON.stringify({t:G.token,exp:G.exp,s:G.scope}))}catch(e){}}
+const gCanWriteAll=()=>(G.scope||'').split(' ').includes('https://www.googleapis.com/auth/calendar.events');
+function gClearToken(){G.token=null;G.exp=0;G.scope='';try{localStorage.removeItem(GKEY())}catch(e){}}
 function saveGcal(patch){const prof=Object.assign(clone(S.profile||{}),{gcal:Object.assign({},gcalCfg(),patch),updatedAt:Date.now()});S.profile=prof;return save('profile',prof)}
 function loadGis(){
   if(window.google&&google.accounts&&google.accounts.oauth2)return Promise.resolve();
@@ -1006,8 +1007,8 @@ async function gConnect(){
   G.client=google.accounts.oauth2.initTokenClient({client_id:GCLIENT,scope:GSCOPES,
     callback:async r=>{
       if(!r||r.error){toast('Google Calendar wasn’t connected'+(r&&r.error?' ('+r.error+')':''));return}
-      if(!google.accounts.oauth2.hasGrantedAllScopes(r,...GSCOPES.split(' '))){toast('Please allow all the calendar permissions so syncing can work');}
-      G.token=r.access_token;G.exp=Date.now()+(Number(r.expires_in)||3600)*1000;G.err='';gSaveToken();
+      if(!google.accounts.oauth2.hasGrantedAllScopes(r,...GSCOPES.split(' '))){toast('Some calendar permissions weren’t allowed — tasks will only go to the PV Planner calendar');}
+      G.token=r.access_token;G.exp=Date.now()+(Number(r.expires_in)||3600)*1000;G.scope=r.scope||'';G.err='';gSaveToken();G.list=null;
       if(first){
         try{await gListCalendars()}catch(e){toast('Couldn’t read your calendar list');return}
         const prim=(G.list||[]).find(c=>c.primary);
@@ -1032,7 +1033,7 @@ async function gApi(path,opt){
 async function gListCalendars(){
   const out=[];let tok='';
   do{const j=await gApi('/users/me/calendarList?maxResults=250'+(tok?'&pageToken='+encodeURIComponent(tok):''));out.push(...(j.items||[]));tok=j.nextPageToken||''}while(tok);
-  G.list=out.map(c=>({id:c.id,name:c.summaryOverride||c.summary||c.id,color:c.backgroundColor||'#7C8794',primary:!!c.primary})).sort((a,b)=>(b.primary-a.primary)||a.name.localeCompare(b.name));
+  G.list=out.map(c=>({id:c.id,name:c.summaryOverride||c.summary||c.id,color:c.backgroundColor||'#7C8794',primary:!!c.primary,write:c.accessRole==='owner'||c.accessRole==='writer'})).sort((a,b)=>(b.primary-a.primary)||a.name.localeCompare(b.name));
   return G.list;
 }
 /* ---- reading events for display ---- */
@@ -1108,17 +1109,30 @@ async function upsertEv(cal,id,b){
   try{await gApi(base,{method:'POST',body:Object.assign({id},b)})}catch(e){if(e.code===409)await gApi(base+'/'+id,{method:'PATCH',body:b});else throw e}
 }
 function gSchedule(ms){if(!gcalOn())return;clearTimeout(G.timer);G.timer=setTimeout(gSync,ms||1500)}
+function gTarget(x,pv){const c=x.gcal||gcalCfg().target||'';return c&&c!==pv&&gCanWriteAll()?c:pv}
 async function gSync(){
   if(!gReady())return;
   if(G.syncing){G.again=true;return}
   G.syncing=true;G.err='';
   try{
-    const cal=await ensurePvCal();
-    const ex=new Map();let tok='';
-    do{const j=await gApi('/calendars/'+encodeURIComponent(cal)+'/events?maxResults=2500&showDeleted=false&privateExtendedProperty='+encodeURIComponent('pv=1')+(tok?'&pageToken='+encodeURIComponent(tok):''));(j.items||[]).forEach(e=>ex.set(e.id,e));tok=j.nextPageToken||''}while(tok);
-    const want=new Map();[...S.tasks.values()].forEach(t=>{if(t.cal&&t.date)want.set(evId(t.id),evBody(t))});[...S.events.values()].forEach(e=>{if(e.cal&&e.date)want.set(evId(e.id),evBodyE(e))});coList().forEach(c=>{if(c.kind==='event'&&c.owner===me()&&c.cal&&c.date)want.set(evId(c.id),evBodyE(c))});
-    for(const [id,b] of want){const e=ex.get(id);if(!e||!e.extendedProperties||!e.extendedProperties.private||e.extendedProperties.private.sig!==b.extendedProperties.private.sig)await upsertEv(cal,id,b)}
-    for(const [id] of ex)if(!want.has(id)){try{await gApi('/calendars/'+encodeURIComponent(cal)+'/events/'+id,{method:'DELETE'})}catch(e){if(e.code==='auth')throw e;if(e.code!==404&&e.code!==410)throw e}}
+    const pv=await ensurePvCal(),cfg=gcalCfg();
+    const want=new Map(),put=(cal,id,b)=>{if(!want.has(cal))want.set(cal,new Map());want.get(cal).set(id,b)};
+    [...S.tasks.values()].forEach(t=>{if(t.cal&&t.date)put(gTarget(t,pv),evId(t.id),evBody(t))});
+    [...S.events.values()].forEach(e=>{if(e.cal&&e.date)put(gTarget(e,pv),evId(e.id),evBodyE(e))});
+    coList().forEach(c=>{if(c.kind==='event'&&c.owner===me()&&c.cal&&c.date)put(gTarget(c,pv),evId(c.id),evBodyE(c))});
+    const cals=[...new Set([pv,...want.keys(),...(cfg.used||[])])],used=[];
+    for(const cal of cals){
+      const base='/calendars/'+encodeURIComponent(cal)+'/events';
+      try{
+        const ex=new Map();let tok='';
+        do{const j=await gApi(base+'?maxResults=2500&showDeleted=false&privateExtendedProperty='+encodeURIComponent('pv=1')+(tok?'&pageToken='+encodeURIComponent(tok):''));(j.items||[]).forEach(e=>ex.set(e.id,e));tok=j.nextPageToken||''}while(tok);
+        const w=want.get(cal)||new Map();
+        for(const [id,b] of w){const e=ex.get(id);if(!e||!e.extendedProperties||!e.extendedProperties.private||e.extendedProperties.private.sig!==b.extendedProperties.private.sig)await upsertEv(cal,id,b)}
+        for(const [id] of ex)if(!w.has(id)){try{await gApi(base+'/'+id,{method:'DELETE'})}catch(e){if(e.code==='auth')throw e;if(e.code!==404&&e.code!==410)throw e}}
+        if(cal!==pv&&w.size)used.push(cal);
+      }catch(e){if(e&&e.code==='auth')throw e;if(cal===pv)throw e;console.warn('gcal sync',cal,e);if(want.has(cal))G.err='Couldn’t write to one calendar'+(e.code?' ('+e.code+')':'')}
+    }
+    if(used.slice().sort().join()!==(cfg.used||[]).slice().sort().join())saveGcal({used});
     G.last=Date.now();
   }catch(e){if(e&&e.code!=='auth'){G.err='Last sync failed'+(e.code?' ('+e.code+')':'');console.warn('gcal sync',e)}}
   finally{G.syncing=false;if(S.route==='account')render();if(G.again){G.again=false;gSchedule(800)}}
@@ -1127,6 +1141,16 @@ function gDisconnect(){
   const t=G.token;gClearToken();G.list=null;G.events.clear();G.pvChecked=false;
   try{if(t&&window.google&&google.accounts)google.accounts.oauth2.revoke(t,()=>{})}catch(e){}
   saveGcal({enabled:false});render();toast('Google Calendar disconnected');
+}
+function gWritable(){const pv=gcalCfg().pvCalId;return (G.list||[]).filter(c=>c.write&&c.id!==pv)}
+function gCalName(id){if(!id||id===gcalCfg().pvCalId)return 'PV Planner';const c=(G.list||[]).find(x=>x.id===id);return c?c.name:'PV Planner'}
+function gTargetPicker(key,val,label,first){
+  if(!gReady())return '';
+  if(!G.list){gListCalendars().then(()=>{if(S.route==='account')render()}).catch(()=>{});return ''}
+  if(!gCanWriteAll())return '<div class="field" style="margin-top:12px"><span class="lbl">'+label+'</span><p class="fine">PV Planner only. To save to your other calendars, allow the new permission: <button type="button" class="linkbtn" data-act="gcal-connect">Reconnect Google</button></p></div>';
+  const ws=gWritable();
+  return '<div class="field" style="margin-top:12px"><label class="lbl" for="'+key+'">'+label+'</label><select id="'+key+'" name="gcal" data-act="'+key+'"><option value="">'+esc(first)+'</option>'+(key==='gcal-target'||!gcalCfg().pvCalId?'':'<option value="'+esc(gcalCfg().pvCalId)+'"'+(val===gcalCfg().pvCalId?' selected':'')+'>PV Planner</option>')
+   +ws.map(c=>'<option value="'+esc(c.id)+'"'+(val===c.id?' selected':'')+'>'+esc(c.name)+(c.primary?' (main)':'')+'</option>').join('')+'</select></div>';
 }
 function gcalSettingsHTML(){
   const cfg=gcalCfg();
@@ -1140,7 +1164,8 @@ function gcalSettingsHTML(){
     const show=new Set(cfg.show||[]);
     body='<span class="lbl">Show these calendars in the planner</span><div class="callist">'
      +G.list.filter(c=>c.id!==cfg.pvCalId).map(c=>'<label class="check-line"><input type="checkbox" data-act="gcal-show" value="'+esc(c.id)+'"'+(show.has(c.id)?' checked':'')+'><span class="sw" style="background:'+esc(c.color)+'"></span>'+esc(c.name)+(c.primary?' <span class="fine">(main)</span>':'')+'</label>').join('')+'</div>'
-     +'<p class="fine" style="margin:10px 0 12px">Tasks marked “Show in Google Calendar” go to the <b>PV Planner</b> calendar · '+(G.syncing?'Syncing…':G.err?esc(G.err):G.last?'Last synced '+pad(new Date(G.last).getHours())+':'+pad(new Date(G.last).getMinutes()):'Not synced yet')+'</p>'
+     +gTargetPicker('gcal-target',cfg.target||'','Save tasks &amp; events to','PV Planner (made by this app)')
+     +'<p class="fine" style="margin:10px 0 12px">Only items with “Show in Google Calendar” ticked are sent. You can pick a different calendar per task or event · '+(G.syncing?'Syncing…':G.err?esc(G.err):G.last?'Last synced '+pad(new Date(G.last).getHours())+':'+pad(new Date(G.last).getMinutes()):'Not synced yet')+'</p>'
      +'<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-act="gcal-sync">Sync now</button><button class="btn danger" data-act="gcal-disconnect">Disconnect</button></div>';
   }
   return '<section class="card"><div class="ch"><h2>Google Calendar</h2><span class="tag '+(gReady()?'ok':'lo')+'">'+(gReady()?'Connected':'Paused')+'</span></div>'+body+'</section>';
@@ -1181,7 +1206,7 @@ function openEventModal(id,preset){
    +friendPicker(e.members?e.members.filter(u=>u!==me()):(preset.with||[]),'Invite friends','Each friend can reply Going, Maybe or Not going. It shows on their calendar.')
    +'<div class="field"><label class="lbl" for="e-notes">Notes</label><textarea id="e-notes" name="notes" rows="2" placeholder="Optional">'+esc(e.notes||'')+'</textarea></div>'
    +'<div class="field"><label class="check-line"><input type="checkbox" name="cal"'+(e.cal?' checked':'')+'> Show in Google Calendar</label>'
-   +(gcalOn()?'':'<p class="fine" style="margin-top:2px">Connect Google Calendar in Settings to sync.</p>')+'</div>'
+   +(gcalOn()?gTargetPicker('e-gcal',e.gcal||'','Google calendar','Default ('+gCalName(gcalCfg().target)+')'):'<p class="fine" style="margin-top:2px">Connect Google Calendar in Settings to sync.</p>')+'</div>'
    +'<div class="mf">'+(id?'<button type="button" class="btn danger" data-act="ev-del" data-id="'+id+'">'+ic('trash',16)+'Delete</button><span class="spacer"></span>':'')
    +'<button type="button" class="btn" data-act="close-modal">Cancel</button><button type="submit" class="btn primary">'+(id?'Save':'Add event')+'</button></div></form>');
 }
@@ -1526,7 +1551,7 @@ function openTaskModal(id,preset){
    +'<div class="field"><label class="lbl" for="m-et">End</label><input type="time" id="m-et" name="et" value="'+esc(t.end||'')+'"></div></div>'
    +friendPicker(shared?t.members.filter(u=>u!==me()):(preset.with||[]),'Collaborators',shared?'Done only when every collaborator ticks it.':'Pick friends to share this task — it’s done only when everyone ticks it. Shared tasks don’t link to goals or Google Calendar.')
    +'<div class="field"'+(shared?' hidden':'')+'><label class="check-line"><input type="checkbox" name="cal"'+((id?t.cal:(gcalOn()&&!!t.start))?' checked':'')+'> Show in Google Calendar</label>'
-   +(gcalOn()?'<p class="fine" style="margin-top:2px">Goes to your “PV Planner” calendar. No time = all-day event.</p>':'<p class="fine" style="margin-top:2px">Connect Google Calendar in Settings to sync.</p>')+'</div>'
+   +(gcalOn()?'<p class="fine" style="margin-top:2px">No time = all-day event.</p>'+gTargetPicker('m-gcal',t.gcal||'','Google calendar','Default ('+gCalName(gcalCfg().target)+')'):'<p class="fine" style="margin-top:2px">Connect Google Calendar in Settings to sync.</p>')+'</div>'
    +'<div class="field"'+(shared?' hidden':'')+'><label class="lbl" for="m-ms">Link to milestone</label><select id="m-ms" name="ms">'+opts+'</select>'
    +(gs.length?'':'<p class="fine" style="margin-top:4px">No goals with milestones yet — create one on the Goals page</p>')+'</div>'
    +'<div class="field"><label class="lbl" for="m-notes">Notes</label><textarea id="m-notes" name="notes" rows="3" placeholder="Optional">'+esc(t.notes||'')+'</textarea></div>'
@@ -1855,7 +1880,7 @@ function yearView(){
 const SO={subs:new Map(),fr:new Map(),prof:new Map(),shares:new Map(),collab:new Map(),frReady:false,coReady:false,pubLoaded:false,shareErr:new Set(),sig:''};
 const HANDLE_RE=/^[a-z0-9_.]{3,20}$/;
 const SHARE_KEYS=[['mood','Mood','Today’s mood and your recent days'],['star','Favorite days','Days you starred'],['tasks','Tasks','Your task titles — the past week and next 2 weeks'],['prog','Task progress','How many tasks are done today and this week'],['goals','Goals','Goal names and % complete'],['acts','Daily Review activities','Icons you picked in Daily Review — never notes or photos'],['events','Events','Your upcoming events (title and time)']];
-const DEF_SHARE={mood:true,star:true,tasks:true,prog:true,goals:true,acts:false,events:false};
+const DEF_SHARE={mood:true,star:true,tasks:false,prog:true,goals:true,acts:false,events:false};
 const SHARE_PRESETS=[['all','Everything',{mood:true,star:true,tasks:true,prog:true,goals:true,acts:true,events:true}],['def','Default',DEF_SHARE],['light','Mood & progress',{mood:true,star:true,tasks:false,prog:true,goals:false,acts:false,events:false}],['none','Name & photo only',{mood:false,star:false,tasks:false,prog:false,goals:false,acts:false,events:false}]];
 const me=()=>S.user&&S.user.uid;
 const pairOf=(a,b)=>a<b?a+'_'+b:b+'_'+a;
@@ -2161,7 +2186,7 @@ const challenges=()=>coList().filter(c=>c.kind==='goal').sort((a,b)=>(a.createdA
 
 /* ---------- Friends pages ---------- */
 function shareToggles(cfg,scope){
-  return '<div class="shtoggles">'+SHARE_KEYS.map(k=>'<label class="shrow"><span><b>'+k[1]+'</b><small>'+k[2]+'</small></span><input type="checkbox" class="sw" data-act="share-set" data-scope="'+esc(scope)+'" data-key="'+k[0]+'"'+(cfg[k[0]]?' checked':'')+'></label>').join('')+'</div>';
+  return '<div class="shtoggles">'+SHARE_KEYS.map(k=>'<label class="shrow"><span><b>'+k[1]+'</b><small>'+k[2]+'</small></span><input type="checkbox" class="tgl" data-act="share-set" data-scope="'+esc(scope)+'" data-key="'+k[0]+'"'+(cfg[k[0]]?' checked':'')+'></label>').join('')+'</div>';
 }
 function presetRow(cfg,scope){
   const cur=SHARE_PRESETS.find(p=>SHARE_KEYS.every(k=>!!p[2][k[0]]===!!cfg[k[0]]));
@@ -2263,7 +2288,7 @@ function socialSettingsHTML(){
   const p=pubWant(),u=FB&&FB.auth&&FB.auth.currentUser||S.user||{},on=frCfg().emailFind!==false;
   return '<section class="card"><div class="ch"><h2>Friends</h2></div>'
    +'<div class="field"><label class="lbl" for="s-h">Username</label><form class="handleform" data-form="handle" novalidate><span class="at">@</span><input type="text" id="s-h" name="h" data-k="handle-set" maxlength="20" autocomplete="off" autocapitalize="off" spellcheck="false" value="'+esc(p.handle||'')+'" placeholder="'+esc(suggestHandle())+'"><button class="btn" type="submit">Save</button></form><p class="err" id="handle-err"></p></div>'
-   +'<label class="shrow"><span><b>Let people find me by email</b><small>Only someone who already knows your exact email can find you.</small></span><input type="checkbox" class="sw" data-act="email-find"'+(on?' checked':'')+'></label>'
+   +'<label class="shrow"><span><b>Let people find me by email</b><small>Only someone who already knows your exact email can find you.</small></span><input type="checkbox" class="tgl" data-act="email-find"'+(on?' checked':'')+'></label>'
    +(on&&u.email&&!u.emailVerified?'<p class="fine" style="margin:6px 0 0">Verify your email first so friends can find you by it. <button class="linkbtn" data-act="verify-email">Send verification email</button> · <button class="linkbtn" data-act="verify-check">I’ve verified</button></p>':'')
    +'<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-act="nav" data-route="friends">'+ic('users',16)+'Friends &amp; sharing</button><button class="btn" data-act="qr-open">'+ic('qr',16)+'Invite link / QR</button></div></section>';
 }
@@ -2443,6 +2468,7 @@ document.addEventListener('change',e=>{
     toast('Adding photo…');fileToPhoto(f).then(data=>{const id='p_'+d+'_'+rid(),doc={date:d,data,createdAt:Date.now()};S.photos.set(id,Object.assign({},doc,{id}));render();return save(id,doc)}).catch(()=>toast('Couldn’t read that image'))}
   if(el.id==='it-img'&&el.files&&el.files[0]){fileToIcon(el.files[0]).then(u=>{S.itemImg=u;itPreview()}).catch(()=>toast('Couldn’t read that image'))}
   if(el.name==='st'&&el.form&&el.form.dataset.form==='task'&&el.value&&gcalOn())el.form.elements.cal.checked=true;
+  if(el.dataset&&el.dataset.act==='gcal-target'){saveGcal({target:el.value}).then(()=>gSchedule(300));toast('Default calendar: '+gCalName(el.value));return}
   if(el.dataset&&el.dataset.act==='gcal-show'){const set=new Set(gcalCfg().show||[]);if(el.checked)set.add(el.value);else set.delete(el.value);saveGcal({show:[...set]});G.events.clear();render()}
 });
 document.addEventListener('input',e=>{
@@ -2466,7 +2492,7 @@ document.addEventListener('submit',async e=>{
     case 'event':{const id=f.dataset.id,title=el.title.value.trim();if(!title){el.title.focus();return}
       const allDay=el.allday.checked,date=el.date.value||todayIso(),st=allDay?'':(el.st.value||''),et=st&&el.et.value>st?el.et.value:'';
       const ed=allDay&&el.ed.value>date?el.ed.value:'',rep=el.rep.value||'none',until=rep!=='none'&&el.until.value>=date?el.until.value:'';
-      const evd={title,date,allDay:allDay||!st,start:st,end:et,endDate:ed,repeat:rep,until,location:el.loc.value.trim(),notes:el.notes.value.trim(),color:el.color.value||EV_COLORS[0][0],cal:el.cal.checked},inv=pickedFriends(f);
+      const evd={title,date,allDay:allDay||!st,start:st,end:et,endDate:ed,repeat:rep,until,location:el.loc.value.trim(),notes:el.notes.value.trim(),color:el.color.value||EV_COLORS[0][0],cal:el.cal.checked,gcal:el.gcal?el.gcal.value:((id&&(S.events.get(id)||SO.collab.get(id))||{}).gcal||'')},inv=pickedFriends(f);
       if(id&&id.startsWith('k_')){coSave(id,Object.assign(evd,{members:[me()].concat(inv)}));closeModal();return}
       if(inv.length){if(id){const old=S.events.get(id);if(old){S.events.delete(id);removeDoc(id);if(old.cal)gSchedule()}}coCreate('event',Object.assign(evd,{rsvp:{}}),inv);closeModal();toast('Invite sent to '+inv.map(nameOf).join(', '));return}
       saveEvent(id||null,evd);
@@ -2496,7 +2522,7 @@ document.addEventListener('submit',async e=>{
       const id=f.dataset.id,title=el.title.value.trim();if(!title){el.title.focus();return}
       const parts=(el.ms.value||'').split('|');
       const st=el.st.value||'',et=st&&el.et.value>st?el.et.value:'';
-      const data={title,date:el.date.value||todayIso(),start:st,end:et,cal:el.cal.checked,q:el.prio.value||'i',notes:el.notes.value.trim(),star:el.star.checked,goalId:parts[0]||null,msId:parts[1]||null};
+      const data={title,date:el.date.value||todayIso(),start:st,end:et,cal:el.cal.checked,gcal:el.gcal?el.gcal.value:((id&&S.tasks.get(id)||{}).gcal||''),q:el.prio.value||'i',notes:el.notes.value.trim(),star:el.star.checked,goalId:parts[0]||null,msId:parts[1]||null};
       const inv=pickedFriends(f),cd={title:data.title,date:data.date,start:st,end:et,q:data.q,notes:data.notes};
       if(id&&id.startsWith('k_')){const c=SO.collab.get(id);if(c&&c.owner===me())coSave(id,Object.assign(cd,{members:[me()].concat(inv)}));if(el.done&&c&&el.done.checked!==!!(c.done&&c.done[me()]))coToggle(id);closeModal();return}
       if(inv.length){if(id){const old=S.tasks.get(id);if(old){S.tasks.delete(id);removeDoc(id);if(old.cal)gSchedule()}}coCreate('task',Object.assign(cd,{done:{}}),inv);closeModal();toast('Shared with '+inv.map(nameOf).join(', '));return}
