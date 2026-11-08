@@ -25,3 +25,11 @@ service cloud.firestore {
 ```
 
 4. Paste the web app's `firebaseConfig` values into the `FIREBASE` constant in `index.html`
+
+## Google Calendar
+
+- OAuth client: `300153420589-p4735rii5bcgnbv2g8ue1tsapa1cieag.apps.googleusercontent.com` (Authorized JavaScript origin `https://bankypp.github.io`)
+- Scopes: `calendar.calendarlist.readonly`, `calendar.events.readonly`, `calendar.app.created`
+- Settings → Google Calendar: connect, pick which calendars show in the planner
+- Tasks with “Show in Google Calendar” are pushed to a “PV Planner” calendar the app creates (event id = `pv` + hex(task id)); each sync reconciles that calendar with the tasks
+- Access tokens last ~1 hour; when expired the app shows a “Reconnect” banner
