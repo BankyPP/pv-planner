@@ -3,7 +3,7 @@
 Personal task and life-planning web app — Dashboard, Daily Planner, Weekly Planner, Goals (with milestones), Weekly Review, and Settings.
 
 - Site: https://bankypp.github.io/pv-planner/
-- Sign-in: Google or email & password, via the Firebase project `pv-planner`
+- Sign-in: Google or email & password, via the Firebase project `pv-planner-96e2b`
 - Data: Firestore at `users/{uid}/planner/{docId}` — one document per task, goal, weekly focus, and weekly review, plus `profile`
 - Everything lives in a single `index.html` — no build step
 
