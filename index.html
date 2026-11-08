@@ -1640,7 +1640,7 @@ const DR_DEFAULT=[
  ['emotions','Emotions','choice',0,'excited~🎉|relaxed~🛋️|proud~🏆|hopeful~🎈|happy~🌷|enthusiastic~🚀|pit-a-pat~💓|refreshed~🍃|calm~🌊|grateful~🕯️|depressed~☁️|lonely~🍂|anxious~😰|sad~💧|angry~🌋|pressured~⏳|annoyed~💢|tired~💤|stressed~⚡|bored~💬|music~🎧'],
  ['weather','Weather','choice',0,'sunny~☀️|cloudy~⛅|rainy~☔|snowy~🌨️|windy~🌬️|stormy~🌪️|hot~🔥|cold~❄️'],
  ['habits','Daily Habits','choice',0,'daily piano~🎹|daily tarot~🔮|daily rubiks~🧩|daily chess~♟️|weekly money~🐷|wash hair~🧴|medicines 4x~💊|paid e-learn~💵|attend live~🧑‍🏫|Ward~🐛|❌ night snack~❌|brush 2x~🪥|retainer~🦷|shower 2x~🛁|bf midnight~🛌|ex. & weight~🤸|Very watery~🚰'],
- ['hobbies','Hobbies','choice',0,'piano~🎹|chess~♟️|guitar~🎸|tarot~🃏|YouTube~▶️|netflix~🎬|gaming~🎮|news~📰|Geogussr~🗺️|daydream~💭|Gold trading~🪙|trading~📈|exercise~🏋️|nature~🌳|sightseeing~⛰️|birdwatch~🐦|online shop~📦|reading~📖|walk~👟|XXX~🔞|artistic~🎨'],
+ ['hobbies','Hobbies','choice',0,'piano~🎹|chess~♟️|guitar~🎸|tarot~🃏|YouTube~▶️|netflix~🎬|gaming~🎮|news~📰|Geogussr~🗺️|daydream~💭|Gold trading~🪙|trading~📈|exercise~🏋️|nature~🌳|sightseeing~⛰️|birdwatch~🐦|online shop~📦|reading~📖|walk~👟|!XXX~🔞|artistic~🎨'],
  ['outdoor','Outdoor Act.','choice',0,'bowling~🎳|pool~🎱|karaoke~🎤|ice skate~⛸️|cinema~🍿'],
  ['lovely','Lovely Interactions','choice',0,'family~🏡|partner~💗|friends~🧑‍🤝‍🧑|discord~🖥️|none~✖️'],
  ['family','Family','choice',0,'stay home~🏠|outside act.~🚶|eat outside~🍴|go to mall~🛍️|birthday~🎂|movie night~📽️|Hua Hin~🏖️|travel~✈️|see doctor~💉|home dinner~🍲|Visited Dorm~🏢'],
@@ -1670,11 +1670,12 @@ let _drDef=null;
 function drDefaults(){
   if(_drDef)return clone(_drDef);
   _drDef=DR_DEFAULT.map(([id,name,type,hidden,items])=>({id,name,type,hidden:!!hidden,
-    items:items?items.split('|').map((x,i)=>{const k=x.lastIndexOf('~');const label=x.slice(0,k),icon=x.slice(k+1);return {id:id+'_'+i,label,icon,img:'',hidden:false}}):[]}));
+    items:items?items.split('|').map((x,i)=>{const k=x.lastIndexOf('~');const label=x.slice(0,k),icon=x.slice(k+1);return {id:id+'_'+i,label,icon,img:'',hidden:false}}).filter(x=>x.label[0]!=='!'):[]}));
   return clone(_drDef);
 }
 const drCfg=()=>S.drcfg||{};
-const drBlocks=()=>(drCfg().blocks&&drCfg().blocks.length)?drCfg().blocks:(drDefaults(),_drDef);
+const DR_REMOVED={hobbies_19:'XXX'};
+const drBlocks=()=>{const b=drCfg().blocks;if(b&&b.length){b.forEach(x=>{if(x.items&&x.items.some(i=>DR_REMOVED[i.id]===i.label))x.items=x.items.filter(i=>DR_REMOVED[i.id]!==i.label)});return b}drDefaults();return _drDef};
 function saveDrCfg(patch){const d=Object.assign({},drCfg(),{blocks:clone(drBlocks())},patch,{updatedAt:Date.now()});delete d.id;S.drcfg=Object.assign({},d,{id:'drcfg'});render();return save('drcfg',d)}
 const dayEntry=d=>S.days.get('d_'+d)||{};
 const MOOD_C={5:'#FFC6D8',4:'#FFE598',3:'#D5DF79',2:'#B9E2FA',1:'#D2A6D1'};
