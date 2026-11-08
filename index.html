@@ -484,6 +484,8 @@ button.stat:hover{border-color:#CBD2DB}
 .auth-card h1{font-size:23px;margin-bottom:4px}
 .auth-card .sub{margin-bottom:20px}
 .err{color:var(--hi);font-size:14px;min-height:0;margin:0 0 10px}
+.gate{max-width:320px;display:flex;flex-direction:column;align-items:center;gap:12px;color:var(--muted,#667)}
+.gate input{text-align:center;font-size:17px}.gate .btn{width:100%}.gate .err{margin:0}
 .err:empty{display:none}
 .auth-alt{margin-top:16px;text-align:center;font-size:14.5px;color:var(--muted)}
 .notice{background:var(--accent-soft);color:var(--accent-ink);border-radius:10px;padding:10px 12px;font-size:14px;margin-bottom:14px}
@@ -741,6 +743,27 @@ const FB_VERSION='10.12.2';
 const FIREBASE={ /* paste the firebaseConfig values from Firebase Console → Project settings → Your apps */
   apiKey:'AIzaSyD-LC4OMfyyVR4KPTYB-aYLnIXwnEPNtMA',authDomain:'pv-planner-96e2b.firebaseapp.com',projectId:'pv-planner-96e2b',storageBucket:'pv-planner-96e2b.firebasestorage.app',messagingSenderId:'300153420589',appId:'1:300153420589:web:c05d70fe70487fa7f071a4'};
 const PLANNER_PATH=uid=>['users',uid,'planner'];
+/* Password gate (same password & rules as the MDCU / SI / โพยหมอ sites). Only the hash is stored: h = sha256(salt + password).
+   //toggle pw on|off → set GATE.on · //toggle pw reset → GATE.r + 1 (every device must enter the password again; nobody is signed out) */
+const GATE={on:false,salt:'06faf800614125fd',h:'ed660d4b3559b47d9f0a826217ba1f983dcece43cd22b7e6a5f4413fdfc5d26b',r:0};
+const gateTok=()=>GATE.h+':'+(+GATE.r||0);
+function devTrusted(){try{return localStorage.getItem('pv-trusted')==='r'+(+GATE.r||0)}catch(e){return false}}
+function markTrusted(){try{localStorage.setItem('pv-trusted','r'+(+GATE.r||0))}catch(e){}}
+function gatePassed(){try{return sessionStorage.getItem('pv-pass')===gateTok()}catch(e){return false}}
+function gateBlocks(){return !!(GATE.on&&GATE.h)&&!gatePassed()&&!devTrusted()}
+function gateScreen(done){
+  S.mode='gate';
+  $('#root').innerHTML='<div class="center-wrap"><form class="auth-card gate" id="gate-f" autocomplete="off" novalidate>'
+   +'<svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>'
+   +'<input type="password" id="gate-in" placeholder="Password" aria-label="Password" autocomplete="off"><button class="btn primary" type="submit">Enter</button><p class="err" id="gate-err" hidden>Incorrect password</p></form></div>';
+  const i=$('#gate-in');setTimeout(()=>i.focus(),50);
+  $('#gate-f').addEventListener('submit',async e=>{
+    e.preventDefault();let ok=false;
+    try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(GATE.salt+i.value));ok=[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')===GATE.h}catch(x){}
+    if(ok){try{sessionStorage.setItem('pv-pass',gateTok())}catch(x){}done()}
+    else{$('#gate-err').hidden=false;i.value='';i.focus()}
+  });
+}
 let FB=null;
 
 /* ---------- storage (db) ---------- */
@@ -857,6 +880,7 @@ function stateScreen(title,msg,spin,withLogout){
 }
 function loadingScreen(msg){S.mode='loading';$('#root').innerHTML='<div class="center-wrap"><div class="state"><div class="spinner"></div><p>'+esc(msg)+'</p></div></div>'}
 async function boot(){
+  if(gateBlocks()){gateScreen(boot);return}
   try{const h=(location.hash||'').slice(1);if(h.startsWith('add='))sessionStorage.setItem('pvadd',h.slice(4))}catch(e){}
   if(!FIREBASE.apiKey){stateScreen('Setup needed','Add the Firebase config to index.html to start using Personal Planner.');return}
   try{
@@ -868,12 +892,13 @@ async function boot(){
     catch(e){db=fs.getFirestore(app)}
     FB={au,fs,auth:au.getAuth(app),db};
     try{await au.setPersistence(FB.auth,au.browserLocalPersistence)}catch(e){}
-    au.getRedirectResult(FB.auth).catch(e=>{S.authError=authMsg(e);if(S.mode==='auth')showLogin(S.authView)});
+    au.getRedirectResult(FB.auth).then(r=>{if(r&&r.user)markTrusted()}).catch(e=>{S.authError=authMsg(e);if(S.mode==='auth')showLogin(S.authView)});
     au.onAuthStateChanged(FB.auth,u=>{
       if(S.unsub){S.unsub();S.unsub=null}
       S.tasks=new Map();S.goals=new Map();S.focus=new Map();S.reviews=new Map();S.profile=null;S.frcfg=null;S.drafts={};S.frSearch=null;socialStop();
       if(!u){S.user=null;S.col=null;showLogin(S.authView==='signup'?'signup':'signin');return}
       S.user=u;S.authView='signin';S.authError='';
+      try{if(localStorage.getItem('pv-trusted')==null&&!(+GATE.r))markTrusted()}catch(e){} /* signed in here before the gate existed = this device signed in on this site */
       const colRef=fs.collection(FB.db,...PLANNER_PATH(u.uid));
       S.col={doc:id=>({set:d=>fs.setDoc(fs.doc(colRef,id),d),delete:()=>fs.deleteDoc(fs.doc(colRef,id))})};
       loadingScreen('Loading your planner…');
@@ -906,7 +931,7 @@ function setAuthErr(m){S.authError=m||'';const er=$('#auth-err');if(er)er.textCo
 async function googleLogin(btn){
   const A=FB.au,p=new A.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});
   setAuthErr('');if(btn)btn.disabled=true;
-  try{await A.signInWithPopup(FB.auth,p)}
+  try{await A.signInWithPopup(FB.auth,p);markTrusted()}
   catch(e){
     if(['auth/popup-blocked','auth/operation-not-supported-in-this-environment'].includes(e.code)){try{await A.signInWithRedirect(FB.auth,p);return}catch(e2){setAuthErr(authMsg(e2))}}
     else setAuthErr(authMsg(e));
@@ -956,7 +981,7 @@ async function doSignin(f){
   if(!emailOk(email))return setAuthErr('Please enter a valid email address.');
   if(!pw)return setAuthErr('Please enter your password.');
   setAuthErr('');busy(f,true);
-  try{await FB.au.signInWithEmailAndPassword(FB.auth,email,pw)}catch(e){busy(f,false);setAuthErr(authMsg(e))}
+  try{await FB.au.signInWithEmailAndPassword(FB.auth,email,pw);markTrusted()}catch(e){busy(f,false);setAuthErr(authMsg(e))}
 }
 async function doSignup(f){
   const el=f.elements,name=el.nm.value.trim(),email=el.em.value.trim(),pw=el.pw.value,pw2=el.pw2.value;
@@ -965,7 +990,7 @@ async function doSignup(f){
   if(pw.length<6)return setAuthErr('Password must be at least 6 characters.');
   if(pw!==pw2)return setAuthErr('Passwords don’t match.');
   setAuthErr('');busy(f,true);S.pendingName=name;
-  try{const cred=await FB.au.createUserWithEmailAndPassword(FB.auth,email,pw);try{await FB.au.updateProfile(cred.user,{displayName:name})}catch(e){}}
+  try{const cred=await FB.au.createUserWithEmailAndPassword(FB.auth,email,pw);markTrusted();try{await FB.au.updateProfile(cred.user,{displayName:name})}catch(e){}}
   catch(e){S.pendingName='';busy(f,false);setAuthErr(authMsg(e))}
 }
 async function doReset(f){
@@ -1519,7 +1544,8 @@ VIEWS.account=function(){
    +'<p class="fine" style="margin-bottom:14px">Member since '+(p.createdAt?fmtDate(iso(new Date(p.createdAt))):'—')+' · Your data syncs across every device you sign in on.</p>'
    +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
    +(prov.includes('password')?'<button class="btn" data-act="pw-reset-email">Send password reset email</button>':'')
-   +'<button class="btn" data-act="logout">'+ic('logout',16)+'Sign out</button></div></section>'+socialSettingsHTML()+'</div>'
+   +'<button class="btn" data-act="logout">'+ic('logout',16)+'Sign out</button></div>'
+   +(devTrusted()?'':'<p class="fine" style="margin:14px 0 8px">This device is signed in but not confirmed on this site yet, so it may ask for the site password in each new tab.</p><button class="btn" data-act="trust-device">Confirm this device (no more password)</button>')+'</section>'+socialSettingsHTML()+'</div>'
    +'<div class="col">'+gcalSettingsHTML()+'<section class="card"><div class="ch"><h2>Your data</h2></div>'
    +'<div class="kv" style="margin-bottom:14px"><div><b>'+S.tasks.size+'</b>tasks</div><div><b>'+S.goals.size+'</b>goals</div><div><b>'+S.days.size+'</b>daily reviews</div><div><b>'+S.reviews.size+'</b>weekly reviews</div></div>'
    +'<button class="btn" data-act="copy-json">'+ic('copy',16)+'Copy all data (JSON)</button></section>'
@@ -2344,6 +2370,7 @@ document.addEventListener('click',e=>{
     case 'auth-view':setAuthErr('');showLogin(el.dataset.v);return;
     case 'pw-reset-email':{const em=S.user&&S.user.email;if(!em)return;FB.au.sendPasswordResetEmail(FB.auth,em).then(()=>toast('Password reset email sent to '+em),e=>toast(authMsg(e)));return}
     case 'nav':closeModal();go(el.dataset.route);return;
+    case 'trust-device':markTrusted();toast('This device is confirmed — no more password');render();return;
     case 'logout':closeModal();gClearToken();G.list=null;G.events.clear();G.pvChecked=false;if(FB)FB.au.signOut(FB.auth);return;
     case 'new-task':openTaskModal(null,{date:S.route==='daily'?S.dailyDate:S.route==='weekly'?S.weekSel:td});return;
     case 'new-event':openEventModal(null,{date:el.dataset.date||(S.route==='daily'?S.dailyDate:S.route==='weekly'?S.weekSel:td)});return;
