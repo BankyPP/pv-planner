@@ -187,7 +187,9 @@ button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .fbtn{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:4px;padding:4px;border-radius:12px;font-family:'Kanit',sans-serif;font-size:12.5px;color:var(--muted)}
 .fbtn:hover .face{transform:scale(1.06)}
 .fbtn.on{color:var(--ink)}
-.face{display:block;transition:transform .12s}
+.face{display:block;transition:transform .12s,filter .12s,opacity .12s;object-fit:contain}
+.face.off{filter:grayscale(1);opacity:.4}
+.fbtn:hover .face.off{opacity:.7}
 .drb{padding:14px 16px}
 .drh{display:flex;align-items:center;gap:8px;width:100%;border:0;background:none;padding:2px 0;text-align:left;color:inherit}
 .drh h2{font-size:17px}
@@ -1399,7 +1401,7 @@ VIEWS.weekly=function(){
   let days='';
   for(let i=0;i<7;i++){const d=addDays(mon,i),ts=tasksOn(d).sort((a,b)=>(a.done-b.done)||sortTasks(a,b)),dn=ts.filter(t=>t.done).length;
     days+='<section class="card day'+(d===td?' is-today':'')+(d<td?' is-past':'')+(d===S.weekSel?' is-sel':'')+'" id="day-'+d+'">'
-     +'<div class="dh">'+moodBtn(d,22)+'<span class="dn">'+dayName(d)+'</span><span class="dd">'+(dayEntry(d).star?MON_S[parse(d).getMonth()]+' '+starNum(parse(d).getDate(),26):fmtShort(d))+'</span><span class="dc">'+dn+'/'+ts.length+'</span>'
+     +'<div class="dh">'+moodBtn(d,26)+'<span class="dn">'+dayName(d)+'</span><span class="dd">'+(dayEntry(d).star?MON_S[parse(d).getMonth()]+' '+starNum(parse(d).getDate(),26):fmtShort(d))+'</span><span class="dc">'+dn+'/'+ts.length+'</span>'
      +'<button class="ibtn" data-act="open-day" data-date="'+d+'" title="Open in daily planner" aria-label="Open in daily planner">'+ic('arrow',16)+'</button></div>'
      +gScheduleHTML(d,true)
      +(ts.length?'<div class="tlist">'+ts.map(t=>taskRow(t,{compact:true})).join('')+'</div>':'<p class="empty" style="padding:4px 2px">Nothing planned</p>')
@@ -1465,7 +1467,7 @@ VIEWS.review=function(){
    +'</section>'
    +'<section class="card"><div class="ch"><h2>Reflection</h2><span class="save-state" id="rv-status">'+(r.updatedAt?'Saved':'')+'</span></div>'
    +fields
-   +'<div class="field"><span class="lbl">Overall mood this week</span><div class="mood">'+MOODS.map(m=>'<button class="'+(r.mood===m[0]?'on':'')+'" data-act="mood" data-v="'+m[0]+'" data-w="'+w+'"><span class="e">'+face(m[0],30,r.mood===m[0])+'</span>'+m[2]+'</button>').join('')+'</div></div>'
+   +'<div class="field"><span class="lbl">Overall mood this week</span><div class="mood">'+MOODS.map(m=>'<button class="'+(r.mood===m[0]?'on':'')+'" data-act="mood" data-v="'+m[0]+'" data-w="'+w+'"><span class="e">'+face(m[0],30,!r.mood||r.mood===m[0])+'</span>'+m[2]+'</button>').join('')+'</div></div>'
    +'<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center"><span class="fine">Saves automatically as you type</span>'
    +'<button class="btn" data-act="rv-push" data-w="'+w+'">'+ic('arrow',16)+'Add to next week’s focus</button></div>'
    +'</section></div>'
@@ -1620,17 +1622,10 @@ const drCfg=()=>S.drcfg||{};
 const drBlocks=()=>(drCfg().blocks&&drCfg().blocks.length)?drCfg().blocks:(drDefaults(),_drDef);
 function saveDrCfg(patch){const d=Object.assign({},drCfg(),{blocks:clone(drBlocks())},patch,{updatedAt:Date.now()});delete d.id;S.drcfg=Object.assign({},d,{id:'drcfg'});render();return save('drcfg',d)}
 const dayEntry=d=>S.days.get('d_'+d)||{};
-const MOOD_C={5:'#F4D35E',4:'#A7D98B',3:'#C9D0D9',2:'#93B8EE',1:'#B9A0EA'};
+const MOOD_C={5:'#FFC6D8',4:'#FFE598',3:'#D5DF79',2:'#B9E2FA',1:'#D2A6D1'};
 const MOOD_L={5:'Great',4:'Good',3:'Okay',2:'Bad',1:'Awful'};
 function face(v,size,active){
-  const bg=active?MOOD_C[v]:'#E9EBEE',fg=active?'#3B3024':'#A3A9B2';
-  const eyes='<circle cx="11.5" cy="13.5" r="1.7" fill="'+fg+'"/><circle cx="20.5" cy="13.5" r="1.7" fill="'+fg+'"/>';
-  const m={5:'<path d="M9.5 18.5h13c0 3.6-2.9 6.4-6.5 6.4s-6.5-2.8-6.5-6.4z" fill="'+fg+'"/>',
-    4:'<path d="M11 19.5q5 4.2 10 0" stroke="'+fg+'" stroke-width="2" fill="none" stroke-linecap="round"/>',
-    3:'<path d="M12 20.5h8" stroke="'+fg+'" stroke-width="2" stroke-linecap="round"/>',
-    2:'<path d="M11.5 22q4.5-3.6 9 0" stroke="'+fg+'" stroke-width="2" fill="none" stroke-linecap="round"/>',
-    1:'<path d="M10.5 22.5q5.5-4.2 11 0" stroke="'+fg+'" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M9.6 16.5c0 1.2-.7 2.1-1.5 2.1s-1.5-.9-1.5-2.1.75-2.2 1.5-3.2c.75 1 1.5 2 1.5 3.2z" fill="'+(active?'#6FA8F0':'#C3C8CF')+'"/>'}[v];
-  return '<svg class="face" width="'+size+'" height="'+size+'" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="15.5" fill="'+bg+'"/>'+eyes+m+'</svg>';
+  return '<img class="face mac'+(active?'':' off')+'" src="img/mood-'+v+'.webp" width="'+size+'" height="'+size+'" alt="" draggable="false">';
 }
 function starNum(n,size){
   size=size||26;
@@ -1731,7 +1726,7 @@ VIEWS.dreview=function(){
    +'<input type="date" data-act="pick-drday" value="'+d+'" aria-label="Pick a date">'+(d!==td?'<button class="btn sm" data-act="dr-today">Today</button>':'')+'</div>'
    +'<button class="btn" data-act="nav" data-route="dsetup">'+ic('gear',16)+'Customize</button></header>'
    +'<div class="drwrap">'
-   +'<section class="card drmood"><h2>How was your day?</h2><div class="faces">'+[5,4,3,2,1].map(v=>'<button class="fbtn'+(e.mood===v?' on':'')+'" data-act="dr-mood" data-v="'+v+'" aria-label="'+MOOD_L[v]+'">'+face(v,54,e.mood===v)+'<span>'+MOOD_L[v]+'</span></button>').join('')+'</div></section>'
+   +'<section class="card drmood"><h2>How was your day?</h2><div class="faces">'+[5,4,3,2,1].map(v=>'<button class="fbtn'+(e.mood===v?' on':'')+'" data-act="dr-mood" data-v="'+v+'" aria-label="'+MOOD_L[v]+'">'+face(v,54,!e.mood||e.mood===v)+'<span>'+MOOD_L[v]+'</span></button>').join('')+'</div></section>'
    +blocks.map(b=>drBlockHTML(b,d,e)).join('')
    +'<section class="card"><div class="ch"><h2>Reflection</h2><button class="link" data-act="dr-q">'+ic('redo',14)+'Another question</button></div>'
    +'<label class="lbl" for="dr-refl" style="font-weight:500">'+esc(q)+'</label><textarea id="dr-refl" rows="4" data-k="dq-'+d+'" data-dr="refl" data-d="'+d+'" placeholder="Write your answer…">'+esc(e.refl||'')+'</textarea></section>'
