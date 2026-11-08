@@ -519,6 +519,118 @@ button.stat:hover{border-color:#CBD2DB}
   .ph>.navrow{width:100%}
   .ph>.navrow .vtabs{margin-left:auto}
 }
+/* friends */
+.avstack{display:inline-flex;align-items:center}
+.avstack .avatar{border:2px solid #fff;margin-left:-6px}
+.avstack .avatar:first-child{margin-left:0}
+.avmore{font-family:'Kanit',sans-serif;font-size:11px;color:var(--muted);margin-left:3px}
+.shr{display:inline-flex;align-items:center;gap:4px;margin-left:6px;vertical-align:middle}
+.shr i{font-style:normal;font-family:'Kanit',sans-serif;font-size:11.5px;color:var(--muted)}
+.chk.half{background:repeating-linear-gradient(135deg,var(--accent-soft) 0 3px,#fff 3px 6px);border-color:var(--accent);color:var(--accent)}
+.ev.own.sh .shic{display:inline-flex;margin-right:4px;vertical-align:-1px;opacity:.75}
+.ev.own.pend,.mev.pend{background:#fff !important;border-left-style:dashed !important;outline:1px dashed color-mix(in srgb,var(--evc) 55%,#fff);outline-offset:-1px}
+.gbar.warn{background:#FDECEA;border-color:#F1C4BE;color:#8A1C12}
+.prow{display:flex;align-items:center;gap:12px;padding:8px 0;border-top:1px solid var(--border2)}
+.prow:first-of-type,.ch+.prow{border-top:0}
+[hidden]{display:none !important}
+.pb{min-width:0;flex:1;display:flex;flex-direction:column}
+.pn{font-family:'Kanit',sans-serif;font-weight:500;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pa{display:flex;gap:6px;align-items:center;flex:none}
+.fres{margin-top:12px;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:#FAFBFC}
+.fres .prow{padding:0;border:0}
+.spinner.sm{width:20px;height:20px;border-width:2px;margin:4px auto}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+.fcard{display:flex;align-items:center;gap:12px;text-align:left;border:1px solid var(--border);background:#fff;border-radius:12px;padding:10px 12px;cursor:pointer;font:inherit;color:inherit;min-width:0}
+.fcard:hover{border-color:#C9D5EA;background:#FBFCFE}
+.fcb{display:flex;flex-direction:column;min-width:0;flex:1;line-height:1.35}
+.fcm{display:flex;align-items:center;gap:4px;flex:none}
+.handleform{display:flex;align-items:center;gap:8px}
+.handleform .at{font-family:'Kanit',sans-serif;font-size:17px;color:var(--muted)}
+.handleform input{flex:1;min-width:0}
+.card.hl{border-color:#B9CDF3;background:#F7FAFF}
+.invrow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;border:0;border-top:1px solid var(--border2);background:none;padding:9px 2px;cursor:pointer;font:inherit;color:inherit}
+.invrow:first-of-type{border-top:0}
+.invrow:hover .pn{color:var(--accent-ink)}
+.kic{width:32px;height:32px;border-radius:9px;background:var(--accent-soft);color:var(--accent-ink);display:grid;place-items:center;flex:none}
+.shtoggles{display:flex;flex-direction:column}
+.shrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:9px 0;border-top:1px solid var(--border2);cursor:pointer}
+.shtoggles .shrow:first-child{border-top:0}
+.shrow span{display:flex;flex-direction:column;min-width:0;line-height:1.4}
+.shrow b{font-family:'Kanit',sans-serif;font-weight:500;color:var(--ink)}
+.shrow small{color:var(--muted);font-size:13px}
+.sw{appearance:none;-webkit-appearance:none;width:40px;height:23px;border-radius:12px;background:#D5DAE1;position:relative;flex:none;cursor:pointer;transition:background .15s;margin:0}
+.sw::after{content:'';position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:left .15s}
+.sw:checked{background:var(--accent)}
+.sw:checked::after{left:20px}
+.sw:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.presets{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.presets .chip{flex-direction:row;border:1px solid var(--border);padding:5px 11px;border-radius:999px;font-family:'Kanit',sans-serif;font-size:13px;color:var(--text);cursor:pointer;background:#fff}
+.presets .chip.on{background:var(--accent-soft);border-color:#B9CDF3;color:var(--accent-ink)}
+.fpick{display:flex;flex-wrap:wrap;gap:6px}
+.fpick label{position:relative}
+.fpick input{position:absolute;opacity:0;pointer-events:none}
+.fpick span{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);border-radius:999px;padding:3px 12px 3px 3px;cursor:pointer;background:#fff;font-size:14px}
+.fpick input:checked+span{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink)}
+.fpick input:focus-visible+span{outline:2px solid var(--accent);outline-offset:1px}
+.qrbox{display:flex;flex-direction:column;align-items:stretch}
+.qr{width:220px;height:220px;margin:0 auto;display:grid;place-items:center}
+.qr svg{width:100%;height:100%}
+.linkrow{display:flex;gap:8px;margin-top:8px}
+.linkrow input{flex:1;min-width:0;font-size:13px}
+.cov h3{display:flex;align-items:center;gap:8px;font-size:19px;font-weight:600}
+.covn{white-space:pre-wrap;background:#F6F7F9;border-radius:10px;padding:8px 10px;margin:8px 0 0}
+.evdot{width:10px;height:10px;border-radius:50%;flex:none;display:inline-block}
+.mstats{display:flex;flex-direction:column;gap:6px;margin:6px 0 10px}
+.mstat{display:flex;align-items:center;gap:8px}
+.mstat b{margin-left:auto;font-family:'Kanit',sans-serif;font-weight:500;font-size:13px;color:var(--muted)}
+.mstat.ok b,.mstat.r-yes b{color:var(--ok)}
+.mstat.r-no b{color:var(--hi)}
+.mstat.r-maybe b{color:var(--md)}
+.seg.rsvp{margin-top:4px}
+.seg.rsvp input:checked+span{background:var(--accent);color:#fff;border-color:var(--accent)}
+.sech{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:26px 0 12px}
+.chrows{display:flex;flex-direction:column;gap:10px;margin:12px 0}
+.chrow{display:flex;align-items:center;gap:10px}
+.chb{flex:1;min-width:0}
+.chn{display:flex;justify-content:space-between;gap:8px;font-size:14px;margin-bottom:3px}
+.chn b{font-family:'Kanit',sans-serif;font-weight:500;white-space:nowrap}
+.chrow.me .chn span{font-weight:700}
+.chlog{display:flex;align-items:center;gap:6px;justify-content:flex-end;border-top:1px solid var(--border2);padding-top:10px}
+.chlog .fine{margin-right:auto}
+.chlog input{width:80px;text-align:center;padding:6px}
+.chlog .ibtn{font-size:18px;font-family:'Kanit',sans-serif}
+.fphead{display:flex;align-items:center;gap:14px;min-width:0}
+.fphead h1{overflow:hidden;text-overflow:ellipsis}
+.fpweek{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.fpday{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 0;border-radius:10px}
+.fpday.today{background:var(--accent-soft)}
+.fpday b{font-family:'Kanit',sans-serif;font-weight:500;height:24px;display:grid;place-items:center}
+.nomood{width:28px;height:28px;border-radius:50%;background:#EEF0F3}
+.fpprog{display:grid;grid-template-columns:90px 52px 1fr;align-items:center;gap:10px;margin:6px 0}
+.fpprog b{font-family:'Kanit',sans-serif;font-weight:500}
+.fpdh{font-family:'Kanit',sans-serif;font-weight:500;font-size:13px;color:var(--muted);margin:10px 0 4px}
+.fpdh:first-of-type{margin-top:0}
+.fpdh.late{color:var(--hi)}
+.fptask{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:14.5px}
+.fptask .pdot{margin-top:0}
+.fptask.done span:not(.pdot):not(.tm){text-decoration:line-through;color:var(--faint)}
+.fptask .ic{color:var(--ok);margin-left:auto}
+.fpgoal{margin-bottom:12px}
+.fpacts{display:flex;flex-wrap:wrap;gap:6px}
+.fpact{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--border);border-radius:999px;padding:3px 10px;font-size:13.5px;background:#fff}
+.fpact .emo{font-family:'Noto Color Emoji',sans-serif}
+.togbtns{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.mlist{display:flex;flex-direction:column;gap:4px}
+.mitem{display:flex;align-items:center;gap:10px;border:0;background:none;padding:10px 8px;border-radius:9px;text-align:left;font:inherit;color:var(--text);cursor:pointer}
+.mitem:hover{background:#F3F5F8}
+.mitem.danger{color:var(--hi)}
+.linkbtn{border:0;background:none;padding:0;color:var(--accent);font:inherit;cursor:pointer;text-decoration:underline}
+.avrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tfr,.navbtn-wrap{position:relative}
+.frbadge{position:absolute;top:2px;right:2px;min-width:17px;height:17px;border-radius:9px;background:var(--hi);color:#fff;font-family:'Kanit',sans-serif;font-size:11px;line-height:17px;text-align:center;padding:0 4px}
+.nav .frbadge{position:static;margin-left:auto}
+.nav button{position:relative}
+.topbar .tright{display:flex;align-items:center;gap:2px}
 </style>
 </head>
 <body>
@@ -591,7 +703,12 @@ const IC={
  grid:'<rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M9 9v12M15 9v12M3 15h18M8 2.5v3M16 2.5v3"/>',
  down:'<path d="m6 9 6 6 6-6"/>',
  smile:'<circle cx="12" cy="12" r="9"/><path d="M8.5 14.2c.9 1.3 2.1 2 3.5 2s2.6-.7 3.5-2"/><path d="M9 9.8h.01M15 9.8h.01" stroke-width="2.6"/>',
- list:'<path d="M5 7h14M5 12h14M5 17h14"/>'
+ list:'<path d="M5 7h14M5 12h14M5 17h14"/>',
+ users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c1-3.6 3.6-5.5 6.5-5.5s5.5 1.9 6.5 5.5"/><path d="M16 4.6a3.5 3.5 0 0 1 0 6.8M18 14.8c1.8.7 3 2.4 3.5 5.2"/>',
+ qr:'<rect x="3.5" y="3.5" width="6" height="6" rx="1"/><rect x="14.5" y="3.5" width="6" height="6" rx="1"/><rect x="3.5" y="14.5" width="6" height="6" rx="1"/><path d="M14.5 14.5h2.5v2.5M20.5 14.5v.01M14.5 20.5h.01M17.5 20.5h3v-3"/>',
+ share:'<path d="M12 15V3.5M7.5 8 12 3.5 16.5 8"/><path d="M5 12.5V19a1.5 1.5 0 0 0 1.5 1.5h11A1.5 1.5 0 0 0 19 19v-6.5"/>',
+ block:'<circle cx="12" cy="12" r="8.5"/><path d="m6 6 12 12"/>',
+ more:'<circle cx="5.5" cy="12" r="1.2"/><circle cx="12" cy="12" r="1.2"/><circle cx="18.5" cy="12" r="1.2"/>'
 };
 const ic=(n,s)=>{s=s||18;return '<svg class="ic" width="'+s+'" height="'+s+'" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+IC[n]+'</svg>'};
 
@@ -601,13 +718,13 @@ const QORDER=['iu','i','u','s'];
 const qOf=t=>QUADS[t.q]?t.q:({high:'iu',medium:'i',low:'s'}[t.priority]||'i');
 const pr=t=>QUADS[qOf(t)];
 const MOODS=[[1,'😣','Awful'],[2,'🙁','Not great'],[3,'😐','Okay'],[4,'🙂','Good'],[5,'😄','Great']];
-const ROUTES=['dashboard','daily','weekly','calendar','goals','dreview','dsetup','review','account'];
-const NAV=[['dashboard','Dashboard','Home','home'],['daily','Daily Planner','Daily','sun'],['weekly','Weekly Planner','Weekly','cal'],['calendar','Month & Year','Month','grid'],['goals','Goals','Goals','target'],['dreview','Daily Review','Review','smile'],['review','Weekly Review','Weekly R.','book'],['account','Settings','Settings','gear']];
+const ROUTES=['dashboard','daily','weekly','calendar','goals','friends','friend','dreview','dsetup','review','account'];
+const NAV=[['dashboard','Dashboard','Home','home'],['daily','Daily Planner','Daily','sun'],['weekly','Weekly Planner','Weekly','cal'],['calendar','Month & Year','Month','grid'],['goals','Goals','Goals','target'],['friends','Friends','Friends','users'],['dreview','Daily Review','Review','smile'],['review','Weekly Review','Weekly R.','book'],['account','Settings','Settings','gear']];
 
 /* ---------- state ---------- */
 const T0=todayIso();
 const S={mode:'loading',col:null,uid:null,profile:null,
-  tasks:new Map(),goals:new Map(),focus:new Map(),reviews:new Map(),days:new Map(),photos:new Map(),events:new Map(),drcfg:null,wx:{},reviewDay:T0,
+  tasks:new Map(),goals:new Map(),focus:new Map(),reviews:new Map(),days:new Map(),photos:new Map(),events:new Map(),drcfg:null,frcfg:null,wx:{},reviewDay:T0,
   route:'dashboard',dailyDate:T0,weekStart:mondayOf(T0),weekSel:T0,calMonth:monthStart(T0),reviewWeek:mondayOf(T0),
   goalFilter:'active',drafts:{},deleting:false,loadTimer:null,rvTimer:null,user:null,unsub:null,authError:'',authView:'signin',pendingName:''};
 /* Firebase project pv-planner; planner data lives at users/{uid}/planner/{doc} */
@@ -643,7 +760,7 @@ function writeErr(e){
 const strip=o=>{const c=Object.assign({},o);delete c.id;return c};
 
 /* tasks */
-const allTasks=()=>[...S.tasks.values()];
+const allTasks=()=>[...S.tasks.values()].concat(sharedTasks());
 const tasksOn=d=>allTasks().filter(t=>t.date===d);
 function tasksInWeek(mon){const end=addDays(mon,6);return allTasks().filter(t=>t.date>=mon&&t.date<=end)}
 const sortTasks=(a,b)=>(!!b.star-!!a.star)||(pr(a).r-pr(b).r)||((a.createdAt||0)-(b.createdAt||0));
@@ -655,6 +772,7 @@ function addTask(o){
   S.tasks.set(id,Object.assign({},t,{id}));render();save(id,t);if(t.cal)gSchedule();return id;
 }
 function patchTask(id,patch){
+  if(id.startsWith('k_')){const c=SO.collab.get(id);if(c&&c.owner===me()){const p={};['date','title','q','start','end','notes'].forEach(k=>{if(k in patch)p[k]=patch[k]});if(Object.keys(p).length)coSave(id,p)}return}
   const cur=S.tasks.get(id);if(!cur)return;
   const next=Object.assign(strip(cur),patch,{updatedAt:Date.now()});
   if(next.q)delete next.priority;
@@ -682,12 +800,12 @@ function focusItems(mon){const f=S.focus.get('f_'+mon);return f&&f.items?clone(f
 function saveFocus(mon,items){const id='f_'+mon;const d={week:mon,items,updatedAt:Date.now()};S.focus.set(id,Object.assign({},d,{id}));render();return save(id,d)}
 
 /* ---------- snapshot ---------- */
-function sig(){const f=m=>[...m.values()].sort((a,b)=>a.id<b.id?-1:1);return stable([S.profile,f(S.tasks),f(S.goals),f(S.focus),f(S.reviews),f(S.days),f(S.events),[...S.photos.keys()].sort(),S.drcfg])}
+function sig(){const f=m=>[...m.values()].sort((a,b)=>a.id<b.id?-1:1);return stable([S.profile,f(S.tasks),f(S.goals),f(S.focus),f(S.reviews),f(S.days),f(S.events),[...S.photos.keys()].sort(),S.drcfg,S.frcfg])}
 function onSnap(snap){
   clearTimeout(S.loadTimer);
   if(S.deleting)return;
   const before=S.mode==='app'?sig():'';
-  const n={tasks:new Map(),goals:new Map(),focus:new Map(),reviews:new Map(),days:new Map(),photos:new Map(),events:new Map(),drcfg:null,profile:null};
+  const n={tasks:new Map(),goals:new Map(),focus:new Map(),reviews:new Map(),days:new Map(),photos:new Map(),events:new Map(),drcfg:null,frcfg:null,profile:null};
   snap.docs.forEach(d=>{
     const v=d.data();if(!v)return;const id=d.id;
     if(id==='profile')n.profile=v;
@@ -698,20 +816,21 @@ function onSnap(snap){
     else if(id.startsWith('d_'))n.days.set(id,Object.assign({},v,{id}));
     else if(id.startsWith('p_'))n.photos.set(id,Object.assign({},v,{id}));
     else if(id==='drcfg')n.drcfg=Object.assign({},v,{id});
+    else if(id==='friendcfg')n.frcfg=Object.assign({},v,{id});
     else if(id.startsWith('e_'))n.events.set(id,Object.assign({},v,{id}));
   });
-  S.tasks=n.tasks;S.goals=n.goals;S.focus=n.focus;S.reviews=n.reviews;S.days=n.days;S.photos=n.photos;S.drcfg=n.drcfg;S.events=n.events;
+  S.tasks=n.tasks;S.goals=n.goals;S.focus=n.focus;S.reviews=n.reviews;S.days=n.days;S.photos=n.photos;S.drcfg=n.drcfg;S.frcfg=n.frcfg;S.events=n.events;
   const definitive=!snap.metadata.fromCache;
   if(n.profile)S.profile=n.profile;
   else if(definitive||S.mode==='app'){if(!S.profile||S.profile.uid!==S.user.uid)createProfile()}
   else return; /* cached and empty: wait for the server */
   if(S.mode!=='app'){enterApp();return}
-  if(sig()!==before){render();gSchedule(3000)}
+  if(sig()!==before){render();gSchedule(3000);publishSoon();syncPub()}
 }
 function createProfile(){
   const u=S.user;
   const prof={uid:u.uid,name:(S.pendingName||u.displayName||(u.email||'').split('@')[0]||'there'),email:u.email||'',createdAt:Date.now()};S.pendingName='';
-  S.profile=prof;save('profile',prof);
+  S.profile=prof;save('profile',prof);syncPub();
 }
 function onSnapErr(e){
   clearTimeout(S.loadTimer);
@@ -729,6 +848,7 @@ function stateScreen(title,msg,spin,withLogout){
 }
 function loadingScreen(msg){S.mode='loading';$('#root').innerHTML='<div class="center-wrap"><div class="state"><div class="spinner"></div><p>'+esc(msg)+'</p></div></div>'}
 async function boot(){
+  try{const h=(location.hash||'').slice(1);if(h.startsWith('add='))sessionStorage.setItem('pvadd',h.slice(4))}catch(e){}
   if(!FIREBASE.apiKey){stateScreen('Setup needed','Add the Firebase config to index.html to start using Personal Planner.');return}
   try{
     const b='https://www.gstatic.com/firebasejs/'+FB_VERSION+'/';
@@ -742,7 +862,7 @@ async function boot(){
     au.getRedirectResult(FB.auth).catch(e=>{S.authError=authMsg(e);if(S.mode==='auth')showLogin(S.authView)});
     au.onAuthStateChanged(FB.auth,u=>{
       if(S.unsub){S.unsub();S.unsub=null}
-      S.tasks=new Map();S.goals=new Map();S.focus=new Map();S.reviews=new Map();S.profile=null;S.drafts={};
+      S.tasks=new Map();S.goals=new Map();S.focus=new Map();S.reviews=new Map();S.profile=null;S.frcfg=null;S.drafts={};S.frSearch=null;socialStop();
       if(!u){S.user=null;S.col=null;showLogin(S.authView==='signup'?'signup':'signin');return}
       S.user=u;S.authView='signin';S.authError='';
       const colRef=fs.collection(FB.db,...PLANNER_PATH(u.uid));
@@ -750,6 +870,7 @@ async function boot(){
       loadingScreen('Loading your planner…');
       S.loadTimer=setTimeout(()=>{const p=$('#root .state p');if(S.mode==='loading'&&p)p.textContent='Still connecting — check your internet. The page will continue on its own once it connects.'},10000);
       S.unsub=fs.onSnapshot(colRef,onSnap,onSnapErr);
+      socialStart(u);
     });
   }catch(e){
     console.error(e);
@@ -941,8 +1062,8 @@ function gScheduleHTML(d,compact){
   const evs=myEventsOn(d).concat(gReady()?gEventsOn(d):[]).sort((a,b)=>(b.allDay-a.allDay)||(a.time<b.time?-1:a.time>b.time?1:0));
   if(!evs.length)return compact?'':'<p class="empty" style="padding:2px 2px 6px">No events</p>';
   return '<div class="evlist'+(compact?' compact':'')+'">'+evs.map(e=>{
-    const inner='<span class="evt">'+(e.allDay?'All day':esc(e.time)+(e.end&&!compact?'–'+esc(e.end):''))+'</span><span class="evn">'+(e.rep&&!compact?'<span class="rep" title="Repeats">↻</span>':'')+esc(e.title)+'</span>'+(compact||!e.cal?'':'<span class="evc">'+esc(e.cal)+'</span>');
-    return e.own?'<button class="ev own" data-act="ev-edit" data-id="'+e.id+'" style="--evc:'+esc(e.color)+'">'+inner+'</button>'
+    const inner='<span class="evt">'+(e.allDay?'All day':esc(e.time)+(e.end&&!compact?'–'+esc(e.end):''))+'</span><span class="evn">'+(e.shared?'<span class="shic" title="'+(e.inv?'Shared event':'Invite — reply to it')+'">'+ic('users',12)+'</span>':'')+(e.rep&&!compact?'<span class="rep" title="Repeats">↻</span>':'')+esc(e.title)+'</span>'+(compact||!e.cal?'':'<span class="evc">'+esc(e.cal)+'</span>');
+    return e.own?'<button class="ev own'+(e.shared?' sh'+(e.inv?'':' pend'):'')+'" data-act="ev-edit" data-id="'+e.id+'" style="--evc:'+esc(e.color)+'">'+inner+'</button>'
       :'<a class="ev" href="'+esc(e.link)+'" target="_blank" rel="noopener" style="--evc:'+esc(e.color)+'" title="'+esc(e.cal)+'">'+inner+'</a>';
   }).join('')+'</div>';
 }
@@ -986,7 +1107,7 @@ async function gSync(){
     const cal=await ensurePvCal();
     const ex=new Map();let tok='';
     do{const j=await gApi('/calendars/'+encodeURIComponent(cal)+'/events?maxResults=2500&showDeleted=false&privateExtendedProperty='+encodeURIComponent('pv=1')+(tok?'&pageToken='+encodeURIComponent(tok):''));(j.items||[]).forEach(e=>ex.set(e.id,e));tok=j.nextPageToken||''}while(tok);
-    const want=new Map();allTasks().forEach(t=>{if(t.cal&&t.date)want.set(evId(t.id),evBody(t))});[...S.events.values()].forEach(e=>{if(e.cal&&e.date)want.set(evId(e.id),evBodyE(e))});
+    const want=new Map();[...S.tasks.values()].forEach(t=>{if(t.cal&&t.date)want.set(evId(t.id),evBody(t))});[...S.events.values()].forEach(e=>{if(e.cal&&e.date)want.set(evId(e.id),evBodyE(e))});coList().forEach(c=>{if(c.kind==='event'&&c.owner===me()&&c.cal&&c.date)want.set(evId(c.id),evBodyE(c))});
     for(const [id,b] of want){const e=ex.get(id);if(!e||!e.extendedProperties||!e.extendedProperties.private||e.extendedProperties.private.sig!==b.extendedProperties.private.sig)await upsertEv(cal,id,b)}
     for(const [id] of ex)if(!want.has(id)){try{await gApi('/calendars/'+encodeURIComponent(cal)+'/events/'+id,{method:'DELETE'})}catch(e){if(e.code==='auth')throw e;if(e.code!==404&&e.code!==410)throw e}}
     G.last=Date.now();
@@ -1030,10 +1151,11 @@ function occursOn(e,d){
   for(let k=0;k<=span;k++){if(isOccStart(e,addDays(d,-k)))return true}
   return false;
 }
-function myEventsOn(d){return [...S.events.values()].filter(e=>occursOn(e,d)).map(e=>({own:true,id:e.id,title:e.title,allDay:!!e.allDay||!e.start,time:e.allDay?'':(e.start||''),end:e.allDay?'':(e.end||''),color:e.color||EV_COLORS[0][0],cal:e.location||'',rep:!!e.repeat&&e.repeat!=='none'}))}
+function myEventsOn(d){return ownEventsOn(d).concat(coEventsOn(d))}
+function ownEventsOn(d){return [...S.events.values()].filter(e=>occursOn(e,d)).map(e=>({own:true,id:e.id,title:e.title,allDay:!!e.allDay||!e.start,time:e.allDay?'':(e.start||''),end:e.allDay?'':(e.end||''),color:e.color||EV_COLORS[0][0],cal:e.location||'',rep:!!e.repeat&&e.repeat!=='none'}))}
 function openEventModal(id,preset){
   preset=preset||{};
-  const e=id?S.events.get(id):{title:'',date:preset.date||todayIso(),allDay:false,start:'',end:'',endDate:'',location:'',notes:'',color:EV_COLORS[0][0],repeat:'none',until:'',cal:gcalOn()};
+  const e=id?(S.events.get(id)||SO.collab.get(id)):{title:'',date:preset.date||todayIso(),allDay:false,start:'',end:'',endDate:'',location:'',notes:'',color:EV_COLORS[0][0],repeat:'none',until:'',cal:gcalOn()};
   if(!e)return;
   openModal((id?mHead('Edit event'):newHead('event'))
    +'<form data-form="event" data-id="'+(id||'')+'" novalidate>'
@@ -1047,6 +1169,7 @@ function openEventModal(id,preset){
    +'<div class="field"><label class="lbl" for="e-until">Repeat until (optional)</label><input type="date" id="e-until" name="until" value="'+esc(e.until||'')+'"></div></div>'
    +'<div class="field"><label class="lbl" for="e-loc">Location</label><input type="text" id="e-loc" name="loc" maxlength="120" value="'+esc(e.location||'')+'" autocomplete="off" placeholder="Optional"></div>'
    +'<div class="field"><span class="lbl">Color</span><div class="swatches">'+EV_COLORS.map(c=>'<label><input type="radio" name="color" value="'+c[0]+'"'+(e.color===c[0]?' checked':'')+'><span style="background:'+c[0]+'"></span></label>').join('')+'</div></div>'
+   +friendPicker(e.members?e.members.filter(u=>u!==me()):(preset.with||[]),'Invite friends','Each friend can reply Going, Maybe or Not going. It shows on their calendar.')
    +'<div class="field"><label class="lbl" for="e-notes">Notes</label><textarea id="e-notes" name="notes" rows="2" placeholder="Optional">'+esc(e.notes||'')+'</textarea></div>'
    +'<div class="field"><label class="check-line"><input type="checkbox" name="cal"'+(e.cal?' checked':'')+'> Show in Google Calendar</label>'
    +(gcalOn()?'':'<p class="fine" style="margin-top:2px">Connect Google Calendar in Settings to sync.</p>')+'</div>'
@@ -1081,7 +1204,12 @@ function enterApp(){
   S.mode='app';gLoadToken();if(gReady())gSchedule(500);
   const h=(location.hash||'').slice(1);
   if(ROUTES.includes(h))S.route=h;
-  const navItems=NAV.map(n=>'<button data-act="nav" data-route="'+n[0]+'">'+ic(n[3],19)+'<span>'+n[1]+'</span></button>').join('');
+  let inv='';try{inv=sessionStorage.getItem('pvadd')||'';sessionStorage.removeItem('pvadd')}catch(e){}
+  if(h.startsWith('add='))inv=h.slice(4);
+  if(inv){S.route='friends';try{history.replaceState(null,'','#friends')}catch(e){}setTimeout(()=>openInvite(inv),50)}
+  if(S.route==='friend'&&!S.friendUid)S.route='friends';
+  syncPub();publishSoon(1500);
+  const navItems=NAV.map(n=>'<button data-act="nav" data-route="'+n[0]+'">'+ic(n[3],19)+'<span>'+n[1]+'</span>'+(n[0]==='friends'?'<span class="frbadge" hidden></span>':'')+'</button>').join('');
   const bItems=NAV.filter(n=>['dashboard','daily','weekly','goals','dreview'].includes(n[0])).map(n=>'<button data-act="nav" data-route="'+n[0]+'">'+ic(n[3],21)+'<span>'+n[2]+'</span></button>').join('');
   $('#root').innerHTML='<div class="app">'
    +'<aside class="side">'+brandHTML
@@ -1089,7 +1217,7 @@ function enterApp(){
    +'<nav class="nav">'+navItems+'</nav>'
    +'<div class="side-foot"><button class="me" data-act="nav" data-route="account"><span class="avatar" id="me-av"></span><span class="me-name" id="me-name"></span></button>'
    +'<button class="ibtn" data-act="logout" title="Sign out" aria-label="Sign out">'+ic('logout',18)+'</button></div></aside>'
-   +'<header class="topbar">'+brandHTML+'<button class="ibtn" data-act="nav" data-route="account" aria-label="Settings" style="color:var(--muted)">'+ic('user',21)+'</button></header>'
+   +'<header class="topbar">'+brandHTML+'<div class="tright"><button class="ibtn tfr" data-act="nav" data-route="friends" aria-label="Friends" style="color:var(--muted)">'+ic('users',21)+'<span class="frbadge" hidden></span></button><button class="ibtn" data-act="nav" data-route="account" aria-label="Settings" style="color:var(--muted)">'+ic('user',21)+'</button></div></header>'
    +'<main class="main"><div id="view" class="view"></div></main>'
    +'<nav class="bnav">'+bItems+'</nav>'
    +'<button class="fab" data-act="new-task" aria-label="New task">'+ic('plus',24)+'</button>'
@@ -1102,7 +1230,7 @@ function go(route){
   try{if(location.hash!=='#'+route)location.hash=route}catch(e){}
   render();window.scrollTo(0,0);
 }
-window.addEventListener('hashchange',()=>{const h=(location.hash||'').slice(1);if(S.mode==='app'&&ROUTES.includes(h)&&h!==S.route){S.route=h;render();window.scrollTo(0,0)}});
+window.addEventListener('hashchange',()=>{const h=(location.hash||'').slice(1);if(S.mode==='app'&&h.startsWith('add=')){go('friends');openInvite(h.slice(4));return}if(S.mode==='app'&&ROUTES.includes(h)&&h!==S.route){S.route=h;render();window.scrollTo(0,0)}});
 
 function render(){
   if(S.mode!=='app')return;
@@ -1116,9 +1244,8 @@ function render(){
   document.querySelectorAll('[data-route]').forEach(b=>b.classList.toggle('active',b.dataset.route===S.route));
   const nm=(S.profile&&S.profile.name)||'';
   const a=$('#me-av'),n=$('#me-name');if(n)n.textContent=nm;
-  if(a&&!a.dataset.set){a.dataset.set='1';const ph=S.user&&S.user.photoURL;
-    if(ph){const im=document.createElement('img');im.src=ph;im.alt='';im.referrerPolicy='no-referrer';im.onerror=()=>{a.textContent=(nm.trim()[0]||'?').toUpperCase()};a.appendChild(im)}
-    else a.textContent=(nm.trim()[0]||'?').toUpperCase()}
+  if(a){const ph=pubWant().photo,k=ph+'|'+nm;if(a.dataset.k!==k){a.dataset.k=k;a.innerHTML=ph?'<img src="'+esc(ph)+'" alt="" referrerpolicy="no-referrer">':esc((nm.trim()[0]||'?').toUpperCase())}}
+  const nb=frBadge();document.querySelectorAll('.frbadge').forEach(b=>{b.textContent=nb>9?'9+':String(nb);b.hidden=!nb});
   const fab=$('.fab');if(fab)fab.classList.toggle('hide',!['daily','weekly'].includes(S.route));
 }
 
@@ -1127,18 +1254,18 @@ function taskRow(t,o){
   o=o||{};const td=todayIso();const late=!t.done&&t.date<td;const p=pr(t);
   const ms=t.goalId?msLabel(t.goalId,t.msId):'';
   if(o.compact){
-    return '<div class="task compact'+(t.done?' done':'')+'">'
-     +'<button class="chk" data-act="toggle" data-id="'+t.id+'" aria-label="Mark as done">'+ic('check',12)+'</button>'
+    return '<div class="task compact'+(t.done?' done':'')+(t.shared?' shared':'')+'">'
+     +'<button class="chk'+(t.shared&&t.mine&&!t.done?' half':'')+'" data-act="toggle" data-id="'+t.id+'" aria-label="'+(t.shared?'Mark my part done':'Mark as done')+'">'+ic('check',12)+'</button>'
      +(o.noDot?'':'<span class="pdot q-'+p.c+'" title="'+p.l+'"></span>')
-     +'<div class="tbody" data-act="edit" data-id="'+t.id+'"><div class="ttl">'+(t.start?'<span class="tm">'+esc(t.start)+'</span>':'')+esc(t.title)+(t.cal&&gcalOn()?'<span class="gc" title="In Google Calendar">'+ic('cal',12)+'</span>':'')+'</div>'
+     +'<div class="tbody" data-act="edit" data-id="'+t.id+'"><div class="ttl">'+(t.start?'<span class="tm">'+esc(t.start)+'</span>':'')+esc(t.title)+(t.cal&&gcalOn()?'<span class="gc" title="In Google Calendar">'+ic('cal',12)+'</span>':'')+shrHTML(t)+'</div>'
      +((o.showDate||late||(o.ms&&ms))?'<div class="tmeta">'+((o.showDate||late)?'<span class="meta'+(late?' late':'')+'">'+fmtShort(t.date)+(late?' · Overdue':'')+'</span>':'')+(o.ms&&ms?'<span class="meta">'+ic('flag',12)+esc(ms)+'</span>':'')+'</div>':'')+'</div>'
      +(t.star?'<button class="ibtn star on" data-act="star" data-id="'+t.id+'" aria-label="Unpin">'+ic('star',14)+'</button>':'')
      +'</div>';
   }
-  return '<div class="task'+(t.done?' done':'')+'">'
+  return '<div class="task'+(t.done?' done':'')+(t.shared?' shared':'')+'">'
    +(o.num?'<span class="num">'+o.num+'</span>':'')
-   +'<button class="chk" data-act="toggle" data-id="'+t.id+'" aria-label="Mark as done">'+ic('check',14)+'</button>'
-   +'<div class="tbody" data-act="edit" data-id="'+t.id+'"><div class="ttl">'+esc(t.title)+'</div><div class="tmeta">'
+   +'<button class="chk'+(t.shared&&t.mine&&!t.done?' half':'')+'" data-act="toggle" data-id="'+t.id+'" aria-label="'+(t.shared?'Mark my part done':'Mark as done')+'">'+ic('check',14)+'</button>'
+   +'<div class="tbody" data-act="edit" data-id="'+t.id+'"><div class="ttl">'+esc(t.title)+shrHTML(t)+'</div><div class="tmeta">'
    +'<span class="tag q-'+p.c+'">'+ic(p.icon,12)+p.l+'</span>'
    +((o.showDate||late)?'<span class="meta'+(late?' late':'')+'">'+ic('cal',13)+fmtShort(t.date)+(late?' · Overdue':'')+'</span>':'')
    +(t.start?'<span class="meta">'+esc(t.start)+(t.end?'–'+esc(t.end):'')+'</span>':'')
@@ -1146,10 +1273,11 @@ function taskRow(t,o){
    +(t.notes?'<span class="meta" title="Has notes">'+ic('note',13)+'</span>':'')
    +'</div></div>'
    +(o.move?'<button class="btn sm" data-act="move-today" data-id="'+t.id+'">Move to today</button>':'')
-   +'<button class="ibtn star'+(t.star?' on':'')+'" data-act="star" data-id="'+t.id+'" title="Pin to Top 3" aria-label="Pin to Top 3">'+ic('star',16)+'</button>'
-   +'<button class="ibtn" data-act="del" data-id="'+t.id+'" title="Delete" aria-label="Delete task">'+ic('trash',16)+'</button>'
+   +(t.shared?'':'<button class="ibtn star'+(t.star?' on':'')+'" data-act="star" data-id="'+t.id+'" title="Pin to Top 3" aria-label="Pin to Top 3">'+ic('star',16)+'</button>'
+   +'<button class="ibtn" data-act="del" data-id="'+t.id+'" title="Delete" aria-label="Delete task">'+ic('trash',16)+'</button>')
    +'</div>';
 }
+function shrHTML(t){if(!t.shared)return '';const others=t.members.filter(u=>u!==me());return '<span class="shr" title="Shared with '+esc(others.map(nameOf).join(', '))+' — done when everyone ticks it">'+avStack(others,16)+'<i>'+t.nDone+'/'+t.members.length+'</i></span>'}
 function quadBoard(tasks,o){
   /* o: {date, key, showDone} — tasks already filtered; overdue undone tasks may be included */
   return '<div class="quad">'+QORDER.map(k=>{
@@ -1303,7 +1431,9 @@ VIEWS.goals=function(){
   return '<header class="ph"><div><h1>Goals</h1><p class="sub">Break goals into milestones and link your daily tasks to each one</p></div>'
    +'<button class="btn primary" data-act="goal-new">'+ic('plus',17)+'New goal</button></header>'
    +'<div class="tabs" role="tablist">'+tabs.map(t=>'<button class="'+(f===t[0]?'active':'')+'" data-act="goal-filter" data-f="'+t[0]+'" role="tab" aria-selected="'+(f===t[0])+'">'+t[1]+'</button>').join('')+'</div>'
-   +(list.length?'<div class="goals">'+cards+'</div>':'<section class="card"><p class="empty">'+(f==='done'?'No completed goals yet':'No goals here yet')+'</p></section>');
+   +(list.length?'<div class="goals">'+cards+'</div>':'<section class="card"><p class="empty">'+(f==='done'?'No completed goals yet':'No goals here yet')+'</p></section>')
+   +'<div class="sech"><h2>Challenges with friends</h2><button class="btn sm" data-act="ch-new">'+ic('plus',15)+'New challenge</button></div>'
+   +(challenges().length?'<div class="goals">'+challenges().map(challengeCard).join('')+'</div>':'<section class="card"><p class="empty">Start a challenge with a friend — each of you logs your own progress.</p></section>');
 };
 
 const RV_FIELDS=[['wins','What did you accomplish this week?','e.g. Submitted everything on time, worked out 3 days'],
@@ -1342,6 +1472,7 @@ VIEWS.account=function(){
   return '<header class="ph"><div><h1>Settings</h1><p class="sub">Manage your account and profile</p></div></header>'
    +'<div class="grid2"><div class="col">'
    +'<section class="card"><div class="ch"><h2>Profile</h2></div><form data-form="profile" novalidate>'
+   +'<div class="field"><span class="lbl">Photo</span><div class="avrow">'+avatar(me(),56)+'<label class="btn sm">Change photo<input type="file" accept="image/*" id="av-file" hidden></label>'+(p.photo?'<button type="button" class="btn sm" data-act="av-remove">Remove</button>':'')+'</div><p class="fine" style="margin-top:4px">Friends see your name and photo.</p></div>'
    +'<div class="field"><label class="lbl" for="s-nm">Display name</label><input type="text" id="s-nm" name="nm" data-k="set-nm" maxlength="60" value="'+esc(p.name||'')+'"></div>'
    +'<p class="err" id="prof-err"></p><button class="btn primary" type="submit">Save profile</button></form></section>'
    +'<section class="card"><div class="ch"><h2>Account</h2></div>'
@@ -1350,7 +1481,7 @@ VIEWS.account=function(){
    +'<p class="fine" style="margin-bottom:14px">Member since '+(p.createdAt?fmtDate(iso(new Date(p.createdAt))):'—')+' · Your data syncs across every device you sign in on.</p>'
    +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
    +(prov.includes('password')?'<button class="btn" data-act="pw-reset-email">Send password reset email</button>':'')
-   +'<button class="btn" data-act="logout">'+ic('logout',16)+'Sign out</button></div></section></div>'
+   +'<button class="btn" data-act="logout">'+ic('logout',16)+'Sign out</button></div></section>'+socialSettingsHTML()+'</div>'
    +'<div class="col">'+gcalSettingsHTML()+'<section class="card"><div class="ch"><h2>Your data</h2></div>'
    +'<div class="kv" style="margin-bottom:14px"><div><b>'+S.tasks.size+'</b>tasks</div><div><b>'+S.goals.size+'</b>goals</div><div><b>'+S.days.size+'</b>daily reviews</div><div><b>'+S.reviews.size+'</b>weekly reviews</div></div>'
    +'<button class="btn" data-act="copy-json">'+ic('copy',16)+'Copy all data (JSON)</button></section>'
@@ -1368,8 +1499,8 @@ const mHead=t=>'<div class="mh"><h2>'+t+'</h2><button type="button" class="ibtn"
 function prioSeg(v){return '<div class="seg qseg">'+QORDER.map(k=>'<label class="q-'+k+'"><input type="radio" name="prio" value="'+k+'"'+(v===k?' checked':'')+'><span>'+ic(QUADS[k].icon,15)+QUADS[k].l+'</span></label>').join('')+'</div>'}
 function openTaskModal(id,preset){
   preset=preset||{};
-  const t=id?S.tasks.get(id):{title:'',notes:'',date:preset.date||todayIso(),q:preset.q||'i',star:false,goalId:preset.goalId||null,msId:preset.msId||null};
-  if(!t)return;
+  const t=id?(S.tasks.get(id)||(SO.collab.get(id)?coTaskObj(SO.collab.get(id)):null)):{title:'',notes:'',date:preset.date||todayIso(),q:preset.q||'i',star:false,goalId:preset.goalId||null,msId:preset.msId||null};
+  if(!t)return;const shared=!!t.shared;
   const cur=t.goalId&&t.msId?t.goalId+'|'+t.msId:'';
   const gs=allGoals().filter(g=>g.status!=='done'||g.id===t.goalId).filter(g=>(g.milestones||[]).length);
   const opts='<option value="">— Not linked to a goal —</option>'+gs.map(g=>'<optgroup label="'+esc(g.title)+'">'+g.milestones.map(m=>{const v=g.id+'|'+m.id;return '<option value="'+v+'"'+(v===cur?' selected':'')+'>'+esc(m.title)+'</option>'}).join('')+'</optgroup>').join('');
@@ -1380,13 +1511,14 @@ function openTaskModal(id,preset){
    +'<div class="trow"><div class="field"><label class="lbl" for="m-date">Due date</label><input type="date" id="m-date" name="date" value="'+esc(t.date)+'"></div>'
    +'<div class="field"><label class="lbl" for="m-st">Start</label><input type="time" id="m-st" name="st" value="'+esc(t.start||'')+'"></div>'
    +'<div class="field"><label class="lbl" for="m-et">End</label><input type="time" id="m-et" name="et" value="'+esc(t.end||'')+'"></div></div>'
-   +'<div class="field"><label class="check-line"><input type="checkbox" name="cal"'+((id?t.cal:(gcalOn()&&!!t.start))?' checked':'')+'> Show in Google Calendar</label>'
+   +friendPicker(shared?t.members.filter(u=>u!==me()):(preset.with||[]),'Collaborators',shared?'Done only when every collaborator ticks it.':'Pick friends to share this task — it’s done only when everyone ticks it. Shared tasks don’t link to goals or Google Calendar.')
+   +'<div class="field"'+(shared?' hidden':'')+'><label class="check-line"><input type="checkbox" name="cal"'+((id?t.cal:(gcalOn()&&!!t.start))?' checked':'')+'> Show in Google Calendar</label>'
    +(gcalOn()?'<p class="fine" style="margin-top:2px">Goes to your “PV Planner” calendar. No time = all-day event.</p>':'<p class="fine" style="margin-top:2px">Connect Google Calendar in Settings to sync.</p>')+'</div>'
-   +'<div class="field"><label class="lbl" for="m-ms">Link to milestone</label><select id="m-ms" name="ms">'+opts+'</select>'
+   +'<div class="field"'+(shared?' hidden':'')+'><label class="lbl" for="m-ms">Link to milestone</label><select id="m-ms" name="ms">'+opts+'</select>'
    +(gs.length?'':'<p class="fine" style="margin-top:4px">No goals with milestones yet — create one on the Goals page</p>')+'</div>'
    +'<div class="field"><label class="lbl" for="m-notes">Notes</label><textarea id="m-notes" name="notes" rows="3" placeholder="Optional">'+esc(t.notes||'')+'</textarea></div>'
-   +'<label class="check-line"><input type="checkbox" name="star"'+(t.star?' checked':'')+'> Pin to the top of Top 3</label>'
-   +(id?'<label class="check-line" style="margin-top:8px"><input type="checkbox" name="done"'+(t.done?' checked':'')+'> Done</label>':'')
+   +'<label class="check-line"'+(shared?' hidden':'')+'><input type="checkbox" name="star"'+(t.star?' checked':'')+'> Pin to the top of Top 3</label>'
+   +(id?'<label class="check-line" style="margin-top:8px"><input type="checkbox" name="done"'+((shared?t.mine:t.done)?' checked':'')+'> '+(shared?'My part is done ('+t.nDone+'/'+t.members.length+' done)':'Done')+'</label>':'')
    +'<div class="mf">'+(id?'<button type="button" class="btn danger" data-act="modal-del-task" data-id="'+id+'">'+ic('trash',16)+'Delete</button><span class="spacer"></span>':'')
    +'<button type="button" class="btn" data-act="close-modal">Cancel</button><button type="submit" class="btn primary">'+(id?'Save':'Add task')+'</button></div></form>');
 }
@@ -1655,7 +1787,7 @@ function monthView(){
     const d=addDays(start,i),dd=parse(d),out=dd.getMonth()!==first.getMonth();
     if(i>=35&&out&&dd.getDay()===1)break;n++;
     const ts=(byDay[d]||[]).slice().sort(sortInQuad),e=dayEntry(d),evs=myEventsOn(d).concat(gReady()?gEventsOn(d):[]).sort((a,b)=>(b.allDay-a.allDay)||(a.time<b.time?-1:a.time>b.time?1:0));
-    const items=evs.map(x=>'<div class="mev'+(x.own?' own':'')+'"'+(x.own?' data-act="ev-edit" data-id="'+x.id+'"':'')+' style="--evc:'+esc(x.color)+'" title="'+esc(x.cal)+'">'+(x.allDay?'':'<b>'+esc(x.time)+'</b> ')+esc(x.title)+'</div>')
+    const items=evs.map(x=>'<div class="mev'+(x.own?' own':'')+(x.shared?' sh'+(x.inv?'':' pend'):'')+'"'+(x.own?' data-act="ev-edit" data-id="'+x.id+'"':'')+' style="--evc:'+esc(x.color)+'" title="'+esc(x.cal)+'">'+(x.allDay?'':'<b>'+esc(x.time)+'</b> ')+esc(x.title)+'</div>')
       .concat(ts.map(t=>'<div class="mtk'+(t.done?' done':'')+'" data-act="edit" data-id="'+t.id+'"><i style="background:'+QDOT[qOf(t)]+'"></i>'+(t.start?'<b>'+esc(t.start)+'</b> ':'')+esc(t.title)+'</div>'));
     const MAX=3;
     cells+='<div class="mc'+(out?' out':'')+(d===td?' today':'')+'">'
@@ -1706,12 +1838,472 @@ function yearView(){
    +'<div class="msum"><section class="card"><div class="ch"><h2>Mood this year</h2></div>'+moodBars(moods)+'</section></div>';
 }
 
+/* ---------- friends & sharing ----------
+   Firestore (all top-level, see README rules):
+   profiles/{uid}          public card: name, handle, photo
+   handles/{handle}        {uid} — unique @username
+   emails/{email}          {uid} — only if "find me by email" is on and the email is verified
+   friends/{uidA_uidB}     request / friendship / block (uids sorted)
+   shares/{owner_viewer}   what owner shares with viewer, rebuilt from owner's own data
+   collab/{k_id}           shared task, event invite or challenge; members[] can read */
+const SO={subs:new Map(),fr:new Map(),prof:new Map(),shares:new Map(),collab:new Map(),frReady:false,coReady:false,pubLoaded:false,shareErr:new Set(),sig:''};
+const HANDLE_RE=/^[a-z0-9_.]{3,20}$/;
+const SHARE_KEYS=[['mood','Mood','Today’s mood and your recent days'],['star','Favorite days','Days you starred'],['tasks','Tasks','Your task titles — the past week and next 2 weeks'],['prog','Task progress','How many tasks are done today and this week'],['goals','Goals','Goal names and % complete'],['acts','Daily Review activities','Icons you picked in Daily Review — never notes or photos'],['events','Events','Your upcoming events (title and time)']];
+const DEF_SHARE={mood:true,star:true,tasks:true,prog:true,goals:true,acts:false,events:false};
+const SHARE_PRESETS=[['all','Everything',{mood:true,star:true,tasks:true,prog:true,goals:true,acts:true,events:true}],['def','Default',DEF_SHARE],['light','Mood & progress',{mood:true,star:true,tasks:false,prog:true,goals:false,acts:false,events:false}],['none','Name & photo only',{mood:false,star:false,tasks:false,prog:false,goals:false,acts:false,events:false}]];
+const me=()=>S.user&&S.user.uid;
+const pairOf=(a,b)=>a<b?a+'_'+b:b+'_'+a;
+const otherOf=f=>f.members[0]===me()?f.members[1]:f.members[0];
+const dref=(...p)=>FB.fs.doc(FB.db,...p);
+const frList=()=>[...SO.fr.values()];
+const friendsAccepted=()=>frList().filter(f=>f.status==='accepted');
+const friendUids=()=>friendsAccepted().map(otherOf).sort((a,b)=>nameOf(a).localeCompare(nameOf(b)));
+const frWith=uid=>SO.fr.get(pairOf(me(),uid));
+const isFriend=uid=>{const f=frWith(uid);return !!f&&f.status==='accepted'};
+const pf=uid=>SO.prof.get(uid)||null;
+const frCfg=()=>S.frcfg||{};
+const defShare=()=>Object.assign({},DEF_SHARE,frCfg().def||{});
+const shareFor=uid=>{const p=(frCfg().per||{})[uid];return p?Object.assign({},DEF_SHARE,p):defShare()};
+function pubWant(){const u=S.user||{},p=S.profile||{};return {uid:u.uid,name:p.name||u.displayName||'',handle:p.handle||'',photo:p.photo||u.photoURL||''}}
+function nameOf(uid){if(uid===me())return 'You';const p=pf(uid);return (p&&p.name)||'Friend'}
+function avatar(uid,size){
+  size=size||36;const p=uid===me()?pubWant():(pf(uid)||{}),nm=(p.name||'?').trim();
+  return '<span class="avatar" style="width:'+size+'px;height:'+size+'px;font-size:'+Math.round(size*.42)+'px">'+(p.photo?'<img src="'+esc(p.photo)+'" alt="" referrerpolicy="no-referrer">':esc((nm[0]||'?').toUpperCase()))+'</span>';
+}
+function avStack(uids,size){return '<span class="avstack">'+uids.slice(0,4).map(u=>avatar(u,size||20)).join('')+(uids.length>4?'<span class="avmore">+'+(uids.length-4)+'</span>':'')+'</span>'}
+function ago(ts){if(!ts)return '';const s=Math.max(0,(Date.now()-ts)/1000);return s<90?'just now':s<3600?Math.round(s/60)+' min ago':s<86400?Math.round(s/3600)+' h ago':Math.round(s/86400)+' d ago'}
+
+/* listeners */
+function soSub(key,ref,next){
+  if(SO.subs.has(key))return;
+  SO.subs.set(key,FB.fs.onSnapshot(ref,next,e=>{console.warn('listen',key,e&&e.code);SO.subs.delete(key);
+    if(key.startsWith('sh:'))SO.shareErr.add(key.slice(3));
+    if((key==='fr'||key==='co')&&e&&e.code==='permission-denied')SO.rulesMissing=true;
+    soChanged()}));
+}
+function soUnsub(key){const u=SO.subs.get(key);if(u){try{u()}catch(e){}SO.subs.delete(key)}}
+function socialStop(){SO.subs.forEach(u=>{try{u()}catch(e){}});SO.subs.clear();SO.fr=new Map();SO.prof=new Map();SO.shares=new Map();SO.collab=new Map();SO.frReady=SO.coReady=SO.pubLoaded=false;SO.shareErr.clear();SO.sig='';SO.emailDone='';SO.rulesMissing=false}
+function socialStart(u){
+  socialStop();const fs=FB.fs;
+  soSub('fr',fs.query(fs.collection(FB.db,'friends'),fs.where('members','array-contains',u.uid)),snap=>{
+    const m=new Map();snap.docs.forEach(d=>m.set(d.id,Object.assign({},d.data(),{id:d.id})));
+    const was=friendsAccepted().map(otherOf).sort().join();SO.fr=m;SO.frReady=true;
+    if(friendsAccepted().map(otherOf).sort().join()!==was)SO.shareErr.clear();
+    soWire();soChanged();publishSoon();
+  });
+  soSub('co',fs.query(fs.collection(FB.db,'collab'),fs.where('members','array-contains',u.uid)),snap=>{
+    const m=new Map();snap.docs.forEach(d=>m.set(d.id,Object.assign({},d.data(),{id:d.id})));SO.collab=m;SO.coReady=true;soWire();soChanged();
+  });
+  soSub('pf:'+u.uid,dref('profiles',u.uid),d=>{SO.prof.set(u.uid,d.exists()?d.data():null);SO.pubLoaded=true;syncPub()});
+}
+function soWire(){
+  const uid=me();if(!uid)return;
+  const need=new Set();frList().forEach(f=>need.add(otherOf(f)));
+  SO.collab.forEach(c=>(c.members||[]).forEach(m=>need.add(m)));
+  need.delete(uid);
+  need.forEach(o=>soSub('pf:'+o,dref('profiles',o),d=>{if(d.exists())SO.prof.set(o,d.data());soChanged()}));
+  const acc=new Set(friendsAccepted().map(otherOf));
+  acc.forEach(o=>{if(!SO.shareErr.has(o))soSub('sh:'+o,dref('shares',o+'_'+uid),d=>{if(d.exists())SO.shares.set(o,d.data());else SO.shares.delete(o);soChanged()})});
+  [...SO.subs.keys()].forEach(k=>{if(k.startsWith('sh:')&&!acc.has(k.slice(3))){soUnsub(k);SO.shares.delete(k.slice(3))}});
+}
+function soChanged(force){
+  if(S.mode!=='app')return;
+  const s=stable([[...SO.fr.values()],[...SO.prof.entries()],[...SO.shares.entries()],[...SO.collab.values()],[...SO.shareErr],!!SO.rulesMissing]);
+  if(!force&&s===SO.sig)return;SO.sig=s;render();
+}
+
+/* my public card + email lookup */
+function syncPub(){
+  if(!S.profile||!SO.pubLoaded||!S.user)return;
+  const w=pubWant(),cur=SO.prof.get(w.uid)||{};
+  if(['name','handle','photo'].some(k=>(cur[k]||'')!==(w[k]||''))){const d=Object.assign({},w,{updatedAt:Date.now()});SO.prof.set(w.uid,d);
+    enqueue('pub',()=>FB.fs.setDoc(dref('profiles',w.uid),d)).then(ok=>{if(!ok)SO.rulesMissing=true})}
+  emailSync();
+}
+async function emailSync(){
+  const u=FB.auth.currentUser||S.user;if(!u||!u.email||!S.profile)return;
+  const on=frCfg().emailFind!==false,k=u.email.toLowerCase(),flag=k+'|'+on+'|'+!!u.emailVerified;
+  if(SO.emailDone===flag)return;SO.emailDone=flag;
+  try{
+    if(on){if(u.emailVerified)await FB.fs.setDoc(dref('emails',k),{uid:u.uid})}
+    else{const s=await FB.fs.getDoc(dref('emails',k));if(s.exists()&&s.data().uid===u.uid)await FB.fs.deleteDoc(dref('emails',k))}
+  }catch(e){console.warn('email lookup',e&&e.code);SO.emailDone=''}
+}
+async function claimHandle(h){
+  h=h.replace(/^@/,'').trim().toLowerCase();
+  if(!HANDLE_RE.test(h))return 'Use 3–20 characters: a–z, 0–9, _ or .';
+  const old=(S.profile||{}).handle||'';if(h===old)return '';
+  try{
+    const s=await FB.fs.getDoc(dref('handles',h));
+    if(s.exists()&&s.data().uid!==me())return '@'+h+' is taken — try another';
+    if(!s.exists())await FB.fs.setDoc(dref('handles',h),{uid:me(),at:Date.now()});
+    if(old){try{await FB.fs.deleteDoc(dref('handles',old))}catch(e){}}
+    const prof=Object.assign(clone(S.profile),{handle:h,updatedAt:Date.now()});S.profile=prof;await save('profile',prof);syncPub();render();return '';
+  }catch(e){console.warn(e);return e&&e.code==='permission-denied'?'Couldn’t save — the new Firestore rules aren’t published yet (see README).':'Couldn’t save — try again'}
+}
+function suggestHandle(){
+  const p=S.profile||{},u=S.user||{};
+  let b=((p.name||'').normalize('NFKD').replace(/[^a-zA-Z0-9]/g,'')||(u.email||'').split('@')[0].replace(/[^a-zA-Z0-9_.]/g,'')).toLowerCase().slice(0,14);
+  if(b.length<3)b='pv'+b;return b;
+}
+
+/* sharing: publish a filtered copy of my data for each friend */
+function buildShare(c){
+  const td=todayIso(),d={v:1,today:td},from=addDays(td,-62);
+  if(c.mood||c.star){const m={},st=[];S.days.forEach(x=>{const dt=x.id.slice(2);if(dt<from||dt>td)return;if(c.mood&&x.mood)m[dt]=x.mood;if(c.star&&x.star)st.push(dt)});if(c.mood)d.mood=m;if(c.star)d.star=st.sort()}
+  const own=[...S.tasks.values()];
+  if(c.tasks)d.tasks=own.filter(t=>t.date>=addDays(td,-7)&&t.date<=addDays(td,13)&&(!t.done||t.date>=addDays(td,-1)))
+    .sort((a,b)=>a.date<b.date?-1:a.date>b.date?1:pr(a).r-pr(b).r).slice(0,80).map(t=>({t:t.title,d:t.date,q:qOf(t),x:!!t.done,s:t.start||''}));
+  if(c.prog){const mon=mondayOf(td),end=addDays(mon,6),wk=own.filter(t=>t.date>=mon&&t.date<=end),tt=own.filter(t=>t.date===td);
+    d.prog={day:[tt.filter(t=>t.done).length,tt.length],week:[wk.filter(t=>t.done).length,wk.length],mon}}
+  if(c.goals)d.goals=activeGoals().slice(0,20).map(g=>({t:g.title,p:Math.round(goalProgress(g)*100),dd:g.targetDate||''}));
+  if(c.acts){const a={};for(let k=0;k<7;k++){const dt=addDays(td,-k),sel=dayEntry(dt).sel||{},out=[];
+      drBlocks().forEach(b=>{if(b.type!=='choice'||b.hidden)return;(sel[b.id]||[]).forEach(i=>{const it=(b.items||[]).find(x=>x.id===i);if(it)out.push([it.img?'':(it.icon||'⭐'),it.label])})});
+      if(out.length)a[dt]=out.slice(0,40)}d.acts=a}
+  if(c.events){const ev=[];for(let k=0;k<14;k++){const dt=addDays(td,k);ownEventsOn(dt).forEach(e=>ev.push({t:e.title,d:dt,s:e.time,e:e.end,c:e.color}))}d.events=ev.slice(0,60)}
+  return d;
+}
+function publishSoon(ms){clearTimeout(SO.pubTimer);SO.pubTimer=setTimeout(publishShares,ms||2500)}
+async function publishShares(){
+  if(S.mode!=='app'||!SO.frReady||SO.publishing){if(SO.publishing)SO.pubAgain=true;return}
+  SO.publishing=true;
+  try{
+    const uid=me(),acc=friendsAccepted().map(otherOf),lsk='pvsh:'+uid;let pub={};try{pub=JSON.parse(localStorage.getItem(lsk)||'{}')}catch(e){}
+    const now=Date.now();
+    for(const f of acc){const d=buildShare(shareFor(f)),h=hash(stable(d)),old=(pub[f]||'').split('|');
+      if(old[0]===h&&now-Number(old[1]||0)<6*3600e3)continue;
+      try{await FB.fs.setDoc(dref('shares',uid+'_'+f),{owner:uid,viewer:f,pair:pairOf(uid,f),at:now,d});pub[f]=h+'|'+now}catch(e){console.warn('share',e&&e.code)}}
+    for(const f of Object.keys(pub))if(!acc.includes(f)){try{await FB.fs.deleteDoc(dref('shares',uid+'_'+f))}catch(e){}delete pub[f]}
+    try{localStorage.setItem(lsk,JSON.stringify(pub))}catch(e){}
+  }finally{SO.publishing=false;if(SO.pubAgain){SO.pubAgain=false;publishSoon(1500)}}
+}
+function saveFrCfg(patch){
+  const d=Object.assign({},strip(frCfg()),patch,{updatedAt:Date.now()});
+  S.frcfg=Object.assign({},d,{id:'friendcfg'});render();save('friendcfg',d);publishSoon(800);
+}
+
+/* friend requests */
+function frWrite(id,fn,okMsg){return enqueue('fr/'+id,fn).then(ok=>{if(ok&&okMsg)toast(okMsg);return ok})}
+function sendRequest(uid){
+  if(!uid)return;if(uid===me()){toast('That’s you!');return}
+  const f=frWith(uid),id=pairOf(me(),uid);
+  if(f){if(f.status==='accepted')return toast('You’re already friends');
+    if(f.status==='blocked')return toast(f.blockedBy===me()?'You blocked this person — unblock them first':'You can’t add this person');
+    if(f.from===me())return toast('Request already sent');return acceptReq(id)}
+  const doc={members:[me(),uid].sort(),from:me(),to:uid,status:'pending',createdAt:Date.now()};
+  SO.fr.set(id,Object.assign({},doc,{id}));soWire();soChanged(true);
+  frWrite(id,()=>FB.fs.setDoc(dref('friends',id),doc),'Friend request sent to '+nameOf(uid));
+}
+function acceptReq(id){
+  const f=SO.fr.get(id);if(!f)return;const doc=Object.assign(strip(f),{status:'accepted',acceptedAt:Date.now()});
+  SO.fr.set(id,Object.assign({},doc,{id}));soWire();soChanged(true);
+  frWrite(id,()=>FB.fs.setDoc(dref('friends',id),doc),'You’re now friends with '+nameOf(otherOf(f)));publishSoon(800);
+}
+function dropFr(id,msg){const f=SO.fr.get(id);if(!f)return;SO.fr.delete(id);soWire();soChanged(true);frWrite(id,()=>FB.fs.deleteDoc(dref('friends',id)),msg);publishSoon(800)}
+function blockUser(uid){
+  const id=pairOf(me(),uid),f=SO.fr.get(id),now=Date.now();
+  const doc={members:[me(),uid].sort(),from:f?f.from:me(),to:f?f.to:uid,status:'blocked',blockedBy:me(),createdAt:f&&f.createdAt||now};
+  SO.fr.set(id,Object.assign({},doc,{id}));soWire();soChanged(true);
+  frWrite(id,()=>FB.fs.setDoc(dref('friends',id),doc),'Blocked '+nameOf(uid));publishSoon(800);
+  if(S.route==='friend')go('friends');
+}
+async function findPeople(q){
+  q=(q||'').trim();if(!q)return;S.frSearch={q,loading:true};render();
+  try{
+    let uid=null;
+    if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(q)){
+      const s=await FB.fs.getDoc(dref('emails',q.toLowerCase()));uid=s.exists()?s.data().uid:null;
+      if(!uid){S.frSearch={q,none:'No one with that email can be found. They may not have signed in yet or turned on “find me by email” — try their @username or send your invite link.'};render();return}
+    }else{
+      const h=q.replace(/^@/,'').toLowerCase();
+      if(!HANDLE_RE.test(h)){S.frSearch={q,none:'Usernames are 3–20 characters: a–z, 0–9, _ or .'};render();return}
+      const s=await FB.fs.getDoc(dref('handles',h));uid=s.exists()?s.data().uid:null;
+      if(!uid){S.frSearch={q,none:'No one has the username @'+h+'.'};render();return}
+    }
+    await loadProfile(uid);S.frSearch={q,uid};render();
+  }catch(e){console.warn(e);S.frSearch={q,none:e&&e.code==='permission-denied'?'Search isn’t available yet — the new Firestore rules need to be published (see README).':'Couldn’t search — check your connection.'};render()}
+}
+async function loadProfile(uid){const p=await FB.fs.getDoc(dref('profiles',uid));SO.prof.set(uid,p.exists()?p.data():{uid,name:'PV Planner user'})}
+async function openInvite(uid){
+  if(!uid||uid===me())return;
+  S.frSearch={q:'',loading:true,invite:true};render();
+  try{await loadProfile(uid);S.frSearch={q:'',uid,invite:true}}catch(e){S.frSearch={q:'',none:'Couldn’t open that invite link.',invite:true}}
+  render();
+}
+const inviteUrl=()=>location.origin+location.pathname+'#add='+me();
+function loadQR(){
+  if(window.qrcode)return Promise.resolve();
+  if(!SO.qrP)SO.qrP=new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js';s.onload=res;s.onerror=()=>{SO.qrP=null;rej(new Error('qr'))};document.head.appendChild(s)});
+  return SO.qrP;
+}
+function openQrModal(){
+  const url=inviteUrl(),p=pubWant();
+  openModal(mHead('Your invite')+'<div class="qrbox"><div id="qr" class="qr"><div class="spinner"></div></div>'
+   +'<p class="fine" style="text-align:center;margin:8px 0 2px">Scan with a phone camera, or send the link. It opens PV Planner and asks to add '+esc(p.name||'you')+(p.handle?' (@'+esc(p.handle)+')':'')+'.</p>'
+   +'<div class="linkrow"><input type="text" readonly value="'+esc(url)+'" aria-label="Invite link" id="inv-url"><button type="button" class="btn" data-act="copy-invite">'+ic('copy',16)+'Copy</button></div>'
+   +(navigator.share?'<button type="button" class="btn primary full" data-act="share-invite" style="margin-top:10px">'+ic('share',16)+'Share link…</button>':'')+'</div>');
+  loadQR().then(()=>{const el=$('#qr');if(!el)return;const q=qrcode(0,'M');q.addData(url);q.make();el.innerHTML=q.createSvgTag({cellSize:5,margin:2,scalable:true})})
+    .catch(()=>{const el=$('#qr');if(el)el.innerHTML='<p class="fine">Couldn’t load the QR code — use the link instead.</p>'});
+}
+function copyText(t,msg){(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(()=>toast(msg||'Copied')).catch(()=>{const i=$('#inv-url');if(i){i.select();try{document.execCommand('copy');toast(msg||'Copied')}catch(e){}}})}
+
+/* shared items (collab) */
+const coList=()=>[...SO.collab.values()];
+const coDoneBy=c=>(c.members||[]).filter(u=>c.done&&c.done[u]);
+const isAllDone=c=>(c.members||[]).length>0&&coDoneBy(c).length===c.members.length;
+function coTaskObj(c){return {id:c.id,shared:true,owner:c.owner,members:c.members||[],title:c.title,date:c.date,q:QUADS[c.q]?c.q:'i',start:c.start||'',end:c.end||'',notes:c.notes||'',star:false,cal:false,goalId:null,msId:null,done:isAllDone(c),mine:!!(c.done&&c.done[me()]),nDone:coDoneBy(c).length,doneAt:null,createdAt:c.createdAt||0}}
+const sharedTasks=()=>coList().filter(c=>c.kind==='task'&&c.date).map(coTaskObj);
+function coEventsOn(d){
+  return coList().filter(c=>c.kind==='event'&&occursOn(c,d)).map(c=>{const r=c.owner===me()?'yes':((c.rsvp||{})[me()]||'');return {c,r}}).filter(x=>x.r!=='no')
+    .map(({c,r})=>({own:true,shared:true,inv:r,id:c.id,title:c.title,allDay:!!c.allDay||!c.start,time:c.allDay?'':(c.start||''),end:c.allDay?'':(c.end||''),color:c.color||EV_COLORS[0][0],cal:c.location||'',rep:!!c.repeat&&c.repeat!=='none'}));
+}
+const coWrite=(id,fn)=>enqueue('co/'+id,fn);
+function coCreate(kind,data,members){
+  const id='k_'+rid(),now=Date.now();
+  const doc=Object.assign({kind,owner:me(),members:[me()].concat(members.filter(u=>u!==me())),createdAt:now,updatedAt:now},data);
+  SO.collab.set(id,Object.assign({},doc,{id}));soWire();soChanged(true);
+  coWrite(id,()=>FB.fs.setDoc(dref('collab',id),doc));if(doc.cal)gSchedule();return id;
+}
+function coSave(id,patch){
+  const c=SO.collab.get(id);if(!c)return;
+  if(c.owner!==me()){toast('Only '+nameOf(c.owner)+' can change this');return}
+  const p=Object.assign({},patch,{updatedAt:Date.now()});
+  SO.collab.set(id,Object.assign({},c,p));soWire();soChanged(true);
+  coWrite(id,()=>FB.fs.updateDoc(dref('collab',id),p));if(c.cal||p.cal)gSchedule();
+}
+function coToggle(id){
+  const c=SO.collab.get(id);if(!c)return;const u=me(),mine=!!(c.done&&c.done[u]),done=Object.assign({},c.done||{});
+  done[u]=mine?false:Date.now();const nc=Object.assign({},c,{done,updatedAt:Date.now()});
+  SO.collab.set(id,nc);soChanged(true);
+  coWrite(id,()=>FB.fs.updateDoc(dref('collab',id),{['done.'+u]:done[u],updatedAt:nc.updatedAt}));
+  if(!mine){if(isAllDone(nc))toast('Done together 🎉');else toast('Your part is done — waiting for '+nc.members.filter(m=>!(done[m])).map(nameOf).join(', '))}
+}
+function coRsvp(id,v){
+  const c=SO.collab.get(id);if(!c)return;const u=me(),rsvp=Object.assign({},c.rsvp||{},{[u]:v});
+  SO.collab.set(id,Object.assign({},c,{rsvp,updatedAt:Date.now()}));soChanged(true);
+  coWrite(id,()=>FB.fs.updateDoc(dref('collab',id),{['rsvp.'+u]:v,updatedAt:Date.now()}));
+  toast(v==='yes'?'You’re going':v==='maybe'?'Marked as maybe':'You declined — it’s hidden from your calendar');
+}
+function coProg(id,n){
+  const c=SO.collab.get(id);if(!c)return;const u=me();n=Math.max(0,Math.min(1e6,Math.round(n)));
+  const prog=Object.assign({},c.prog||{},{[u]:n});SO.collab.set(id,Object.assign({},c,{prog,updatedAt:Date.now()}));soChanged(true);
+  clearTimeout(SO['pt'+id]);SO['pt'+id]=setTimeout(()=>coWrite(id,()=>FB.fs.updateDoc(dref('collab',id),{['prog.'+u]:n,updatedAt:Date.now()})),400);
+  const tg=Number(c.target)||0;if(tg&&n>=tg&&((c.prog||{})[u]||0)<tg)toast('Challenge complete 🎉');
+}
+function coLeave(id){
+  const c=SO.collab.get(id);if(!c)return;
+  if(c.owner===me()){SO.collab.delete(id);soChanged(true);coWrite(id,()=>FB.fs.deleteDoc(dref('collab',id)));if(c.cal)gSchedule();toast('Deleted “'+c.title+'”');return}
+  const members=c.members.filter(u=>u!==me());SO.collab.delete(id);soChanged(true);
+  coWrite(id,()=>FB.fs.updateDoc(dref('collab',id),{members,updatedAt:Date.now()}));toast('You left “'+c.title+'”');
+}
+const pendingInvites=()=>coList().filter(c=>c.kind==='event'&&c.owner!==me()&&!(c.rsvp||{})[me()]&&(c.repeat&&c.repeat!=='none'?(!c.until||c.until>=todayIso()):(c.endDate||c.date)>=todayIso()));
+const incomingReqs=()=>frList().filter(f=>f.status==='pending'&&f.to===me());
+const frBadge=()=>incomingReqs().length+pendingInvites().length;
+function friendPicker(sel,label,note){
+  const set=new Set(friendUids());(sel||[]).forEach(u=>{if(u!==me())set.add(u)});const us=[...set];
+  if(!us.length)return '';
+  return '<div class="field"><span class="lbl">'+label+'</span><div class="fpick">'+us.map(u=>'<label><input type="checkbox" name="inv" value="'+esc(u)+'"'+((sel||[]).includes(u)?' checked':'')+'><span>'+avatar(u,22)+esc(nameOf(u))+'</span></label>').join('')+'</div>'+(note?'<p class="fine" style="margin-top:4px">'+note+'</p>':'')+'</div>';
+}
+const pickedFriends=f=>[...f.querySelectorAll('input[name=inv]:checked')].map(x=>x.value);
+function memberStatus(c){
+  if(c.kind==='task')return c.members.map(u=>'<span class="mstat'+(c.done&&c.done[u]?' ok':'')+'">'+avatar(u,22)+esc(nameOf(u))+'<b>'+(c.done&&c.done[u]?'Done':'Not yet')+'</b></span>').join('');
+  const L={yes:'Going',no:'Not going',maybe:'Maybe','':'No reply'};
+  return c.members.map(u=>{const r=u===c.owner?'yes':((c.rsvp||{})[u]||'');return '<span class="mstat r-'+(r||'none')+'">'+avatar(u,22)+esc(nameOf(u))+'<b>'+(u===c.owner?'Host':L[r])+'</b></span>'}).join('');
+}
+function evWhen(c){return (c.allDay||!c.start?fmtDate(c.date)+(c.endDate&&c.endDate>c.date?' – '+fmtDate(c.endDate):'')+' · All day':fmtDate(c.date)+' · '+esc(c.start)+(c.end?'–'+esc(c.end):''))+(c.repeat&&c.repeat!=='none'?' · '+(REPEATS.find(r=>r[0]===c.repeat)||['',''])[1]:'')}
+function openCoView(id){
+  const c=SO.collab.get(id);if(!c)return;const mine=c.owner===me();
+  if(c.kind==='task'){const t=coTaskObj(c),Q=QUADS[t.q];
+    openModal(mHead('Shared task')+'<div class="cov"><h3>'+esc(c.title)+'</h3><p class="sub">'+fmtDate(c.date)+(c.start?' · '+esc(c.start)+(c.end?'–'+esc(c.end):''):'')+' · <span class="tag q-'+Q.c+'">'+ic(Q.icon,12)+Q.l+'</span></p>'
+     +(c.notes?'<p class="covn">'+esc(c.notes)+'</p>':'')
+     +'<div class="lbl" style="margin-top:12px">Collaborators — done when everyone ticks it</div><div class="mstats">'+memberStatus(c)+'</div>'
+     +'<p class="fine">Created by '+esc(nameOf(c.owner))+'</p></div>'
+     +'<div class="mf">'+(mine?'':'<button type="button" class="btn danger" data-act="co-leave" data-id="'+id+'">Leave</button>')+'<span class="spacer"></span>'
+     +'<button type="button" class="btn'+(t.mine?'':' primary')+'" data-act="co-toggle-m" data-id="'+id+'">'+ic('check',16)+(t.mine?'Undo my part':'Mark my part done')+'</button></div>');return}
+  if(c.kind==='event'){const r=mine?'yes':((c.rsvp||{})[me()]||'');
+    openModal(mHead(mine?'Your event':'Invite from '+esc(nameOf(c.owner)))+'<div class="cov"><h3><span class="evdot" style="background:'+esc(c.color||EV_COLORS[0][0])+'"></span>'+esc(c.title)+'</h3><p class="sub">'+evWhen(c)+'</p>'
+     +(c.location?'<p class="sub">'+esc(c.location)+'</p>':'')+(c.notes?'<p class="covn">'+esc(c.notes)+'</p>':'')
+     +'<div class="lbl" style="margin-top:12px">Invited</div><div class="mstats">'+memberStatus(c)+'</div></div>'
+     +(mine?'':'<div class="lbl" style="margin-top:6px">Are you going?</div><div class="seg rsvp">'+[['yes','Going'],['maybe','Maybe'],['no','Not going']].map(x=>'<label><input type="radio" name="rsvp" value="'+x[0]+'" data-act="co-rsvp" data-id="'+id+'"'+(r===x[0]?' checked':'')+'><span>'+x[1]+'</span></label>').join('')+'</div>')
+     +'<div class="mf">'+(mine?'':'<button type="button" class="btn danger" data-act="co-leave" data-id="'+id+'">Remove from my invites</button>')+'<span class="spacer"></span><button type="button" class="btn" data-act="close-modal">Close</button></div>');return}
+}
+function openChallengeModal(id,withU){
+  const c=id?SO.collab.get(id):{title:'',target:'',unit:'',due:'',desc:'',members:[me()].concat(withU||[])};if(!c)return;
+  openModal(mHead(id?'Edit challenge':'New challenge')+'<form data-form="challenge" data-id="'+(id||'')+'" novalidate>'
+   +'<div class="field"><label class="lbl" for="ch-t">Challenge</label><input type="text" id="ch-t" name="t" maxlength="160" value="'+esc(c.title)+'" autofocus autocomplete="off" placeholder="e.g. Read 300 pages, Run 50 km, 20 Anki days"></div>'
+   +'<div class="trow"><div class="field"><label class="lbl" for="ch-n">Target</label><input type="number" id="ch-n" name="n" min="1" max="1000000" inputmode="numeric" value="'+esc(c.target||'')+'" placeholder="e.g. 300"></div>'
+   +'<div class="field"><label class="lbl" for="ch-u">Unit</label><input type="text" id="ch-u" name="u" maxlength="20" value="'+esc(c.unit||'')+'" placeholder="pages, km, days"></div>'
+   +'<div class="field"><label class="lbl" for="ch-d">By (optional)</label><input type="date" id="ch-d" name="d" value="'+esc(c.due||'')+'"></div></div>'
+   +'<div class="field"><label class="lbl" for="ch-x">Details (optional)</label><textarea id="ch-x" name="x" rows="2">'+esc(c.desc||'')+'</textarea></div>'
+   +(friendPicker((c.members||[]).filter(u=>u!==me()),'Challenge with','Each person logs their own progress.')||'<p class="fine">Add a friend first on the Friends page.</p>')
+   +'<p class="err" id="ch-err"></p><div class="mf">'+(id?'<button type="button" class="btn danger" data-act="co-leave" data-id="'+id+'">'+ic('trash',16)+'Delete</button><span class="spacer"></span>':'')
+   +'<button type="button" class="btn" data-act="close-modal">Cancel</button><button type="submit" class="btn primary">'+(id?'Save':'Start challenge')+'</button></div></form>');
+}
+function challengeCard(c){
+  const tg=Number(c.target)||0,mine=c.owner===me(),my=(c.prog||{})[me()]||0,td=todayIso();
+  const rows=c.members.slice().sort((a,b)=>((c.prog||{})[b]||0)-((c.prog||{})[a]||0)).map(u=>{const n=(c.prog||{})[u]||0,v=tg?Math.min(1,n/tg):0;
+    return '<div class="chrow'+(u===me()?' me':'')+'">'+avatar(u,26)+'<div class="chb"><div class="chn"><span>'+esc(nameOf(u))+'</span><b>'+n+(tg?' / '+tg:'')+(c.unit?' '+esc(c.unit):'')+'</b></div>'+progBar(v,v>=1)+'</div></div>'}).join('');
+  return '<section class="card chal"><div class="gh"><div style="min-width:0"><div class="gtitle"><h2>'+esc(c.title)+'</h2><span class="tag ac">'+ic('users',12)+'Challenge</span></div>'
+   +(c.desc?'<p class="gdesc">'+esc(c.desc)+'</p>':'')
+   +'<p class="fine" style="margin-top:4px">'+(tg?'Goal: '+tg+(c.unit?' '+esc(c.unit):'')+' each':'No target')+(c.due?' · by '+fmtDate(c.due)+(c.due<td?' (ended)':''):'')+' · started by '+esc(nameOf(c.owner))+'</p></div>'
+   +'<div class="gact">'+(mine?'<button class="ibtn" data-act="ch-edit" data-id="'+c.id+'" aria-label="Edit challenge">'+ic('edit',17)+'</button>':'<button class="ibtn" data-act="co-leave" data-id="'+c.id+'" title="Leave" aria-label="Leave challenge">'+ic('logout',17)+'</button>')+'</div></div>'
+   +'<div class="chrows">'+rows+'</div>'
+   +'<div class="chlog"><span class="fine">Your progress</span><button class="ibtn nb" data-act="ch-dec" data-id="'+c.id+'" aria-label="Minus one">−</button>'
+   +'<input type="number" min="0" inputmode="numeric" value="'+my+'" data-act="ch-set" data-id="'+c.id+'" aria-label="Your progress"><button class="ibtn nb" data-act="ch-inc" data-id="'+c.id+'" aria-label="Plus one">+</button></div></section>';
+}
+const challenges=()=>coList().filter(c=>c.kind==='goal').sort((a,b)=>(a.createdAt||0)-(b.createdAt||0));
+
+/* ---------- Friends pages ---------- */
+function shareToggles(cfg,scope){
+  return '<div class="shtoggles">'+SHARE_KEYS.map(k=>'<label class="shrow"><span><b>'+k[1]+'</b><small>'+k[2]+'</small></span><input type="checkbox" class="sw" data-act="share-set" data-scope="'+esc(scope)+'" data-key="'+k[0]+'"'+(cfg[k[0]]?' checked':'')+'></label>').join('')+'</div>';
+}
+function presetRow(cfg,scope){
+  const cur=SHARE_PRESETS.find(p=>SHARE_KEYS.every(k=>!!p[2][k[0]]===!!cfg[k[0]]));
+  return '<div class="chips presets">'+SHARE_PRESETS.map(p=>'<button type="button" class="chip'+(cur&&cur[0]===p[0]?' on':'')+'" data-act="share-preset" data-scope="'+esc(scope)+'" data-p="'+p[0]+'">'+p[1]+'</button>').join('')+'</div>';
+}
+function openShareModal(uid){
+  const per=(frCfg().per||{})[uid],cfg=shareFor(uid);
+  openModal(mHead('What '+esc(nameOf(uid))+' can see')+'<p class="sub" style="margin:-4px 0 10px">Your name and photo are always visible to friends. Notes, reflections and photos are never shared.</p>'
+   +presetRow(cfg,uid)+shareToggles(cfg,uid)
+   +'<div class="mf">'+(per?'<button type="button" class="btn" data-act="share-reset" data-scope="'+esc(uid)+'">Use my defaults</button>':'<span class="fine">Using your default settings</span>')+'<span class="spacer"></span><button type="button" class="btn primary" data-act="close-modal">Done</button></div>');
+}
+function personRow(uid,actions,sub){
+  const p=pf(uid)||{};
+  return '<div class="prow">'+avatar(uid,40)+'<div class="pb"><div class="pn">'+esc(p.name||'PV Planner user')+'</div><div class="fine">'+(p.handle?'@'+esc(p.handle):'')+(sub?(p.handle?' · ':'')+sub:'')+'</div></div><div class="pa">'+actions+'</div></div>';
+}
+function searchResultHTML(){
+  const s=S.frSearch;if(!s)return '';
+  if(s.loading)return '<div class="fres"><div class="spinner sm"></div></div>';
+  if(s.none)return '<div class="fres"><p class="fine">'+esc(s.none)+'</p></div>';
+  const uid=s.uid;if(!uid)return '';
+  const f=frWith(uid);let act;
+  if(uid===me())act='<span class="fine">This is you</span>';
+  else if(!f)act='<button class="btn primary sm" data-act="fr-add" data-u="'+esc(uid)+'">'+ic('plus',15)+'Add friend</button>';
+  else if(f.status==='accepted')act='<button class="btn sm" data-act="fr-open" data-u="'+esc(uid)+'">Friends ✓</button>';
+  else if(f.status==='blocked')act='<span class="fine">'+(f.blockedBy===me()?'Blocked':'Unavailable')+'</span>';
+  else if(f.from===me())act='<span class="fine">Request sent</span>';
+  else act='<button class="btn primary sm" data-act="fr-accept" data-id="'+f.id+'">Accept</button>';
+  return '<div class="fres">'+(s.invite?'<p class="fine" style="margin:0 0 6px">Invite link</p>':'')+personRow(uid,act)+'</div>';
+}
+function friendCard(uid){
+  const sh=SO.shares.get(uid),d=sh&&sh.d||{},td=todayIso(),mood=d.mood&&d.mood[td],star=(d.star||[]).includes(td),pg=d.prog;
+  const p=pf(uid)||{};
+  return '<button class="fcard" data-act="fr-open" data-u="'+esc(uid)+'">'+avatar(uid,46)
+   +'<span class="fcb"><span class="pn">'+esc(p.name||'Friend')+'</span><span class="fine">'+(p.handle?'@'+esc(p.handle):'')+'</span>'
+   +(pg&&pg.day&&d.today===td?'<span class="fine">Today '+pg.day[0]+'/'+pg.day[1]+' done</span>':(sh?'':'<span class="fine">Nothing shared yet</span>'))+'</span>'
+   +'<span class="fcm">'+(star?starNum(parse(td).getDate(),22):'')+(mood?face(mood,30,true):'')+'</span></button>';
+}
+VIEWS.friends=function(){
+  const p=pubWant(),inc=incomingReqs(),out=frList().filter(f=>f.status==='pending'&&f.from===me()),blocked=frList().filter(f=>f.status==='blocked'&&f.blockedBy===me()),fr=friendUids(),inv=pendingInvites();
+  const rulesWarn=SO.rulesMissing?'<div class="gbar warn"><span>'+ic('flag',16)+'Friends need the new Firestore rules. Paste them from the README in Firebase Console → Firestore → Rules, then reload.</span></div>':'';
+  return '<header class="ph"><div><h1>Friends</h1><p class="sub">'+fr.length+' friend'+(fr.length===1?'':'s')+' · share progress, do tasks together, send invites</p></div>'
+   +'<div class="navrow"><button class="btn" data-act="qr-open">'+ic('qr',16)+'Invite link / QR</button></div></header>'+rulesWarn
+   +'<div class="grid2"><div class="col">'
+   +(p.handle?'':'<section class="card hl"><div class="ch"><h2>Choose your username</h2></div><p class="sub" style="margin-bottom:10px">Friends can find you by @username. You can change it later in Settings.</p>'
+     +'<form class="handleform" data-form="handle" novalidate><span class="at">@</span><input type="text" name="h" data-k="handle-new" maxlength="20" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+esc(suggestHandle())+'"><button class="btn primary" type="submit">Save</button></form><p class="err" id="handle-err"></p></section>')
+   +'<section class="card"><div class="ch"><h2>Add a friend</h2></div>'
+   +'<form class="qa" data-form="fr-find" novalidate><input type="text" name="q" data-k="fr-q" placeholder="@username or email" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Username or email"><button class="btn primary" type="submit">Find</button></form>'
+   +searchResultHTML()
+   +'<p class="fine" style="margin-top:8px">Or share your invite link / QR code. Your username: '+(p.handle?'<b>@'+esc(p.handle)+'</b>':'not set yet')+'</p></section>'
+   +(inc.length?'<section class="card"><div class="ch"><h2>Friend requests</h2><span class="qbadge">'+inc.length+'</span></div>'+inc.map(f=>personRow(otherOf(f),'<button class="btn primary sm" data-act="fr-accept" data-id="'+f.id+'">Accept</button><button class="btn sm" data-act="fr-decline" data-id="'+f.id+'">Decline</button><button class="ibtn" data-act="fr-block" data-u="'+esc(otherOf(f))+'" title="Block" aria-label="Block">'+ic('block',16)+'</button>',ago(f.createdAt))).join('')+'</section>':'')
+   +(inv.length?'<section class="card"><div class="ch"><h2>Invites</h2><span class="qbadge">'+inv.length+'</span></div>'+inv.map(c=>'<button class="invrow" data-act="co-open" data-id="'+c.id+'">'+avatar(c.owner,32)+'<span class="pb"><span class="pn">'+esc(c.title)+'</span><span class="fine">'+esc(nameOf(c.owner))+' · '+evWhen(c)+'</span></span><span class="btn sm">Reply</span></button>').join('')+'</section>':'')
+   +(out.length?'<section class="card"><div class="ch"><h2>Sent requests</h2></div>'+out.map(f=>personRow(otherOf(f),'<button class="btn sm" data-act="fr-decline" data-id="'+f.id+'">Cancel</button>','waiting')).join('')+'</section>':'')
+   +'</div><div class="col">'
+   +'<section class="card"><div class="ch"><h2>Your friends</h2></div>'+(fr.length?'<div class="fgrid">'+fr.map(friendCard).join('')+'</div>':'<p class="empty">No friends yet — add someone by username, email, or your invite link.</p>')+'</section>'
+   +'<section class="card"><div class="ch"><h2>Sharing</h2></div><p class="sub" style="margin-bottom:10px">New friends see this by default. Change it per friend on their page.</p>'+presetRow(defShare(),'*')+shareToggles(defShare(),'*')+'</section>'
+   +(blocked.length?'<section class="card"><div class="ch"><h2>Blocked</h2></div>'+blocked.map(f=>personRow(otherOf(f),'<button class="btn sm" data-act="fr-unblock" data-id="'+f.id+'">Unblock</button>')).join('')+'</section>':'')
+   +'</div></div>';
+};
+function fpMoodWeek(d){
+  const td=todayIso(),mon=mondayOf(td);let h='';
+  for(let i=0;i<7;i++){const dt=addDays(mon,i),m=d.mood&&d.mood[dt],st=(d.star||[]).includes(dt);
+    h+='<div class="fpday'+(dt===td?' today':'')+'"><span class="fine">'+DAYS_S[parse(dt).getDay()]+'</span>'+(st?starNum(parse(dt).getDate(),24):'<b>'+parse(dt).getDate()+'</b>')+(m?face(m,28,true):(d.mood?'<span class="nomood"></span>':''))+'</div>'}
+  return '<div class="fpweek">'+h+'</div>';
+}
+VIEWS.friend=function(){
+  const uid=S.friendUid;if(!uid||!isFriend(uid)){setTimeout(()=>go('friends'));return ''}
+  const p=pf(uid)||{},sh=SO.shares.get(uid),d=(sh&&sh.d)||{},td=todayIso(),err=SO.shareErr.has(uid);
+  const together=coList().filter(c=>c.members.includes(uid));
+  const sec=[];
+  if(d.mood||d.star){const m=d.mood&&d.mood[td];sec.push('<section class="card"><div class="ch"><h2>Mood</h2>'+(m?'<span class="fine">Today: '+MOOD_L[m]+'</span>':'')+'</div>'+fpMoodWeek(d)+'</section>')}
+  if(d.prog){const pg=d.prog,cur=pg.mon===mondayOf(td),dd=d.today===td?pg.day:null;
+    sec.push('<section class="card"><div class="ch"><h2>Progress</h2></div>'
+     +(dd?'<div class="fpprog"><span>Today</span><b>'+dd[0]+'/'+dd[1]+'</b>'+progBar(dd[1]?dd[0]/dd[1]:0,dd[1]&&dd[0]===dd[1])+'</div>':'')
+     +'<div class="fpprog"><span>'+(cur?'This week':'Week of '+fmtShort(pg.mon))+'</span><b>'+pg.week[0]+'/'+pg.week[1]+'</b>'+progBar(pg.week[1]?pg.week[0]/pg.week[1]:0,pg.week[1]&&pg.week[0]===pg.week[1])+'</div></section>')}
+  if(d.tasks){const by={};d.tasks.filter(t=>t.d>=td||!t.x).forEach(t=>(by[t.d<td?'late':t.d]=by[t.d<td?'late':t.d]||[]).push(t));const ks=Object.keys(by).sort((a,b)=>a==='late'?-1:b==='late'?1:a<b?-1:1);
+    sec.push('<section class="card"><div class="ch"><h2>Tasks</h2><span class="fine">'+d.tasks.filter(t=>t.d>=td&&!t.x).length+' to do</span></div>'
+     +(ks.length?ks.map(k=>'<div class="fpdh'+(k==='late'?' late':'')+'">'+(k==='late'?'Overdue':k===td?'Today':fmtDate(k))+'</div>'+by[k].map(t=>'<div class="fptask'+(t.x?' done':'')+'"><span class="pdot q-'+(QUADS[t.q]?QUADS[t.q].c:'i')+'"></span>'+(t.s?'<span class="tm">'+esc(t.s)+'</span>':'')+'<span>'+esc(t.t)+'</span>'+(t.x?ic('check',13):'')+'</div>').join('')).join(''):'<p class="empty" style="padding:4px 0">Nothing planned</p>')+'</section>')}
+  if(d.goals)sec.push('<section class="card"><div class="ch"><h2>Goals</h2></div>'+(d.goals.length?d.goals.map(g=>'<div class="fpgoal"><div class="chn"><span>'+esc(g.t)+'</span><b>'+g.p+'%</b></div>'+progBar(g.p/100,g.p>=100)+(g.dd?'<span class="fine">Target '+fmtDate(g.dd)+'</span>':'')+'</div>').join(''):'<p class="empty" style="padding:4px 0">No active goals</p>')+'</section>');
+  if(d.acts){const ks=Object.keys(d.acts).sort().reverse().slice(0,3);if(ks.length)sec.push('<section class="card"><div class="ch"><h2>Activities</h2></div>'+ks.map(k=>'<div class="fpdh">'+(k===td?'Today':fmtDate(k))+'</div><div class="fpacts">'+d.acts[k].map(a=>'<span class="fpact">'+(a[0]?'<span class="emo">'+esc(a[0])+'</span>':'')+esc(a[1])+'</span>').join('')+'</div>').join('')+'</section>')}
+  if(d.events){const evs=d.events.filter(e=>e.d>=td).slice(0,12);sec.push('<section class="card"><div class="ch"><h2>Upcoming events</h2></div>'+(evs.length?evs.map(e=>'<div class="fptask"><span class="evdot" style="background:'+esc(e.c||EV_COLORS[0][0])+'"></span><span class="tm">'+fmtShort(e.d)+(e.s?' '+esc(e.s):'')+'</span><span>'+esc(e.t)+'</span></div>').join(''):'<p class="empty" style="padding:4px 0">No upcoming events</p>')+'</section>')}
+  const tog='<section class="card"><div class="ch"><h2>Together</h2></div>'
+   +'<div class="togbtns"><button class="btn sm" data-act="with-task" data-u="'+esc(uid)+'">'+ic('check2',15)+'Shared task</button><button class="btn sm" data-act="with-event" data-u="'+esc(uid)+'">'+ic('cal',15)+'Invite to event</button><button class="btn sm" data-act="with-ch" data-u="'+esc(uid)+'">'+ic('target',15)+'Challenge</button></div>'
+   +(together.length?together.map(c=>'<button class="invrow" data-act="co-open" data-id="'+c.id+'"><span class="kic">'+ic(c.kind==='task'?'check2':c.kind==='event'?'cal':'target',17)+'</span><span class="pb"><span class="pn">'+esc(c.title)+'</span><span class="fine">'+(c.kind==='task'?fmtDate(c.date)+' · '+coDoneBy(c).length+'/'+c.members.length+' done':c.kind==='event'?evWhen(c):'Challenge')+'</span></span></button>').join(''):'<p class="empty" style="padding:6px 0 0">Nothing shared together yet</p>')+'</section>';
+  return '<header class="ph"><div class="fphead">'+avatar(uid,60)+'<div><h1>'+esc(p.name||'Friend')+'</h1><p class="sub">'+(p.handle?'@'+esc(p.handle)+' · ':'')+(sh?'Updated '+ago(sh.at):'Nothing shared yet')+'</p></div></div>'
+   +'<div class="navrow"><button class="btn sm" data-act="nav" data-route="friends">'+ic('left',15)+'Friends</button><button class="btn sm" data-act="share-open" data-u="'+esc(uid)+'">'+ic('user',15)+'What I share</button><button class="ibtn" data-act="fr-more" data-u="'+esc(uid)+'" aria-label="More">'+ic('more',18)+'</button></div></header>'
+   +(err?'<div class="gbar warn"><span>'+ic('flag',16)+'Couldn’t load what '+esc(p.name||'they')+' share — check that the new Firestore rules are published.</span></div>':'')
+   +(sh&&!sec.length?'<section class="card"><p class="empty">'+esc(p.name||'Your friend')+' shares only their name and photo with you.</p></section>':'')
+   +(!sh&&!err?'<section class="card"><p class="empty">'+esc(p.name||'Your friend')+' hasn’t shared anything yet. It appears after they open PV Planner.</p></section>':'')
+   +(sec.length?'<div class="grid2"><div class="col">'+sec.filter((x,i)=>i%2===0).join('')+'</div><div class="col">'+sec.filter((x,i)=>i%2===1).join('')+'</div></div>':'')+'<div style="margin-top:16px">'+tog+'</div>';
+};
+function openFrMore(uid){
+  const f=frWith(uid);if(!f)return;
+  openModal(mHead(esc(nameOf(uid)))+'<div class="mlist"><button class="mitem" data-act="share-open" data-u="'+esc(uid)+'">'+ic('user',17)+'What I share with '+esc(nameOf(uid))+'</button>'
+   +'<button class="mitem danger" data-act="fr-remove" data-id="'+f.id+'">'+ic('x',17)+'Remove friend</button>'
+   +'<button class="mitem danger" data-act="fr-block" data-u="'+esc(uid)+'">'+ic('block',17)+'Block</button></div>'
+   +'<p class="fine" style="margin-top:10px">Removing or blocking stops sharing right away. Shared tasks and invites you’re both in stay until you leave them.</p>');
+}
+function socialSettingsHTML(){
+  const p=pubWant(),u=FB&&FB.auth&&FB.auth.currentUser||S.user||{},on=frCfg().emailFind!==false;
+  return '<section class="card"><div class="ch"><h2>Friends</h2></div>'
+   +'<div class="field"><label class="lbl" for="s-h">Username</label><form class="handleform" data-form="handle" novalidate><span class="at">@</span><input type="text" id="s-h" name="h" data-k="handle-set" maxlength="20" autocomplete="off" autocapitalize="off" spellcheck="false" value="'+esc(p.handle||'')+'" placeholder="'+esc(suggestHandle())+'"><button class="btn" type="submit">Save</button></form><p class="err" id="handle-err"></p></div>'
+   +'<label class="shrow"><span><b>Let people find me by email</b><small>Only someone who already knows your exact email can find you.</small></span><input type="checkbox" class="sw" data-act="email-find"'+(on?' checked':'')+'></label>'
+   +(on&&u.email&&!u.emailVerified?'<p class="fine" style="margin:6px 0 0">Verify your email first so friends can find you by it. <button class="linkbtn" data-act="verify-email">Send verification email</button> · <button class="linkbtn" data-act="verify-check">I’ve verified</button></p>':'')
+   +'<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap"><button class="btn" data-act="nav" data-route="friends">'+ic('users',16)+'Friends &amp; sharing</button><button class="btn" data-act="qr-open">'+ic('qr',16)+'Invite link / QR</button></div></section>';
+}
+
 /* ---------- events ---------- */
 document.addEventListener('click',e=>{
   const el=e.target.closest('[data-act]');if(!el)return;
   const a=el.dataset.act,id=el.dataset.id,td=todayIso();
   if(el.tagName==='INPUT')return;
+  if(id&&id.startsWith('k_')&&['toggle','edit','del','star','move-today','ev-edit','modal-del-task'].includes(a)){
+    const c=SO.collab.get(id);if(!c||a==='star')return;
+    if(a==='toggle')coToggle(id);
+    else if(a==='move-today')patchTask(id,{date:td});
+    else if(a==='del'||a==='modal-del-task'){closeModal();const own=c.owner===me();confirmModal(own?'Delete “'+esc(c.title)+'”?':'Leave “'+esc(c.title)+'”?',own?'It’s removed for everyone it’s shared with.':'It disappears from your planner. The others keep it.',own?'Delete':'Leave',()=>coLeave(id))}
+    else if(c.owner===me())(c.kind==='event'?openEventModal(id):openTaskModal(id));else openCoView(id);
+    return;
+  }
   switch(a){
+    case 'qr-open':closeModal();openQrModal();return;
+    case 'copy-invite':copyText(inviteUrl(),'Invite link copied');return;
+    case 'share-invite':navigator.share({title:'PV Planner',text:'Add me as a friend on PV Planner',url:inviteUrl()}).catch(()=>{});return;
+    case 'fr-add':sendRequest(el.dataset.u);return;
+    case 'fr-accept':acceptReq(id);return;
+    case 'fr-decline':{const f=SO.fr.get(id);dropFr(id,f&&f.from===me()?'Request cancelled':'Request declined');return}
+    case 'fr-unblock':dropFr(id,'Unblocked');return;
+    case 'fr-remove':{const f=SO.fr.get(id);if(!f)return;const o=otherOf(f);closeModal();confirmModal('Remove '+esc(nameOf(o))+'?','You’ll stop seeing each other’s shared info. You can add each other again later.','Remove',()=>{dropFr(id,'Removed '+nameOf(o));go('friends')});return}
+    case 'fr-block':{const u=el.dataset.u;closeModal();confirmModal('Block '+esc(nameOf(u))+'?','They can’t send you requests or see anything you share. You can unblock them on the Friends page.','Block',()=>blockUser(u));return}
+    case 'fr-open':closeModal();S.friendUid=el.dataset.u;go('friend');return;
+    case 'fr-more':openFrMore(el.dataset.u);return;
+    case 'share-open':closeModal();openShareModal(el.dataset.u);return;
+    case 'share-preset':{const sc=el.dataset.scope,pr=SHARE_PRESETS.find(x=>x[0]===el.dataset.p);if(!pr)return;const v=Object.assign({},pr[2]);
+      if(sc==='*')saveFrCfg({def:v});else{const per=clone(frCfg().per||{});per[sc]=v;saveFrCfg({per});openShareModal(sc)}return}
+    case 'share-reset':{const sc=el.dataset.scope,per=clone(frCfg().per||{});delete per[sc];saveFrCfg({per});openShareModal(sc);return}
+    case 'with-task':openTaskModal(null,{date:td,with:[el.dataset.u]});return;
+    case 'with-event':openEventModal(null,{date:td,with:[el.dataset.u]});return;
+    case 'with-ch':openChallengeModal(null,[el.dataset.u]);return;
+    case 'ch-new':openChallengeModal(null,[]);return;
+    case 'ch-edit':openChallengeModal(id);return;
+    case 'ch-inc':case 'ch-dec':{const c=SO.collab.get(id);if(c)coProg(id,((c.prog||{})[me()]||0)+(a==='ch-inc'?1:-1));return}
+    case 'co-open':{closeModal();const c=SO.collab.get(id);if(!c)return;if(c.kind==='goal'){go('goals');return}if(c.owner===me())(c.kind==='event'?openEventModal(id):openTaskModal(id));else openCoView(id);return}
+    case 'co-leave':{const c=SO.collab.get(id);if(!c)return;closeModal();const own=c.owner===me();confirmModal(own?'Delete “'+esc(c.title)+'”?':'Leave “'+esc(c.title)+'”?',own?'It’s removed for everyone it’s shared with.':'It disappears from your planner. The others keep it.',own?'Delete':'Leave',()=>coLeave(id));return}
+    case 'co-toggle-m':closeModal();coToggle(id);return;
+    case 'verify-email':{const u=FB.auth.currentUser;if(!u)return;FB.au.sendEmailVerification(u).then(()=>toast('Verification email sent — check your inbox')).catch(()=>toast('Couldn’t send — try again later'));return}
+    case 'verify-check':{const u=FB.auth.currentUser;if(!u)return;u.reload().then(()=>u.getIdToken(true)).then(()=>{SO.emailDone='';if(u.emailVerified){emailSync();toast('Email verified ✓')}else toast('Not verified yet — open the link in the email first');render()}).catch(()=>toast('Couldn’t check — try again'));return}
+    case 'av-remove':{const prof=Object.assign(clone(S.profile),{photo:'',updatedAt:Date.now()});S.profile=prof;render();save('profile',prof);syncPub();return}
+
     case 'bg-close':if(e.target===el)closeModal();return;
     case 'close-modal':closeModal();return;
     case 'google-login':if(FB)googleLogin(el);return;
@@ -1829,6 +2421,12 @@ document.addEventListener('click',e=>{
 });
 document.addEventListener('change',e=>{
   const el=e.target;
+  if(el.dataset&&el.dataset.act==='share-set'){const sc=el.dataset.scope,k=el.dataset.key;
+    if(sc==='*')saveFrCfg({def:Object.assign(defShare(),{[k]:el.checked})});else{const per=clone(frCfg().per||{});per[sc]=Object.assign(shareFor(sc),{[k]:el.checked});saveFrCfg({per});openShareModal(sc)}return}
+  if(el.dataset&&el.dataset.act==='email-find'){saveFrCfg({emailFind:el.checked});SO.emailDone='';emailSync();return}
+  if(el.dataset&&el.dataset.act==='co-rsvp'){coRsvp(el.dataset.id,el.value);openCoView(el.dataset.id);return}
+  if(el.dataset&&el.dataset.act==='ch-set'){coProg(el.dataset.id,Number(el.value)||0);return}
+  if(el.id==='av-file'&&el.files&&el.files[0]){fileToIcon(el.files[0]).then(u=>{const prof=Object.assign(clone(S.profile),{photo:u,updatedAt:Date.now()});S.profile=prof;render();save('profile',prof);syncPub();toast('Photo updated')}).catch(()=>toast('Couldn’t read that image'));return}
   if(el.dataset&&el.dataset.act==='pick-day'&&el.value){S.dailyDate=el.value;render()}
   if(el.dataset&&el.dataset.act==='pick-drday'&&el.value){S.reviewDay=el.value;render()}
   if(el.dataset&&el.dataset.act==='ev-allday'&&el.form){const on=el.checked;el.form.querySelectorAll('.evtime').forEach(x=>x.hidden=on);el.form.querySelectorAll('.evday').forEach(x=>x.hidden=!on);const l=el.form.querySelector('label[for=e-date]');if(l)l.textContent=on?'Start date':'Date'}
@@ -1862,7 +2460,10 @@ document.addEventListener('submit',async e=>{
     case 'event':{const id=f.dataset.id,title=el.title.value.trim();if(!title){el.title.focus();return}
       const allDay=el.allday.checked,date=el.date.value||todayIso(),st=allDay?'':(el.st.value||''),et=st&&el.et.value>st?el.et.value:'';
       const ed=allDay&&el.ed.value>date?el.ed.value:'',rep=el.rep.value||'none',until=rep!=='none'&&el.until.value>=date?el.until.value:'';
-      saveEvent(id||null,{title,date,allDay:allDay||!st,start:st,end:et,endDate:ed,repeat:rep,until,location:el.loc.value.trim(),notes:el.notes.value.trim(),color:el.color.value||EV_COLORS[0][0],cal:el.cal.checked});
+      const evd={title,date,allDay:allDay||!st,start:st,end:et,endDate:ed,repeat:rep,until,location:el.loc.value.trim(),notes:el.notes.value.trim(),color:el.color.value||EV_COLORS[0][0],cal:el.cal.checked},inv=pickedFriends(f);
+      if(id&&id.startsWith('k_')){coSave(id,Object.assign(evd,{members:[me()].concat(inv)}));closeModal();return}
+      if(inv.length){if(id){const old=S.events.get(id);if(old){S.events.delete(id);removeDoc(id);if(old.cal)gSchedule()}}coCreate('event',Object.assign(evd,{rsvp:{}}),inv);closeModal();toast('Invite sent to '+inv.map(nameOf).join(', '));return}
+      saveEvent(id||null,evd);
       closeModal();return}
     case 'ex-add':{const d=f.dataset.d,t=el.t.value.trim(),mn=Math.max(0,Math.min(1440,parseInt(el.m.value,10)||0));if(!t){el.t.focus();return}
       const e=dayEntry(d);saveDay(d,{exlog:(e.exlog||[]).concat({id:rid(),type:t,min:mn})});return}
@@ -1890,6 +2491,9 @@ document.addEventListener('submit',async e=>{
       const parts=(el.ms.value||'').split('|');
       const st=el.st.value||'',et=st&&el.et.value>st?el.et.value:'';
       const data={title,date:el.date.value||todayIso(),start:st,end:et,cal:el.cal.checked,q:el.prio.value||'i',notes:el.notes.value.trim(),star:el.star.checked,goalId:parts[0]||null,msId:parts[1]||null};
+      const inv=pickedFriends(f),cd={title:data.title,date:data.date,start:st,end:et,q:data.q,notes:data.notes};
+      if(id&&id.startsWith('k_')){const c=SO.collab.get(id);if(c&&c.owner===me())coSave(id,Object.assign(cd,{members:[me()].concat(inv)}));if(el.done&&c&&el.done.checked!==!!(c.done&&c.done[me()]))coToggle(id);closeModal();return}
+      if(inv.length){if(id){const old=S.tasks.get(id);if(old){S.tasks.delete(id);removeDoc(id);if(old.cal)gSchedule()}}coCreate('task',Object.assign(cd,{done:{}}),inv);closeModal();toast('Shared with '+inv.map(nameOf).join(', '));return}
       if(id){const t=S.tasks.get(id);if(el.done&&t&&el.done.checked!==!!t.done){data.done=el.done.checked;data.doneAt=el.done.checked?Date.now():null}patchTask(id,data)}
       else addTask(data);
       closeModal();return}
@@ -1903,6 +2507,13 @@ document.addEventListener('submit',async e=>{
     case 'ms-edit':{
       const g=clone(S.goals.get(f.dataset.g));if(!g)return;const m=(g.milestones||[]).find(x=>x.id===f.dataset.m);if(!m)return;
       const t=el.mt.value.trim();if(!t){el.mt.focus();return}m.title=t;m.due=el.md.value||'';saveGoal(g);closeModal();return}
+    case 'handle':{const v=(el.h.value||el.h.placeholder||'').trim();const m=await claimHandle(v);const er=$('#handle-err');if(m){if(er)er.textContent=m}else{delete S.drafts['handle-new'];delete S.drafts['handle-set'];render();toast('Username saved: @'+S.profile.handle)}return}
+    case 'fr-find':findPeople(el.q.value);return;
+    case 'challenge':{const id=f.dataset.id,title=el.t.value.trim(),inv=pickedFriends(f),er=$('#ch-err');if(!title){el.t.focus();return}
+      if(!inv.length){er.textContent='Pick at least one friend';return}
+      const cd={title,target:Math.max(0,parseInt(el.n.value,10)||0),unit:el.u.value.trim(),due:el.d.value||'',desc:el.x.value.trim()};
+      if(id)coSave(id,Object.assign(cd,{members:[me()].concat(inv)}));else coCreate('goal',Object.assign(cd,{prog:{}}),inv);
+      closeModal();if(S.route!=='goals'&&S.route!=='friend')go('goals');return}
     case 'profile':{
       const name=el.nm.value.trim(),err=$('#prof-err');
       if(!name){err.textContent='Please enter a name';return}
@@ -1912,7 +2523,7 @@ document.addEventListener('submit',async e=>{
     case 'delete-all':{
       if(el.cf.value.trim().toUpperCase()!=='DELETE'){$('#del-err').textContent='Type DELETE to confirm';return}
       busy(f,true);S.deleting=true;
-      const ids=[...S.tasks.keys(),...S.goals.keys(),...S.focus.keys(),...S.reviews.keys(),...S.days.keys(),...S.photos.keys(),...S.events.keys()].concat(S.drcfg?['drcfg']:[]);
+      const ids=[...S.tasks.keys(),...S.goals.keys(),...S.focus.keys(),...S.reviews.keys(),...S.days.keys(),...S.photos.keys(),...S.events.keys()].concat(S.drcfg?['drcfg']:[]).concat(S.frcfg?['friendcfg']:[]);
       let ok=true;for(const id of ids){if(!(await removeDoc(id)))ok=false}
       if(ok)ok=await removeDoc('profile');
       S.deleting=false;closeModal();
