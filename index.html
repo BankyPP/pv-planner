@@ -1554,8 +1554,16 @@ VIEWS.account=function(){
    +'<div class="kv" style="margin-bottom:14px"><div><b>'+S.tasks.size+'</b>tasks</div><div><b>'+S.goals.size+'</b>goals</div><div><b>'+S.days.size+'</b>daily reviews</div><div><b>'+S.reviews.size+'</b>weekly reviews</div></div>'
    +'<button class="btn" data-act="copy-json">'+ic('copy',16)+'Copy all data (JSON)</button></section>'
    +'<section class="card"><div class="ch"><h2 style="color:var(--hi)">Delete all data</h2></div><p class="sub" style="margin-bottom:12px">Permanently delete every task, goal, weekly focus, and weekly review. This can’t be undone. Your sign-in account itself is kept.</p>'
-   +'<button class="btn danger" data-act="delete-all">'+ic('trash',16)+'Delete all data</button></section></div></div>';
+   +'<button class="btn danger" data-act="delete-all">'+ic('trash',16)+'Delete all data</button></section></div></div>'
+   +'<p class="fine" id="lastUpd" style="text-align:center;margin-top:22px">'+lastUpdTxt()+'</p>';
 };
+/* "Last updated" at the bottom of Settings — time of the latest commit to index.html (GitHub), so the owner can check an update has gone live; falls back to the page's Last-Modified */
+let LAST_UPD=null;
+function lastUpdFmt(iso){const d=new Date(iso);if(isNaN(d))return '';try{return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric',timeZone:'Asia/Bangkok'})+', '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit',timeZone:'Asia/Bangkok'})}catch(e){return iso}}
+function lastUpdTxt(){const t=lastUpdFmt(LAST_UPD||document.lastModified);return t?'Last updated '+t:''}
+(function(){if(!/github\.io$/.test(location.hostname))return;
+  try{fetch('https://api.github.com/repos/BankyPP/pv-planner/commits?path=index.html&per_page=1',{cache:'no-store'}).then(r=>r.ok?r.json():null).then(j=>{
+    const iso=j&&j[0]&&j[0].commit&&(j[0].commit.committer||j[0].commit.author||{}).date;if(!iso)return;LAST_UPD=iso;const el=document.getElementById('lastUpd');if(el)el.textContent=lastUpdTxt();}).catch(()=>{})}catch(e){}})();
 
 /* ---------- modals ---------- */
 function openModal(inner){
